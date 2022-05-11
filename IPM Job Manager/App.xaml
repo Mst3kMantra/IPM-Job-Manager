@@ -1,0 +1,16 @@
+﻿<Application x:Class="IPM_Job_Manager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:IPM_Job_Manager"
+             StartupUri="Login.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="LabelTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+                
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
