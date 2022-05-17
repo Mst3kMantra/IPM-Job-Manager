@@ -89,3 +89,33 @@ C:\Users\wstev\source\repos\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Ma
 C:\Users\wstev\source\repos\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.csproj.CopyComplete
 C:\Users\wstev\source\repos\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net.exe
 C:\Users\wstev\source\repos\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net.pdb
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\IPM Job Manager net.exe.config
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\IPM Job Manager net.exe
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\IPM Job Manager net.pdb
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\EntityFramework.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\Newtonsoft.Json.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\System.Data.OleDb.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\EntityFramework.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Debug\System.Data.OleDb.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.csproj.AssemblyReference.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.csproj.SuggestedBindingRedirects.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\Login.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\MainWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\App.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net_MarkupCompile.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net_MarkupCompile.lref
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\App.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\Login.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\MainWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net.g.resources
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM_Job_Manager_net.Properties.Resources.resources
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.csproj.GenerateResource.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.csproj.CoreCompileInputs.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.csproj.CopyComplete
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net.exe
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager net.pdb
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\AdminWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\AdminWindow.baml

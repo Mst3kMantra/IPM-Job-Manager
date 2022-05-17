@@ -14,8 +14,10 @@ using System.Windows.Shapes;
 using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using IPM_Job_Manager_net;
+using System.Collections.ObjectModel;
 
-namespace IPM_Job_Manager
+namespace IPM_Job_Manager_net
 {
     /// <summary>
     /// Interaction logic for Login.xaml
@@ -23,42 +25,36 @@ namespace IPM_Job_Manager
     public partial class Login : Window
     {
         
-        public Root Userlist;
-        public string CurrentLogin;
 
-        public Login()
+        public string CurrentLogin;
+        public Window MainWin;
+        public Window AdminWin;
+        public Root Userlist;
+        public ObservableCollection<string> Usernames;
+        public Root UserList { get; private set; }
+        public Login(Window LastWindow, Root JsonUserList, ObservableCollection<string> UsernameList, Window NewWindow)
         {
             InitializeComponent();
-            Userlist = ReadUserJson();
+            Userlist = JsonUserList;
+            MainWin = LastWindow;
+            AdminWin = NewWindow;
+            Usernames = UsernameList;
+
             //todo add password decrypter and make dictionary of users, passwords, and admin status
         }
 
-        public Root ReadUserJson()
-        {
-            using (StreamReader sr = new StreamReader("I:/GTMT/test/Users.json"))
-            {
-                string json = sr.ReadToEnd();
-                Root UserList = JsonConvert.DeserializeObject<Root>(json);
-                foreach (User user in UserList.Users)
-                {
-                    Debug.WriteLine(user.Username);
-                }
-                return UserList;
-            }
-
-        }
 
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             foreach (User user in Userlist.Users)
             {
-                if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.Password == PwBox.Password)
+                if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.Password == PwBox.Password && user.IsAdmin == true)
                 {
                     CurrentLogin = user.Username;
-                    var Main = new MainWindow();
-                    Main.Show();
+                    AdminWin.Show();
                     this.Close();
+                    MainWin.Hide();
                 }
             }
         }

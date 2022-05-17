@@ -1,9 +1,9 @@
-﻿<Window x:Class="IPM_Job_Manager.MainWindow"
+﻿<Window x:Class="IPM_Job_Manager_net.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IPM_Job_Manager"
+        xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
         Title="IPM Job Viewer" Height="584" Width="1014">
     <Grid Margin="10">
@@ -20,8 +20,8 @@
             <ColumnDefinition Width="195*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,418" Grid.RowSpan="2">Names</Label>
-        <ListBox Grid.Row="1" x:Name="lstJobs" Grid.ColumnSpan="3" ItemsSource="{Binding jobList}">
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0">Employees</Label>
+        <ListBox Grid.Row="1" x:Name="lstUsers" Grid.ColumnSpan="3" ItemsSource="{Binding UserList}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -32,8 +32,8 @@
         </ListBox>
 
         <StackPanel Grid.Row="1" Grid.Column="3" Margin="5,0,0,0">
-            <TextBox x:Name="txtName" />
-            <Button x:Name="btnAdd" Margin="0,5,0,0" Click="ButtonAddName_Click">Add Job</Button>
+            <Button x:Name="btnView" Margin="0,5,0,0" Click="ButtonViewJobs_Click">View Jobs</Button>
+            <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
         </StackPanel>
 
     </Grid>

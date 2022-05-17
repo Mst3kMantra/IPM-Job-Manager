@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IPM_Job_Manager
+namespace IPM_Job_Manager_net
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class User
@@ -17,5 +17,6 @@ namespace IPM_Job_Manager
     public class Root
     {
         public List<User> Users { get; set; }
+        public List<Job> jobs { get; set; }
     }
 }

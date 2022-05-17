@@ -71,6 +71,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Job.cs" />
     <Compile Include="open_workDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,6 +81,10 @@
       <DependentUpon>open_workDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

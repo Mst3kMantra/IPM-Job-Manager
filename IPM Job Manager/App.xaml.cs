@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IPM_Job_Manager
+namespace IPM_Job_Manager_net
 {
     /// <summary>
     /// Interaction logic for App.xaml
