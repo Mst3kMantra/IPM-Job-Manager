@@ -56,8 +56,8 @@ namespace IPM_Job_Manager
 
 
                 // create DataSet
-                dataSet = new DataSet("Jobs");
-                dataTable = new DataTable();
+                dataSet = new DataSet("OpenWork");
+                dataTable = new DataTable("JobList");
                 // use DataAdapter to Fill Dataset
                 dataAdapter.Fill(dataSet);
                 dataTable = dataSet.Tables[0];
