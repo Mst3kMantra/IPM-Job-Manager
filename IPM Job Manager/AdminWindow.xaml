@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterOwner">
+        Title="AdminWindow" Height="800" Width="1300"
+        WindowStartupLocation="CenterOwner"
+        Closing="AdminWindow_Closing">
     <Grid Margin="10">
 
         <Grid.RowDefinitions>
@@ -15,36 +16,100 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="167*"/>
-            <ColumnDefinition Width="195*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0">Employees</Label>
-        <Label Grid.Column="2">Jobs</Label>
-        <ListBox Grid.Row="1" x:Name="lstUsers" Grid.ColumnSpan="2" ItemsSource="{Binding UserList}">
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,5,0" Background="LightGray" Height="75" Grid.RowSpan="2" VerticalAlignment="Top">Employees</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Background="LightGray" Margin="0,0,5,0">Jobs</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Background="LightGray" Margin="0,0,0,0">Assigned Jobs</Label>
+        <ListBox Grid.Row="1" x:Name="lstUsers" Margin="0,0,5,356" Grid.ColumnSpan="2" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
-        <ListBox Grid.Row="1" x:Name="lstJobs" Grid.Column="2" ItemsSource="{Binding JobList}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding}"/>
+                        <TextBlock Text="{Binding Path=Username}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Row="1" Grid.Column="3" Margin="5,0,0,0">
+        <ListView Grid.Row="1" x:Name="lstJobs" SelectionChanged="lstJobs_SelectionChanged" Grid.Column="2" Margin="0,0,5,0" ItemsSource="{Binding JobList, Mode=OneWay}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
+                    <GridViewColumn Header="Job No." Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[JobNo]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Customer" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[CustDesc]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Part No." Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartNo]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Part Description" Width="250">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstAssignedJobs_SelectionChanged" x:Name="lstAssignedJobs" Grid.Column="3" ItemsSource="{Binding CurEmployeeJobs,Mode=OneWay}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
+                    <GridViewColumn Header="Job No." Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[JobNo]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Customer" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[CustDesc]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Part No." Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartNo]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Part Description" Width="250">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+
+        <StackPanel Grid.Row="1" Grid.Column="3" Margin="5,0,5,5" VerticalAlignment="Bottom">
             <Button x:Name="btnAssign" Margin="0,5,0,0" Click="btnAssignJob_Click">Assign Job</Button>
+            <Button x:Name="btnRemove" Margin="0,5,0,0" Click="btnRemoveJob_Click">Remove Job</Button>
             <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
             <Button x:Name="btnLogout" Margin="0,5,0,0" Click="btnLogout_Click">Logout</Button>
         </StackPanel>

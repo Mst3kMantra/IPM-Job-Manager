@@ -5,23 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Viewer" Height="584" Width="1014">
+        Title="IPM Job Viewer" Height="457" Width="970">
     <Grid Margin="10">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="167*"/>
-            <ColumnDefinition Width="195*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="170*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0">Employees</Label>
-        <ListBox Grid.Row="1" x:Name="lstUsers" Grid.ColumnSpan="3" ItemsSource="{Binding UserList}">
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,5,0" Background="LightGray">Employees</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Background="LightGray" Margin="0,0,0,0">Jobs</Label>
+        <ListBox Grid.Row="2" x:Name="lstUsers" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,5,0" ItemsSource="{Binding UserList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Username}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Grid.Row="2" x:Name="lstJobs" Grid.Column="2" ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -31,8 +42,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Row="1" Grid.Column="3" Margin="5,0,0,0">
-            <Button x:Name="btnView" Margin="0,5,0,0" Click="ButtonViewJobs_Click">View Jobs</Button>
+        <StackPanel Grid.Row="2" Grid.Column="3" Margin="5,0,0,0" VerticalAlignment="Bottom">
+            <Button x:Name="btnView" Margin="0,5,0,0" Click="ButtonViewJob_Click">View Job Details</Button>
             <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
         </StackPanel>
 

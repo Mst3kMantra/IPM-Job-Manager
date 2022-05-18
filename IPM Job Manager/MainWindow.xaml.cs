@@ -26,12 +26,20 @@ namespace IPM_Job_Manager_net
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<string> _userList = new ObservableCollection<string>();
-        public ObservableCollection<string> UserList
+        private ObservableCollection<User> _userList = new ObservableCollection<User>();
+        public ObservableCollection<User> UserList
         {
             get { return _userList; }
             set { _userList = value; }
         }
+
+        private ObservableCollection<Job> _jobList = new ObservableCollection<Job>();
+        public ObservableCollection<Job> JobList
+        {
+            get { return _jobList; }
+            set { _jobList = value; }
+        }
+
 
         public Root JsonUserList;
 
@@ -40,7 +48,6 @@ namespace IPM_Job_Manager_net
         internal OleDbDataAdapter dataAdapter;
         internal DataTable dataTable;
         private OleDbConnection connection;
-        internal OleDbCommand command;
         #endregion
 
         public Root ReadUserJson()
@@ -54,24 +61,24 @@ namespace IPM_Job_Manager_net
 
         }
 
-        public Job[] ReadJobsJson()
+        public ObservableCollection<Job> ReadJobsJson(string JsonPath)
         {
-            using (StreamReader sr = new StreamReader("I:/GTMT/test/job_list.json"))
+            using (StreamReader sr = new StreamReader(JsonPath))
             {
                 string json = sr.ReadToEnd();
-                Job[] Jobs2 = new Job[dataTable.Rows.Count];
-                Jobs2 = JsonConvert.DeserializeObject<Job[]>(json);
-                return Jobs2;
+                ObservableCollection<Job> Jobs = new ObservableCollection<Job>();
+                Jobs = JsonConvert.DeserializeObject<ObservableCollection<Job>>(json);
+                return Jobs;
             }
         }
 
-        public void WriteJobsJson(Job[] Jobs)
+        public void WriteJobsJson(ObservableCollection<Job> Jobs, string JsonPath)
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.NullValueHandling = NullValueHandling.Ignore;
             serializer.TypeNameHandling = TypeNameHandling.All;
 
-            using (StreamWriter sw = new StreamWriter(@"I:\GTMT\test\job_list.json"))
+            using (StreamWriter sw = new StreamWriter(JsonPath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 writer.Formatting = Formatting.Indented;
@@ -101,42 +108,24 @@ namespace IPM_Job_Manager_net
                 dataAdapter.Fill(dataSet);
                 dataTable = dataSet.Tables[0];
 
-                command = new OleDbCommand(
-                  "INSERT INTO [Job List] (PartDesc) " +
-                  "VALUES (Test)", connection);
-
-                dataAdapter.InsertCommand = command;
-
-
-                Job[] Jobs = new Job[dataTable.Rows.Count];
+                List<string> AssignedEmployeeList = new List<string>();
 
                 for (int i = 0; i < dataTable.Rows.Count - 1; i++)
                 {
-                    Jobs[i] = new Job();
+                    JobList.Add(new Job());
+                    JobList[i].JobInfo.Add("AssignedEmployees", AssignedEmployeeList);
                     foreach (DataColumn column in dataTable.Columns)
                     {
-                        Jobs[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
+                        JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
                     }
                 }
 
-                WriteJobsJson(Jobs);
-
-
-                Job[] jobs2 = new Job[dataTable.Rows.Count];
-
-                jobs2 = ReadJobsJson();
-
-                foreach (string value in jobs2[0].JobInfo.Values)
-                {
-                    Console.WriteLine(value);
-                }
-
-                dataAdapter.Update(dataSet);
+                WriteJobsJson(JobList, @"I:\GTMT\test\job_list.json");
 
 
                 // OPTIONAL: use OleDbCommandBuilder to build a complete set of CRUD commands
-                OleDbCommandBuilder builder = new OleDbCommandBuilder(dataAdapter);
-                // Update, Insert and Delete Commands
+                //OleDbCommandBuilder builder = new OleDbCommandBuilder(dataAdapter);
+                //Update, Insert and Delete Commands
                 //dataAdapter.UpdateCommand = builder.GetUpdateCommand();
                 //dataAdapter.InsertCommand = builder.GetInsertCommand();
                 //dataAdapter.DeleteCommand = builder.GetDeleteCommand();
@@ -149,18 +138,19 @@ namespace IPM_Job_Manager_net
 
         public MainWindow()
         {
-            string QueryString = "SELECT * FROM [Job List],[Open Assigned Jobs]";
+            string QueryString = "SELECT * FROM [Job List]";
             InitializeComponent();
             this.DataContext = this;
             JsonUserList = ReadUserJson();
             foreach (User user in JsonUserList.Users)
             {
-                UserList.Add(user.Username);
+                UserList.Add(user);
             }
             GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            JobList = ReadJobsJson("I:/GTMT/test/job_list.json");
         }
 
-        private void ButtonViewJobs_Click(object sender, RoutedEventArgs e)
+        private void lstUsers_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             string CurItem = lstUsers.SelectedItem.ToString();
 
@@ -187,9 +177,14 @@ namespace IPM_Job_Manager_net
             }
         }
 
+        private void ButtonViewJob_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void ButtonAdminLogin_Click(object sender, RoutedEventArgs e)
         {
-            var AdminWin = new AdminWindow(UserList, this);
+            var AdminWin = new AdminWindow(UserList, this, JobList);
             var LoginWin = new Login(this, JsonUserList, UserList, AdminWin);
             AdminWin.Owner = this;
             LoginWin.Owner = this;

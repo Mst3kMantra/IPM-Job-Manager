@@ -30,9 +30,9 @@ namespace IPM_Job_Manager_net
         public Window MainWin;
         public Window AdminWin;
         public Root Userlist;
-        public ObservableCollection<string> Usernames;
+        public ObservableCollection<User> Usernames;
         public Root UserList { get; private set; }
-        public Login(Window LastWindow, Root JsonUserList, ObservableCollection<string> UsernameList, Window NewWindow)
+        public Login(Window LastWindow, Root JsonUserList, ObservableCollection<User> UsernameList, Window NewWindow)
         {
             InitializeComponent();
             Userlist = JsonUserList;

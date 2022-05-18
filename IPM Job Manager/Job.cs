@@ -8,6 +8,11 @@ namespace IPM_Job_Manager_net
 {
     public class Job
     {
-        public Dictionary<string, dynamic> JobInfo = new Dictionary<string, dynamic>();
+        private Dictionary<string, dynamic> _jobInfo = new Dictionary<string, dynamic>();
+        public Dictionary<string, dynamic> JobInfo
+        {
+            get { return _jobInfo; }
+            set { _jobInfo = value; }
+        }
     }
 }
