@@ -58,7 +58,7 @@ namespace IPM_Job_Manager_net
                 mainWindow = Owner as MainWindow;
                 MainWindowIsOwner = true;
             }
-            Window OpWin = new OperationsWindow(adminWindow.AssignedJobList);
+            Window OpWin = new OperationsWindow(adminWindow.AssignedJobList, DisplayedJob);
             OpWin.Owner = adminWindow;
             OpWin.Show();
         }

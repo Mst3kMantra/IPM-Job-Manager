@@ -27,11 +27,16 @@ namespace IPM_Job_Manager_net
             set { _assignedJobList = value; }
         }
 
-        private O
+        private ObservableCollection<User> _userlist = new ObservableCollection<User>();
+        public ObservableCollection<User> UserList
+        {
+            get { return _userlist; }
+            set { _userlist = value; }
+        }
 
         public AdminWindow AdminWindow;
 
-        public OperationsWindow(ObservableCollection<Job> jobs)
+        public OperationsWindow(ObservableCollection<Job> jobs, Job job)
         {
             InitializeComponent();
             AssignedJobList = jobs;
@@ -39,11 +44,12 @@ namespace IPM_Job_Manager_net
             {
                 AdminWindow = window as AdminWindow;
             }
+            UserList = AdminWindow.UserList;
         }
 
         private void btnAddOperation_Click(object sender, RoutedEventArgs e)
         {
-            AdminWindow.AssignedJobList.Add 
+            
         }
 
         private void btnRemoveOperation_Click(object sender, RoutedEventArgs e)
