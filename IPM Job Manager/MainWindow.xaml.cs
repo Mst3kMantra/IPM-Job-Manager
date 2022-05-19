@@ -50,9 +50,9 @@ namespace IPM_Job_Manager_net
         private OleDbConnection connection;
         #endregion
 
-        public Root ReadUserJson()
+        public Root ReadUserJson(string JsonPath)
         {
-            using (StreamReader sr = new StreamReader("I:/GTMT/test/Users.json"))
+            using (StreamReader sr = new StreamReader(JsonPath))
             {
                 string json = sr.ReadToEnd();
                 Root JsonUserList = JsonConvert.DeserializeObject<Root>(json);
@@ -109,11 +109,14 @@ namespace IPM_Job_Manager_net
                 dataTable = dataSet.Tables[0];
 
                 List<string> AssignedEmployeeList = new List<string>();
+                Dictionary<string, string> Operations = new Dictionary<string, string>();
 
-                for (int i = 0; i < dataTable.Rows.Count - 1; i++)
+                for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     JobList.Add(new Job());
                     JobList[i].JobInfo.Add("AssignedEmployees", AssignedEmployeeList);
+                    JobList[i].JobInfo.Add("Operations", Operations);
+                    JobList[i].JobInfo.Add("Notes", "");
                     foreach (DataColumn column in dataTable.Columns)
                     {
                         JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
@@ -141,7 +144,7 @@ namespace IPM_Job_Manager_net
             string QueryString = "SELECT * FROM [Job List]";
             InitializeComponent();
             this.DataContext = this;
-            JsonUserList = ReadUserJson();
+            JsonUserList = ReadUserJson("I:/GTMT/test/Users.json");
             foreach (User user in JsonUserList.Users)
             {
                 UserList.Add(user);

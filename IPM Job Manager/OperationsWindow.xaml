@@ -1,0 +1,59 @@
+﻿<Window x:Class="IPM_Job_Manager_net.OperationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IPM_Job_Manager_net"
+        mc:Ignorable="d"
+        Title="OperationsWindow" Height="350" Width="550"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="5">
+            <Label Style="{StaticResource JobTitle}">Operations</Label>
+            <TextBox x:Name="txtOperation" Height="150"></TextBox>
+            <ListView x:Name="lstOperations" Grid.Row="1" ItemsSource="{Binding AssignedJobList, Mode=OneWay}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Operations">
+                        <GridViewColumn Header="Operations" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[Operations].Keys}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Assigned" Width="90">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[Operations].Values}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <StackPanel Margin="5,5,5,5" Grid.Column="1">
+            <Label Style="{StaticResource JobTitle}">Employees</Label>
+            <ListBox x:Name="lstEmployees" ItemsSource="{Binding Userlist}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text ="{Binding Path=Username}"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="btnAddOperation" Click="btnAddOperation_Click">Add Operation</Button>
+            <Button x:Name="btnRemoveOperation" Click="btnRemoveOperation_Click">Remove Operation</Button>
+            <Button x:Name="btnAssignOperation" Click="btnAssignOperation_Click">Assign Operation</Button>
+            <Button x:Name="btnUnassignOperation" Click="btnUnassignOperation_Click">Unassign Operation</Button>
+        </StackPanel>
+    </Grid>
+</Window>

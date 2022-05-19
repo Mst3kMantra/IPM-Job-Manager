@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="800" Width="1300"
+        Title="IPM Job Manager" Height="800" Width="1300"
         WindowStartupLocation="CenterOwner"
         Closing="AdminWindow_Closing">
     <Grid Margin="10">

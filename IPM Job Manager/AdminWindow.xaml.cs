@@ -85,15 +85,69 @@ namespace IPM_Job_Manager_net
 
         public void AssignJob(User employee, int jobIndex)
         {
-            AssignedJobList.Add(JobList[jobIndex]);
-            foreach (Job job in AssignedJobList)
+
+            if (AssignedJobList.Count == 0)
             {
-                if (job.Equals(JobList[jobIndex]))
+                AssignedJobList.Add(JobList[jobIndex]);
+            }
+
+            foreach (Job assignedJob in AssignedJobList)
+            {
+                if (JobList[jobIndex].JobInfo["JobNo"] == assignedJob.JobInfo["JobNo"])
                 {
-                    job.JobInfo["AssignedEmployees"].Add(employee.Username);
+                    assignedJob.JobInfo["AssignedEmployees"].Add(employee.Username);
+                    CurEmployeeJobs.Add(assignedJob);
+                    WriteJobsJson(AssignedJobList, @"I:\GTMT\test\assigned_job_list.json");
+                    return;
                 }
             }
-            CurEmployeeJobs.Add(JobList[jobIndex]);
+
+            AssignedJobList.Add(JobList[jobIndex]);
+            var newJob = AssignedJobList[AssignedJobList.Count - 1];
+            newJob.JobInfo["AssignedEmployees"].Add(employee.Username);
+            CurEmployeeJobs.Add(newJob);
+            WriteJobsJson(AssignedJobList, @"I:\GTMT\test\assigned_job_list.json");
+        }
+
+        public void RemoveJob(User employee, Job job)
+        {
+            foreach (Job job2 in AssignedJobList)
+            {
+                if (job2.JobInfo["JobNo"] == job.JobInfo["JobNo"])
+                {
+                    for (int i = 0; i < job2.JobInfo["AssignedEmployees"].Count; i++)
+                    {
+                        if (job2.JobInfo["AssignedEmployees"][i] == employee.Username)
+                        {
+                            job2.JobInfo["AssignedEmployees"].RemoveAt(i);
+                            i = 0;
+                        }
+                    }
+                    if (job2.JobInfo["AssignedEmployees"].Count == 0)
+                    {
+                        AssignedJobList.Remove(job2);
+                    }
+                    break;
+                }
+            }
+
+            foreach (Job curJob in CurEmployeeJobs)
+            {
+                if (curJob.JobInfo["JobNo"] == job.JobInfo["JobNo"])
+                {
+                    for (int i = 0; i < curJob.JobInfo["AssignedEmployees"].Count; i++)
+                    {
+                        if (curJob.JobInfo["AssignedEmployees"][i] == employee.Username)
+                        {
+                            curJob.JobInfo["AssignedEmployees"].RemoveAt(i);
+                            i = 0;
+                        }
+                    }
+                    CurEmployeeJobs.Remove(curJob);
+                    break;
+                }
+            }
+            LastSelectedJob = lstJobs.SelectedItem;
             WriteJobsJson(AssignedJobList, @"I:\GTMT\test\assigned_job_list.json");
         }
 
@@ -126,6 +180,8 @@ namespace IPM_Job_Manager_net
             User SelectedUser = LastSelectedUser as User;
             Job SelectedJob = LastSelectedJob as Job;
             int JobIndex;
+            bool IsInList = false;
+
 
             foreach (Job assignedjob in AssignedJobList)
             {
@@ -135,17 +191,27 @@ namespace IPM_Job_Manager_net
                     {
                         if (employee == SelectedUser.Username)
                         {
-                            MessageBox.Show("Job already assigned to this employee.", "Assign Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return;
+                            IsInList = true;
                         }
                     }
 
                 }
             }
 
+            if (IsInList)
+            {
+                MessageBox.Show("Job already assigned to this employee.", "Assign Job Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (SelectedJob == null || SelectedUser == null)
+            {
+                return;
+            }
+
             foreach (Job job in JobList)
             {
-                if (job == SelectedJob)
+                if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
                 {
                     JobIndex = JobList.IndexOf(job);
                     AssignJob(SelectedUser, JobIndex);
@@ -155,19 +221,76 @@ namespace IPM_Job_Manager_net
 
         private void btnViewJob_Click(object sender, RoutedEventArgs e)
         {
-            var JobDetails = new JobDetailsWindow(LastSelectedJob as Job);
+            var SelectedJob = LastSelectedJob as Job;
+
+            if (SelectedJob == null)
+            {
+                return;
+            }
+
+            foreach (Job job in AssignedJobList)
+            {
+                if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                {
+                    Window AssignedJobDetails = new JobDetailsWindow(job);
+                    AssignedJobDetails.Owner = this;
+                    AssignedJobDetails.Show();
+                    return;
+                }
+            }
+            Window JobDetails = new JobDetailsWindow(SelectedJob);
             JobDetails.Owner = this;
             JobDetails.Show();
         }
 
         private void btnRemoveJob_Click(object sender, RoutedEventArgs e)
         {
+            User SelectedUser = LastSelectedUser as User;
+            Job SelectedJob = LastSelectedJob as Job;
+            bool isUserNotInList = true;
+
+            if (SelectedUser == null || SelectedJob == null)
+            {
+                return;
+            }
+
+            try
+            {
+                foreach (Job assignedjob in AssignedJobList)
+                {
+                    if (assignedjob.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                    {
+                        foreach (string employee in assignedjob.JobInfo["AssignedEmployees"])
+                        {
+                            if (employee == SelectedUser.Username)
+                            {
+                                isUserNotInList = false;
+                            }
+                        }
+
+                    }
+                }
+
+                if (isUserNotInList)
+                {
+                    MessageBox.Show("Employee not assigned to this job.", "Remove Job Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    RemoveJob(SelectedUser, SelectedJob);
+                }
+            } 
+            catch (InvalidOperationException)
+            {
+                return;
+            }
 
         }
 
         private void lstUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LastSelectedUser = lstUsers.SelectedItem;
+            Job SelectedJob = LastSelectedJob as Job;
 
             if (CurEmployeeJobs.Count != 0)
             {
