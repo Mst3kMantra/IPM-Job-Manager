@@ -40,8 +40,45 @@ namespace IPM_Job_Manager_net
             set { _jobList = value; }
         }
 
+        private ObservableCollection<Job> _curEmployeeJobs = new ObservableCollection<Job>();
+        public ObservableCollection<Job> CurEmployeeJobs
+        {
+            get { return _curEmployeeJobs; }
+            set { _curEmployeeJobs = value; }
+        }
+
+        private ObservableCollection<string> _operationList = new ObservableCollection<string>();
+        public ObservableCollection<string> OperationList
+        {
+            get { return _operationList; }
+            set { _operationList = value; }
+        }
+
+        private ObservableCollection<string> _assignedEmployeeList = new ObservableCollection<string>();
+        public ObservableCollection<string> AssignedEmployeeList
+        {
+            get { return _assignedEmployeeList; }
+            set { _assignedEmployeeList = value; }
+        }
+
+        private Dictionary<string, string> _selectedOperations = new Dictionary<string, string>();
+        public Dictionary<string, string> SelectedOperations
+        {
+            get { return _selectedOperations; }
+            set { _selectedOperations = value; }
+        }
 
         public Root JsonUserList;
+
+        public object SelectedOperation;
+        public object SelectedAssignee;
+
+        public object LastSelectedUser;
+        public object LastSelectedJob;
+
+        public string AssignedJobListPath = @"I:\GTMT\test\assigned_job_list.json";
+        public string JobListPath = @"I:\GTMT\test\job_list.json";
+        public string UserListPath = @"I:\GTMT\test\Users.json";
 
         #region DataSet, DataAdapter, DataTable
         internal DataSet dataSet;
@@ -50,15 +87,11 @@ namespace IPM_Job_Manager_net
         private OleDbConnection connection;
         #endregion
 
-        public Root ReadUserJson(string JsonPath)
+        private ObservableCollection<Job> _assignedJobList = new ObservableCollection<Job>();
+        public ObservableCollection<Job> AssignedJobList
         {
-            using (StreamReader sr = new StreamReader(JsonPath))
-            {
-                string json = sr.ReadToEnd();
-                Root JsonUserList = JsonConvert.DeserializeObject<Root>(json);
-                return JsonUserList;
-            }
-
+            get { return _assignedJobList; }
+            set { _assignedJobList = value; }
         }
 
         public ObservableCollection<Job> ReadJobsJson(string JsonPath)
@@ -70,6 +103,17 @@ namespace IPM_Job_Manager_net
                 Jobs = JsonConvert.DeserializeObject<ObservableCollection<Job>>(json);
                 return Jobs;
             }
+        }
+
+        public Root ReadUserJson(string JsonPath)
+        {
+            using (StreamReader sr = new StreamReader(JsonPath))
+            {
+                string json = sr.ReadToEnd();
+                Root JsonUserList = JsonConvert.DeserializeObject<Root>(json);
+                return JsonUserList;
+            }
+
         }
 
         public void WriteJobsJson(ObservableCollection<Job> Jobs, string JsonPath)
@@ -123,7 +167,7 @@ namespace IPM_Job_Manager_net
                     }
                 }
 
-                WriteJobsJson(JobList, @"I:\GTMT\test\job_list.json");
+                WriteJobsJson(JobList, JobListPath);
 
 
                 // OPTIONAL: use OleDbCommandBuilder to build a complete set of CRUD commands
@@ -150,48 +194,139 @@ namespace IPM_Job_Manager_net
                 UserList.Add(user);
             }
             GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
-            JobList = ReadJobsJson("I:/GTMT/test/job_list.json");
-        }
-
-        private void lstUsers_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            string CurItem = lstUsers.SelectedItem.ToString();
-
-            switch (CurItem)
+            JobList = ReadJobsJson(JobListPath);
+            try
             {
-                case "Bill":
-                    break;
-                case "Chau":
-                    break;
-                case "Michael":
-                    break;
-                case "Evelyn":
-                    break;
-                case "Eduardo":
-                    break;
-                case "Toan":
-                    break;
-                case "Victor":
-                    break;
-                case "Martie":
-                    break;
-                default:
-                    break;
+                AssignedJobList = ReadJobsJson(AssignedJobListPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
             }
         }
 
-        private void ButtonViewJob_Click(object sender, RoutedEventArgs e)
+        private void btnViewJob_Click(object sender, RoutedEventArgs e)
         {
+            Job SelectedJob = LastSelectedJob as Job;
 
+            if (SelectedJob == null)
+            {
+                return;
+            }
+
+            foreach (Job job in AssignedJobList)
+            {
+                if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                {
+                    Window AssignedJobDetails = new JobDetailsWindow(job);
+                    AssignedJobDetails.Owner = this;
+                    AssignedJobDetails.Show();
+                    return;
+                }
+            }
+            Window JobDetails = new JobDetailsWindow(SelectedJob);
+            JobDetails.Owner = this;
+            JobDetails.Show();
         }
 
         private void ButtonAdminLogin_Click(object sender, RoutedEventArgs e)
         {
-            var AdminWin = new AdminWindow(UserList, this, JobList);
+            var AdminWin = new AdminWindow();
             var LoginWin = new Login(this, JsonUserList, UserList, AdminWin);
             AdminWin.Owner = this;
             LoginWin.Owner = this;
             LoginWin.Show();
+        }
+
+        private void lstAssignedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastSelectedJob = lstAssignedJobs.SelectedItem;
+
+            if (LastSelectedJob == null) { return; }
+
+            if (SelectedOperations != null)
+            {
+                if (SelectedOperations.Count > 0)
+                {
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
+                }
+            }
+
+            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            foreach (string key in SelectedOperations.Keys)
+            {
+                OperationList.Add(key);
+            }
+
+            foreach (string value in SelectedOperations.Values)
+            {
+                AssignedEmployeeList.Add(value);
+            }
+
+            if (OperationList.Count > 0)
+            {
+                while (OperationList.Count > AssignedEmployeeList.Count)
+                {
+                    AssignedEmployeeList.Add("");
+                }
+            }
+        }
+
+        private void lstUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastSelectedUser = lstUsers.SelectedItem;
+            Job SelectedJob = LastSelectedJob as Job;
+
+            if (SelectedOperations != null)
+            {
+                if (SelectedOperations.Count > 0)
+                {
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
+                }
+            }
+
+            if (CurEmployeeJobs.Count != 0)
+            {
+                CurEmployeeJobs.Clear();
+            }
+
+            User CurItem = lstUsers.SelectedItem as User;
+
+            ObservableCollection<Job> jobs = new ObservableCollection<Job>();
+            try
+            {
+                jobs = ReadJobsJson(AssignedJobListPath);
+
+                foreach (Job job in jobs)
+                {
+                    foreach (string employee in job.JobInfo["AssignedEmployees"])
+                    {
+                        if (employee == CurItem.Username)
+                        {
+                            CurEmployeeJobs.Add(job);
+                        }
+                    }
+
+                }
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                return;
+            }
+        }
+
+        private void lstOperations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedOperation = lstOperations.SelectedItem;
+        }
+
+        private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedAssignee = lstAssigned.SelectedItem;
         }
     }
 }

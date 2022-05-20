@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="OperationsWindow" Height="350" Width="550"
+        Title="Operations Editor" Height="380" Width="650"
         WindowStartupLocation="CenterOwner">
 
     <Grid Margin="10">
@@ -14,36 +14,43 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="5">
-            <Label Style="{StaticResource JobTitle}">Operations</Label>
-            <TextBox x:Name="txtOperation" Height="150"></TextBox>
-            <ListView x:Name="lstOperations" Grid.Row="1" ItemsSource="{Binding AssignedJobList, Mode=OneWay}">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Operations">
-                        <GridViewColumn Header="Operations" Width="300">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[Operations].Keys}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Assigned" Width="90">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[Operations].Values}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <StackPanel Margin="5" Background="LightGray">
+            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" Background="LightGray"  VerticalAlignment="Top">Operations Editor</Label>
+            <TextBox SpellCheck.IsEnabled="True" x:Name="txtOperations" Height="150"></TextBox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
+                <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
+                <ListBox x:Name="lstOperations" Height="100" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </StackPanel>
         <StackPanel Margin="5,5,5,5" Grid.Column="1">
-            <Label Style="{StaticResource JobTitle}">Employees</Label>
-            <ListBox x:Name="lstEmployees" ItemsSource="{Binding Userlist}">
+            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="LightGray"  VerticalAlignment="Top">Employees</Label>
+            <ListBox x:Name="lstEmployees" SelectionChanged="lstEmployees_SelectionChanged" ItemsSource="{Binding UserList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text ="{Binding Path=Username}"></TextBlock>

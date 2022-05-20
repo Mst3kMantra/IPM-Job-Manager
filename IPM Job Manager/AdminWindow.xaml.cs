@@ -24,7 +24,7 @@ namespace IPM_Job_Manager_net
     /// </summary>
     public partial class AdminWindow : Window
     {
-        public Window MainWin;
+        public MainWindow MainWin;
         private ObservableCollection<User> _userList = new ObservableCollection<User>();
         public ObservableCollection<User> UserList
         {
@@ -53,35 +53,16 @@ namespace IPM_Job_Manager_net
             set { _curEmployeeJobs = value; }
         }
 
+        public AdminWindow adminWindow;
+
+        public MainWindow mainWindow;
+
         public object LastSelectedUser;
         public object LastSelectedJob;
+        public object SelectedOperation;
+        public object SelectedAssignee;
 
         public bool isLogoutPressed;
-
-        public ObservableCollection<Job> ReadJobsJson(string JsonPath)
-        {
-            using (StreamReader sr = new StreamReader(JsonPath))
-            {
-                string json = sr.ReadToEnd();
-                ObservableCollection<Job> Jobs = new ObservableCollection<Job>();
-                Jobs = JsonConvert.DeserializeObject<ObservableCollection<Job>>(json);
-                return Jobs;
-            }
-        }
-
-        public void WriteJobsJson(ObservableCollection<Job> Jobs, string JsonPath)
-        {
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.NullValueHandling = NullValueHandling.Ignore;
-            serializer.TypeNameHandling = TypeNameHandling.All;
-
-            using (StreamWriter sw = new StreamWriter(JsonPath))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-            {
-                writer.Formatting = Formatting.Indented;
-                serializer.Serialize(writer, Jobs);
-            }
-        }
 
         public void AssignJob(User employee, int jobIndex)
         {
@@ -97,7 +78,7 @@ namespace IPM_Job_Manager_net
                 {
                     assignedJob.JobInfo["AssignedEmployees"].Add(employee.Username);
                     CurEmployeeJobs.Add(assignedJob);
-                    WriteJobsJson(AssignedJobList, @"I:\GTMT\test\assigned_job_list.json");
+                    MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
                     return;
                 }
             }
@@ -106,7 +87,7 @@ namespace IPM_Job_Manager_net
             var newJob = AssignedJobList[AssignedJobList.Count - 1];
             newJob.JobInfo["AssignedEmployees"].Add(employee.Username);
             CurEmployeeJobs.Add(newJob);
-            WriteJobsJson(AssignedJobList, @"I:\GTMT\test\assigned_job_list.json");
+            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
         }
 
         public void RemoveJob(User employee, Job job)
@@ -148,19 +129,19 @@ namespace IPM_Job_Manager_net
                 }
             }
             LastSelectedJob = lstJobs.SelectedItem;
-            WriteJobsJson(AssignedJobList, @"I:\GTMT\test\assigned_job_list.json");
+            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
         }
 
-        public AdminWindow(ObservableCollection<User> Usernames, Window Win, ObservableCollection<Job> jobs)
+        public AdminWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
-            UserList = Usernames;
-            MainWin = Win;
-            JobList = jobs;
+            DataContext = this;
+            MainWin = Application.Current.MainWindow as MainWindow;
+            JobList = MainWin.JobList;
+            UserList = MainWin.UserList;
             try
             {
-                AssignedJobList = ReadJobsJson(@"I:\GTMT\test\assigned_job_list.json");
+                AssignedJobList = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
             } 
             catch (FileNotFoundException)
             {
@@ -172,7 +153,7 @@ namespace IPM_Job_Manager_net
         {
             isLogoutPressed = true;
             MainWin.Show();
-            this.Close();
+            Close();
         }
 
         private void btnAssignJob_Click(object sender, RoutedEventArgs e)
@@ -221,7 +202,7 @@ namespace IPM_Job_Manager_net
 
         private void btnViewJob_Click(object sender, RoutedEventArgs e)
         {
-            var SelectedJob = LastSelectedJob as Job;
+            Job SelectedJob = LastSelectedJob as Job;
 
             if (SelectedJob == null)
             {
@@ -302,7 +283,7 @@ namespace IPM_Job_Manager_net
             ObservableCollection<Job> jobs = new ObservableCollection<Job>();
             try
             {
-                jobs = ReadJobsJson(@"I:\GTMT\test\assigned_job_list.json");
+                jobs = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
 
                 foreach (Job job in jobs)
                 {
@@ -333,13 +314,49 @@ namespace IPM_Job_Manager_net
             if (isLogoutPressed != true)
             {
                 isLogoutPressed = false;
-                MainWin.Close();
+                try
+                {
+                    MainWin.Close();
+                }
+                catch (InvalidOperationException)
+                {
+                    return;
+                }
             }
         }
 
         private void lstAssignedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LastSelectedJob = lstAssignedJobs.SelectedItem;
+        }
+
+        private void btnEditOperations_Click(object sender, RoutedEventArgs e)
+        {
+            if (Owner.Title == "IPM Job Manager")
+            {
+                adminWindow = Owner as AdminWindow;
+                Window OpWin = new OperationsWindow(LastSelectedJob as Job);
+                OpWin.Owner = adminWindow;
+                OpWin.ShowDialog();
+            }
+            else if (Owner.Title == "IPM Job Viewer")
+            {
+                mainWindow = Owner as MainWindow;
+                Window OpWin = new OperationsWindow(LastSelectedJob as Job);
+                OpWin.Owner = mainWindow;
+                OpWin.ShowDialog();
+            }
+
+        }
+
+        private void lstOperations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedOperation = lstOperations.SelectedItem;
+        }
+
+        private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedAssignee = lstAssigned.SelectedItem;
         }
     }
 }
