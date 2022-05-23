@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
         Title="Operations Editor" Height="380" Width="650"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Closing="OperationsWindow_Closing">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -57,10 +58,10 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="btnAddOperation" Click="btnAddOperation_Click">Add Operation</Button>
-            <Button x:Name="btnRemoveOperation" Click="btnRemoveOperation_Click">Remove Operation</Button>
-            <Button x:Name="btnAssignOperation" Click="btnAssignOperation_Click">Assign Operation</Button>
-            <Button x:Name="btnUnassignOperation" Click="btnUnassignOperation_Click">Unassign Operation</Button>
+            <Button x:Name="btnAddOperation" Click="btnAddOperation_Click" Margin="0,5,0,0">Add Operation</Button>
+            <Button x:Name="btnRemoveOperation" Click="btnRemoveOperation_Click" Margin="0,5,0,0">Remove Operation</Button>
+            <Button x:Name="btnAssignOperation" Click="btnAssignOperation_Click" Margin="0,5,0,0">Assign Operation</Button>
+            <Button x:Name="btnUnassignOperation" Click="btnUnassignOperation_Click" Margin="0,5,0,0">Unassign Operation</Button>
         </StackPanel>
     </Grid>
 </Window>

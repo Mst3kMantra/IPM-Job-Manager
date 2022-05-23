@@ -61,6 +61,13 @@ namespace IPM_Job_Manager_net
             set { _assignedEmployeeList = value; }
         }
 
+        private ObservableCollection<Job> _jobNotes = new ObservableCollection<Job>();
+        public ObservableCollection <Job> JobNotes
+        {
+            get { return _jobNotes; }
+            set { _jobNotes = value; }
+        }
+
         private Dictionary<string, string> _selectedOperations = new Dictionary<string, string>();
         public Dictionary<string, string> SelectedOperations
         {
@@ -70,15 +77,23 @@ namespace IPM_Job_Manager_net
 
         public Root JsonUserList;
 
+        public const int MaxPriority = 20;
+
         public object SelectedOperation;
         public object SelectedAssignee;
 
         public object LastSelectedUser;
-        public object LastSelectedJob;
+        private object _lastSelectedJob;
+        public object LastSelectedJob
+        {
+            get { return _lastSelectedJob; }
+            set { _lastSelectedJob = value; }
+        }
 
         public string AssignedJobListPath = @"I:\GTMT\test\assigned_job_list.json";
         public string JobListPath = @"I:\GTMT\test\job_list.json";
         public string UserListPath = @"I:\GTMT\test\Users.json";
+        public string JobNotesPath = @"I:\GTMT\test\job_notes.json";
 
         #region DataSet, DataAdapter, DataTable
         internal DataSet dataSet;
@@ -92,6 +107,55 @@ namespace IPM_Job_Manager_net
         {
             get { return _assignedJobList; }
             set { _assignedJobList = value; }
+        }
+
+        public MainWindow()
+        {
+            string QueryString = "SELECT * FROM [Job List]";
+            InitializeComponent();
+            this.DataContext = this;
+            JsonUserList = ReadUserJson("I:/GTMT/test/Users.json");
+            foreach (User user in JsonUserList.Users)
+            {
+                UserList.Add(user);
+            }
+            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            JobList = ReadJobsJson(JobListPath);
+            try
+            {
+                AssignedJobList = ReadJobsJson(AssignedJobListPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            try
+            {
+                JobNotes = ReadJobsJson(JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            JobList = ReadJobNotes(JobList);
+            AssignedJobList = ReadJobNotes(AssignedJobList);
+            WriteJobsJson(AssignedJobList, AssignedJobListPath);
+        }
+
+        public ObservableCollection<Job> ReadJobNotes(ObservableCollection<Job> jobs)
+        {
+            foreach (Job job in jobs)
+            {
+                foreach (Job jobnotes in JobNotes)
+                {
+                    if (jobnotes.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        job.JobInfo["Notes"] = jobnotes.JobInfo["Notes"];
+                        job.JobInfo["Operations"] = jobnotes.JobInfo["Operations"];
+                    }
+                }
+            }
+            return jobs;
         }
 
         public ObservableCollection<Job> ReadJobsJson(string JsonPath)
@@ -161,6 +225,7 @@ namespace IPM_Job_Manager_net
                     JobList[i].JobInfo.Add("AssignedEmployees", AssignedEmployeeList);
                     JobList[i].JobInfo.Add("Operations", Operations);
                     JobList[i].JobInfo.Add("Notes", "");
+                    JobList[i].JobInfo.Add("Priority", 0);
                     foreach (DataColumn column in dataTable.Columns)
                     {
                         JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
@@ -183,50 +248,110 @@ namespace IPM_Job_Manager_net
             catch { throw; }
         }
 
-        public MainWindow()
+        public ObservableCollection<Job> SortJobs(ObservableCollection<Job> Jobs)
         {
-            string QueryString = "SELECT * FROM [Job List]";
-            InitializeComponent();
-            this.DataContext = this;
-            JsonUserList = ReadUserJson("I:/GTMT/test/Users.json");
-            foreach (User user in JsonUserList.Users)
+            IEnumerable<Job> SortedByPrio = Jobs.OrderBy(job => job.JobInfo["Priority"]);
+            var SortedJobs = new ObservableCollection<Job>(SortedByPrio);
+            return SortedJobs;
+        }
+
+        public void RefreshWindow()
+        {
+            LastSelectedUser = lstUsers.SelectedItem;
+            int LastJobIndex = lstAssignedJobs.SelectedIndex;
+
+            if (CurEmployeeJobs.Count != 0)
             {
-                UserList.Add(user);
+                CurEmployeeJobs.Clear();
             }
-            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
-            JobList = ReadJobsJson(JobListPath);
+
+            if (SelectedOperations != null)
+            {
+                if (SelectedOperations.Count > 0)
+                {
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
+                }
+            }
+
+            User CurItem = lstUsers.SelectedItem as User;
+
+            ObservableCollection<Job> jobs = new ObservableCollection<Job>();
             try
             {
-                AssignedJobList = ReadJobsJson(AssignedJobListPath);
+                jobs = ReadJobsJson(AssignedJobListPath);
+
+                foreach (Job job in jobs)
+                {
+                    foreach (string employee in job.JobInfo["AssignedEmployees"])
+                    {
+                        if (employee == CurItem.Username)
+                        {
+                            CurEmployeeJobs.Add(job);
+                        }
+                    }
+
+                }
             }
             catch (FileNotFoundException)
             {
                 return;
             }
-        }
-
-        private void btnViewJob_Click(object sender, RoutedEventArgs e)
-        {
-            Job SelectedJob = LastSelectedJob as Job;
-
-            if (SelectedJob == null)
+            var SortedJobs = SortJobs(CurEmployeeJobs);
+            CurEmployeeJobs.Clear();
+            foreach (Job sortedjob in SortedJobs)
             {
-                return;
+                CurEmployeeJobs.Add(sortedjob);
             }
 
-            foreach (Job job in AssignedJobList)
+            lstAssignedJobs.SelectedItem = CurEmployeeJobs[LastJobIndex];
+            LastSelectedJob = lstAssignedJobs.SelectedItem;
+
+            if (LastSelectedJob == null) { return; }
+
+            if (SelectedOperations != null)
             {
-                if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                if (SelectedOperations.Count > 0)
                 {
-                    Window AssignedJobDetails = new JobDetailsWindow(job);
-                    AssignedJobDetails.Owner = this;
-                    AssignedJobDetails.Show();
-                    return;
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
                 }
             }
-            Window JobDetails = new JobDetailsWindow(SelectedJob);
-            JobDetails.Owner = this;
-            JobDetails.Show();
+
+            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            foreach (string key in SelectedOperations.Keys)
+            {
+                OperationList.Add(key);
+            }
+
+            foreach (string value in SelectedOperations.Values)
+            {
+                AssignedEmployeeList.Add(value);
+            }
+
+            if (OperationList.Count > 0)
+            {
+                while (OperationList.Count > AssignedEmployeeList.Count)
+                {
+                    AssignedEmployeeList.Add("");
+                }
+            }
+        }
+
+        private void btnEditNotes_Click(object sender, RoutedEventArgs e)
+        {
+            if (LastSelectedJob != null)
+            {
+                Window NotesWin = new NotesWindow(LastSelectedJob as Job);
+                NotesWin.Owner = this;
+                bool? DialogResult = NotesWin.ShowDialog();
+                if (DialogResult == true)
+                {
+                    RefreshWindow();
+                }
+            }
         }
 
         private void ButtonAdminLogin_Click(object sender, RoutedEventArgs e)
@@ -272,6 +397,7 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
+            txtNotes.Text = (LastSelectedJob as Job).JobInfo["Notes"].ToString();
         }
 
         private void lstUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -288,6 +414,8 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                 }
             }
+
+            txtNotes.Text = "";
 
             if (CurEmployeeJobs.Count != 0)
             {
@@ -313,9 +441,15 @@ namespace IPM_Job_Manager_net
 
                 }
             }
-            catch (System.IO.FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 return;
+            }
+            var SortedJobs = SortJobs(CurEmployeeJobs);
+            CurEmployeeJobs.Clear();
+            foreach (Job sortedjob in SortedJobs)
+            {
+                CurEmployeeJobs.Add(sortedjob);
             }
         }
 

@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Viewer" Height="500" Width="1000">
+        Title="IPM Job Viewer" Height="525" Width="1000">
     <Grid Margin="10">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -52,17 +51,24 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn Header="Priority" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[Priority]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Status" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                                    <TextBlock TextWrapping="Wrap" Text=""/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Est. Time" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                                    <TextBlock TextWrapping="Wrap" Text=""/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -76,13 +82,14 @@
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="100*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
                 <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
-                <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
+                <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" ItemsSource="{Binding OperationList}" Grid.ColumnSpan="1" Height="100" Margin="0,31,0,0" Grid.RowSpan="2" VerticalAlignment="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding}"/>
@@ -96,6 +103,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <Label Background="LightGray" Grid.Column="2" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
+                <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="2"/>
             </Grid>
         </StackPanel>
 
@@ -110,12 +119,13 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <StackPanel Grid.Row="2" Grid.Column="3" Margin="5,0,0,0" VerticalAlignment="Bottom">
-                <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
+
+            <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Bottom">
+                <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
                 <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
             </StackPanel>
         </StackPanel>
-        
+
 
     </Grid>
 

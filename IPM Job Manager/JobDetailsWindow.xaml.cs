@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -27,6 +28,28 @@ namespace IPM_Job_Manager_net
             set { _displayedJob = value; }
         }
 
+        private Dictionary<string, string> _selectedOperations = new Dictionary<string, string>();
+        public Dictionary<string, string> SelectedOperations
+        {
+            get { return _selectedOperations; }
+            set { _selectedOperations = value; }
+        }
+
+        private ObservableCollection<string> _operationList = new ObservableCollection<string>();
+        public ObservableCollection<string> OperationList
+        {
+            get { return _operationList; }
+            set { _operationList = value; }
+        }
+
+        private ObservableCollection<string> _assignedEmployeeList = new ObservableCollection<string>();
+        public ObservableCollection<string> AssignedEmployeeList
+        {
+            get { return _assignedEmployeeList; }
+            set { _assignedEmployeeList = value; }
+        }
+
+
         public AdminWindow adminWindow;
 
         public MainWindow mainWindow;
@@ -37,6 +60,25 @@ namespace IPM_Job_Manager_net
             InitializeComponent();
             DisplayedJob = SelectedJob;
             DataContext = this;
+            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(SelectedJob.JobInfo["Operations"].ToString());
+            foreach (string key in SelectedOperations.Keys)
+            {
+                OperationList.Add(key);
+                Console.WriteLine(key);
+            }
+
+            foreach (string value in SelectedOperations.Values)
+            {
+                AssignedEmployeeList.Add(value);
+            }
+
+            if (OperationList.Count > 0)
+            {
+                while (OperationList.Count > AssignedEmployeeList.Count)
+                {
+                    AssignedEmployeeList.Add("");
+                }
+            }
         }
 
         

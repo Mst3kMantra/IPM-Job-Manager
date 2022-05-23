@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Manager" Height="800" Width="1300"
+        Title="IPM Job Manager" Height="800" Width="1350"
         WindowStartupLocation="CenterOwner"
         Closing="AdminWindow_Closing">
     <Grid Margin="10">
@@ -16,16 +16,17 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="55*"/>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,5,0" Background="LightGray" Height="75" Grid.RowSpan="2" VerticalAlignment="Top">Employees</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="4" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="LightGray" Grid.RowSpan="2" VerticalAlignment="Top">Employees</Label>
         <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Background="LightGray" Margin="0,0,5,0">Jobs</Label>
-        <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Background="LightGray" Margin="0,0,0,0">Assigned Jobs</Label>
-        <ListBox Grid.Row="1" x:Name="lstUsers" Margin="0,0,5,356" Grid.ColumnSpan="2" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}">
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Background="LightGray" Margin="0,0,5,0">Assigned Jobs</Label>
+        <ListBox Grid.Row="1" x:Name="lstUsers" Margin="0,0,0,356" Grid.Column="4" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -59,10 +60,17 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Part Description" Width="250">
+                    <GridViewColumn Header="Part Description" Width="225">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Priority" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[Priority]}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -70,7 +78,7 @@
             </ListView.View>
         </ListView>
         
-        <StackPanel Grid.Column="3" Grid.Row="1" Background="LightGray" Margin="0,6,0,0">
+        <StackPanel Grid.Column="3" Grid.Row="1" Margin="0,0,5,0">
             <ListView HorizontalContentAlignment="Stretch" Height="400" Grid.Row="1" SelectionChanged="lstAssignedJobs_SelectionChanged" x:Name="lstAssignedJobs" Grid.Column="3" ItemsSource="{Binding CurEmployeeJobs,Mode=OneWay}">
                 <ListView.View>
                     <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
@@ -95,10 +103,17 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Part Description" Width="250">
+                        <GridViewColumn Header="Part Description" Width="225">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Priority" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[Priority]}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -106,10 +121,10 @@
                 </ListView.View>
             </ListView>
 
-            <Grid>
+            <Grid Background="LightGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="125"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150*"/>
@@ -133,15 +148,20 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Grid>
-
-            <StackPanel Background="White" Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom">
-                <Button x:Name="btnAssign" Margin="0,5,0,0" Click="btnAssignJob_Click">Assign Job</Button>
-                <Button x:Name="btnRemove" Margin="0,5,0,0" Click="btnRemoveJob_Click">Remove Job</Button>
-                <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
-                <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
-                <Button x:Name="btnLogout" Margin="0,5,0,0" Click="btnLogout_Click">Logout</Button>
-            </StackPanel>
+            <Label Background="LightGray"  Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
+            <TextBlock Height="125" x:Name="txtNotes" TextWrapping="Wrap"/>
         </StackPanel>
-       
+
+        <StackPanel Background="White" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom">
+            <Button x:Name="btnAssign" Margin="0,5,0,0" Click="btnAssignJob_Click">Assign Job</Button>
+            <Button x:Name="btnRemove" Margin="0,5,0,0" Click="btnRemoveJob_Click">Remove Job</Button>
+            <Button x:Name="btnAddPrio" Margin="0,5,0,0" Click="btnAddPrio_Click">Increase Priority</Button>
+            <Button x:Name="btnLowerPrio" Margin="0,5,0,0" Click="btnLowerPrio_Click">Reduce Priority</Button>
+            <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
+            <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
+            <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
+            <Button x:Name="btnLogout" Margin="0,5,0,0" Click="btnLogout_Click" Padding="0,0,0,0">Logout</Button>
+        </StackPanel>
+
     </Grid>
 </Window>

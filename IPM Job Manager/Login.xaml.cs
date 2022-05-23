@@ -31,6 +31,7 @@ namespace IPM_Job_Manager_net
         public Window AdminWin;
         public Root Userlist;
         public ObservableCollection<User> Usernames;
+        public bool isLoginSuccessful = false;
         public Root UserList { get; private set; }
         public Login(Window LastWindow, Root JsonUserList, ObservableCollection<User> UsernameList, Window NewWindow)
         {
@@ -47,6 +48,7 @@ namespace IPM_Job_Manager_net
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
+            isLoginSuccessful = false;
             foreach (User user in Userlist.Users)
             {
                 if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.Password == PwBox.Password && user.IsAdmin == true)
@@ -55,7 +57,12 @@ namespace IPM_Job_Manager_net
                     AdminWin.Show();
                     this.Close();
                     MainWin.Hide();
+                    isLoginSuccessful = true;
                 }
+            }
+            if (isLoginSuccessful == false)
+            {
+                MessageBox.Show("Invalid Username or Password. Try Again.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

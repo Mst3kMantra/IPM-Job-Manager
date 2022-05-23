@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,13 @@ namespace IPM_Job_Manager_net
         {
             get { return _assignedJobList; }
             set { _assignedJobList = value; }
+        }
+
+        private ObservableCollection<Job> _jobNotes = new ObservableCollection<Job>();
+        public ObservableCollection<Job> JobNotes
+        {
+            get { return _jobNotes; }
+            set { _jobNotes = value; }
         }
 
         private ObservableCollection<User> _userlist = new ObservableCollection<User>();
@@ -59,6 +67,8 @@ namespace IPM_Job_Manager_net
         public object SelectedOperation;
         public object SelectedAssignee;
 
+        public bool isDataChanged = false;
+
         private Dictionary<string, string> _selectedOperations = new Dictionary<string, string>();
         public Dictionary<string, string> SelectedOperations
         {
@@ -72,6 +82,7 @@ namespace IPM_Job_Manager_net
             MainWin = Application.Current.MainWindow as MainWindow;
             UserList = MainWin.UserList;
             DataContext = this;
+            txtOperations.Focus();
 
             try
             {
@@ -109,8 +120,52 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
+
+            try
+            {
+                JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
         }
 
+        public void WriteToNotes(Job SelectedJob)
+        {
+            if (JobNotes != null)
+            {
+                if (JobNotes.Count > 0)
+                {
+                    foreach (Job job in JobNotes)
+                    {
+                        if (job.JobInfo["PartNo"] == SelectedJob.JobInfo["PartNo"])
+                        {
+                            job.JobInfo["Operations"] = SelectedJob.JobInfo["Operations"];
+                            MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                            break;
+                        }
+                        else
+                        {
+                            Job newNotes = new Job();
+                            newNotes.JobInfo.Add("Operations", SelectedJob.JobInfo["Operations"]);
+                            newNotes.JobInfo.Add("PartNo", SelectedJob.JobInfo["PartNo"]);
+                            JobNotes.Add(newNotes);
+                            MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    Job newNotes = new Job();
+                    newNotes.JobInfo.Add("Operations", SelectedJob.JobInfo["Operations"]);
+                    newNotes.JobInfo.Add("PartNo", SelectedJob.JobInfo["PartNo"]);
+                    JobNotes.Add(newNotes);
+                    MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                }
+            }
+        }
         private void btnAddOperation_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtOperations.Text) == false && txtOperations.Text.Length != 0)
@@ -119,7 +174,10 @@ namespace IPM_Job_Manager_net
                 OperationList.Add(txtOperations.Text);
                 AssignedEmployeeList.Add("");
                 MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                WriteToNotes(AssignedJobList[JobIndex]);
+                isDataChanged = true;
             }
+            else MessageBox.Show("No operation text detected.", "Add Operation Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void btnRemoveOperation_Click(object sender, RoutedEventArgs e)
@@ -131,7 +189,10 @@ namespace IPM_Job_Manager_net
                 OperationList.Remove(SelectedOperation.ToString());
                 AssignedEmployeeList.RemoveAt(OpIndex);
                 MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                WriteToNotes(AssignedJobList[JobIndex]);
+                isDataChanged=true;
             }
+            else MessageBox.Show("No operation selected from list.", "Remove Operation Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void btnAssignOperation_Click(object sender, RoutedEventArgs e)
@@ -151,6 +212,8 @@ namespace IPM_Job_Manager_net
             int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
             AssignedEmployeeList[OpIndex] = SelectedUser.Username;
             MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+            WriteToNotes(AssignedJobList[JobIndex]);
+            isDataChanged =true;
         }
 
         private void btnUnassignOperation_Click(object sender, RoutedEventArgs e)
@@ -165,6 +228,8 @@ namespace IPM_Job_Manager_net
             AssignedJobList[JobIndex].JobInfo["Operations"][OperationList[AssignedIndex].ToString()] = "";
             AssignedEmployeeList[AssignedIndex] = "";
             MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+            WriteToNotes(AssignedJobList[JobIndex]);
+            isDataChanged=true;
         }
 
         private void lstEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -180,6 +245,14 @@ namespace IPM_Job_Manager_net
         private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedAssignee = lstAssigned.SelectedItem;
+        }
+
+        private void OperationsWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if (isDataChanged)
+            {
+                DialogResult = true;
+            }
         }
     }
 }
