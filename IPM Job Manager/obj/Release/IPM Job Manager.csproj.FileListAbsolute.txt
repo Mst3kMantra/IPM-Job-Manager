@@ -1,0 +1,36 @@
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager net.exe.config
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager net.exe
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager net.pdb
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\EntityFramework.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Newtonsoft.Json.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\System.Data.OleDb.dll
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\EntityFramework.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Newtonsoft.Json.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\System.Data.OleDb.xml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.AssemblyReference.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.SuggestedBindingRedirects.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\AdminWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\JobDetailsWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\Login.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\MainWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\NotesWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\OperationsWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\App.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net_MarkupCompile.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net_MarkupCompile.lref
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\App.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\AdminWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\JobDetailsWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\Login.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\MainWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\NotesWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\OperationsWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net.g.resources
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM_Job_Manager_net.Properties.Resources.resources
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.GenerateResource.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.CoreCompileInputs.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.CopyComplete
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net.exe
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net.pdb
