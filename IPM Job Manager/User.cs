@@ -12,11 +12,12 @@ namespace IPM_Job_Manager_net
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
+
+        public byte[] Salt { get; set; }
     }
 
     public class Root
     {
         public List<User> Users { get; set; }
-        public List<Job> jobs { get; set; }
     }
 }

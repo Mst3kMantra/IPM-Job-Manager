@@ -161,6 +161,7 @@
             <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
             <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
             <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
+            <Button x:Name="btnAddUser" Margin="0,5,0,0" Click="btnAddUser_Click">Add New User</Button>
             <Button x:Name="btnLogout" Margin="0,5,0,0" Click="btnLogout_Click" Padding="0,0,0,0">Logout</Button>
         </StackPanel>
 

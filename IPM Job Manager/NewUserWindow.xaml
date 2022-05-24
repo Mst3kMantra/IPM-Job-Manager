@@ -1,0 +1,41 @@
+﻿<Window x:Class="IPM_Job_Manager_net.NewUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IPM_Job_Manager_net"
+        mc:Ignorable="d"
+        Title="New User" Height="200" Width="425"
+        WindowStartupLocation="CenterOwner">
+
+
+    <Grid Margin="10" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Style="{StaticResource LabelTitle}" Content="New User" Grid.Column="0" Grid.Row="0"></Label>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,20,0,0">
+            <Label Content="Username : " Grid.Column="0" Grid.Row="1"></Label>
+            <Label Content="Password : " Grid.Column="0" Grid.Row="1"></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="92,25,46,20" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <TextBox x:Name="UserBox"></TextBox>
+            <PasswordBox x:Name="PwBox" Margin="0,5"></PasswordBox>
+        </StackPanel>
+
+        <CheckBox x:Name="isAdmin" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="92,3,170,-3">Admin</CheckBox>
+
+        <Button Content="Save" x:Name="btnSave" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="btnSave_Click" Margin="136,0,46,0"></Button>
+        <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click" Margin="41,0,141,0"></Button>
+    </Grid>
+
+</Window>

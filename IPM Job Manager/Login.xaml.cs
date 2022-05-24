@@ -16,6 +16,8 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using IPM_Job_Manager_net;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace IPM_Job_Manager_net
 {
@@ -32,38 +34,61 @@ namespace IPM_Job_Manager_net
         public Root Userlist;
         public ObservableCollection<User> Usernames;
         public bool isLoginSuccessful = false;
+        public string ProvidedPassword;
         public Root UserList { get; private set; }
-        public Login(Window LastWindow, Root JsonUserList, ObservableCollection<User> UsernameList, Window NewWindow)
+        public Login(Window LastWindow, Root JsonUserList, Window NewWindow)
         {
             InitializeComponent();
             Userlist = JsonUserList;
             MainWin = LastWindow;
             AdminWin = NewWindow;
-            Usernames = UsernameList;
 
-            //todo add password decrypter and make dictionary of users, passwords, and admin status
         }
 
 
+        public string HashPassword(string password, byte[] salt)
+        {
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+
+            return hashed;
+        }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             isLoginSuccessful = false;
+
             foreach (User user in Userlist.Users)
             {
-                if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.Password == PwBox.Password && user.IsAdmin == true)
-                {
-                    CurrentLogin = user.Username;
-                    AdminWin.Show();
-                    this.Close();
-                    MainWin.Hide();
-                    isLoginSuccessful = true;
+                if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.IsAdmin == true)
+                {   
+                    ProvidedPassword = PwBox.Password;
+                    string HashedPassword = HashPassword(ProvidedPassword, user.Salt);
+                    if (user.Password == HashedPassword)
+                    {
+                        Console.WriteLine(HashedPassword);
+                        Console.WriteLine(user.Password);
+                        AdminWin.Show();
+                        this.Close();
+                        MainWin.Hide();
+                        isLoginSuccessful = true;
+                    }
                 }
             }
             if (isLoginSuccessful == false)
             {
                 MessageBox.Show("Invalid Username or Password. Try Again.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

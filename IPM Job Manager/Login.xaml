@@ -12,7 +12,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -25,12 +25,15 @@
             <Label Content="Password : " Grid.Column="0" Grid.Row="1"></Label>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,25,10,0">
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,25,23,0">
             <TextBox x:Name="UserBox"></TextBox>
             <PasswordBox x:Name="PwBox" Margin="0,5"></PasswordBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click"></Button>
+                <Button Content="Login" x:Name="loginBtn" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="ButtonLogin_Click" Margin="25,0,0,0"></Button>
+            </StackPanel>
         </StackPanel>
 
-        <Button Content="Login" x:Name="loginBtn" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="ButtonLogin_Click"></Button>
-        
+
     </Grid>
 </Window>

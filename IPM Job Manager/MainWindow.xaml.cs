@@ -114,7 +114,7 @@ namespace IPM_Job_Manager_net
         {
             InitializeComponent();
             this.DataContext = this;
-            JsonUserList = ReadUserJson("I:/GTMT/test/Users.json");
+            JsonUserList = ReadUserJson(UserListPath);
             foreach (User user in JsonUserList.Users)
             {
                 UserList.Add(user);
@@ -150,8 +150,14 @@ namespace IPM_Job_Manager_net
                 {
                     if (jobnotes.JobInfo["PartNo"] == job.JobInfo["PartNo"])
                     {
-                        job.JobInfo["Notes"] = jobnotes.JobInfo["Notes"];
-                        job.JobInfo["Operations"] = jobnotes.JobInfo["Operations"];
+                        if (jobnotes.JobInfo.ContainsKey("Notes"))
+                        {
+                            job.JobInfo["Notes"] = jobnotes.JobInfo["Notes"];
+                        }
+                        if (jobnotes.JobInfo.ContainsKey("Operations"))
+                        {
+                            job.JobInfo["Operations"] = jobnotes.JobInfo["Operations"];
+                        }
                     }
                 }
             }
@@ -178,6 +184,20 @@ namespace IPM_Job_Manager_net
                 return JsonUserList;
             }
 
+        }
+
+        public void WriteUserJson(Root users, string JsonPath)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.TypeNameHandling = TypeNameHandling.All;
+
+            using (StreamWriter sw = new StreamWriter(JsonPath))
+            using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                serializer.Serialize(jsonWriter, users);
+            }
         }
 
         public void WriteJobsJson(ObservableCollection<Job> Jobs, string JsonPath)
@@ -361,7 +381,7 @@ namespace IPM_Job_Manager_net
         private void ButtonAdminLogin_Click(object sender, RoutedEventArgs e)
         {
             var AdminWin = new AdminWindow();
-            var LoginWin = new Login(this, JsonUserList, UserList, AdminWin);
+            var LoginWin = new Login(this, JsonUserList, AdminWin);
             AdminWin.Owner = this;
             LoginWin.Owner = this;
             LoginWin.ShowDialog();

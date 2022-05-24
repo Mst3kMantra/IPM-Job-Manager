@@ -789,5 +789,12 @@ namespace IPM_Job_Manager_net
             NewWindow.Show();
             this.Close();
         }
+
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            Window NewUserWindow = new NewUserWindow();
+            NewUserWindow.Owner = this;
+            NewUserWindow.ShowDialog();
+        }
     }
 }
