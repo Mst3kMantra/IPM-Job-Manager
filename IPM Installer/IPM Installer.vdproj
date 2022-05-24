@@ -350,7 +350,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_BC055A222BAA4C2CAF73FDC28FB6265A"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -377,7 +377,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IPM Installer"
         "ProductCode" = "8:{D9BA2F5A-44C4-42A5-B9A0-BBCA2A564EEC}"
-        "PackageCode" = "8:{00A460E0-48A0-4DA0-9C0E-74FA87A7C3DC}"
+        "PackageCode" = "8:{6FD78C8D-DA70-4069-B249-44D6A906CB7F}"
         "UpgradeCode" = "8:{0E7B3DB7-5D89-4F56-8E76-295329EDAC36}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -926,7 +926,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AF593C18C88B443B9D640B4BD21B5B33"
             {
-            "SourcePath" = "8:..\\IPM Job Manager\\obj\\Debug\\IPM Job Manager net.exe"
+            "SourcePath" = "8:..\\IPM Job Manager\\obj\\Release\\IPM Job Manager net.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_BC055A222BAA4C2CAF73FDC28FB6265A"
