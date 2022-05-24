@@ -90,16 +90,17 @@ namespace IPM_Job_Manager_net
             set { _lastSelectedJob = value; }
         }
 
-        public string AssignedJobListPath = @"I:\GTMT\test\assigned_job_list.json";
-        public string JobListPath = @"I:\GTMT\test\job_list.json";
-        public string UserListPath = @"I:\GTMT\test\Users.json";
-        public string JobNotesPath = @"I:\GTMT\test\job_notes.json";
+        public string AssignedJobListPath = @"I:\Program Files\IPM Job Manager\Data Files\assigned_job_list.json";
+        public string JobListPath = @"I:\Program Files\IPM Job Manager\Data Files\job_list.json";
+        public string UserListPath = @"I:\Program Files\IPM Job Manager\Data Files\Users.json";
+        public string JobNotesPath = @"I:\Program Files\IPM Job Manager\Data Files\job_notes.json";
+        public string QueryString = "SELECT * FROM [Job List]";
 
         #region DataSet, DataAdapter, DataTable
-        internal DataSet dataSet;
-        internal OleDbDataAdapter dataAdapter;
-        internal DataTable dataTable;
-        private OleDbConnection connection;
+        public DataSet dataSet;
+        public OleDbDataAdapter dataAdapter;
+        public DataTable dataTable;
+        public OleDbConnection connection;
         #endregion
 
         private ObservableCollection<Job> _assignedJobList = new ObservableCollection<Job>();
@@ -111,7 +112,6 @@ namespace IPM_Job_Manager_net
 
         public MainWindow()
         {
-            string QueryString = "SELECT * FROM [Job List]";
             InitializeComponent();
             this.DataContext = this;
             JsonUserList = ReadUserJson("I:/GTMT/test/Users.json");
@@ -194,11 +194,11 @@ namespace IPM_Job_Manager_net
             }
         }
 
-        internal void GetData(string SelectQuery, string ConnectionString)
+        public void GetData(string SelectQuery, string ConnectionString)
         {
             try
             {
-
+                JobList.Clear();
                 #region Create Data Objects: Connection, DataAdapter, DataSet, DataTable
                 // use OleDb Connection to MS Access DB
                 connection = new OleDbConnection(ConnectionString);
@@ -212,6 +212,8 @@ namespace IPM_Job_Manager_net
                 // create DataSet
                 dataSet = new DataSet("OpenWork");
                 dataTable = new DataTable("JobList");
+                dataSet.Clear();
+                dataTable.Clear();
                 // use DataAdapter to Fill Dataset
                 dataAdapter.Fill(dataSet);
                 dataTable = dataSet.Tables[0];
@@ -274,6 +276,7 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                 }
             }
+
 
             User CurItem = lstUsers.SelectedItem as User;
 
@@ -338,6 +341,7 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
+            txtNotes.Text = (LastSelectedJob as Job).JobInfo["Notes"].ToString();
         }
 
         private void btnEditNotes_Click(object sender, RoutedEventArgs e)
@@ -360,7 +364,7 @@ namespace IPM_Job_Manager_net
             var LoginWin = new Login(this, JsonUserList, UserList, AdminWin);
             AdminWin.Owner = this;
             LoginWin.Owner = this;
-            LoginWin.Show();
+            LoginWin.ShowDialog();
         }
 
         private void lstAssignedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -461,6 +465,14 @@ namespace IPM_Job_Manager_net
         private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedAssignee = lstAssigned.SelectedItem;
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            if (LastSelectedUser != null && LastSelectedJob != null)
+            {
+                RefreshWindow();
+            }
         }
     }
 }

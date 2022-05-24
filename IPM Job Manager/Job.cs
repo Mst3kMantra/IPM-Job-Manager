@@ -14,5 +14,6 @@ namespace IPM_Job_Manager_net
             get { return _jobInfo; }
             set { _jobInfo = value; }
         }
+
     }
 }

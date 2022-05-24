@@ -96,7 +96,8 @@ namespace IPM_Job_Manager_net
         public object SelectedOperation;
         public object SelectedAssignee;
 
-        public bool isLogoutPressed;
+        public bool isLogoutPressed = false;
+        public bool isRefreshPressed = false;
 
 
         public AdminWindow()
@@ -104,8 +105,17 @@ namespace IPM_Job_Manager_net
             InitializeComponent();
             DataContext = this;
             MainWin = Application.Current.MainWindow as MainWindow;
-            JobList = MainWin.JobList;
+            JobList = MainWin.ReadJobsJson(MainWin.JobListPath);
             UserList = MainWin.UserList;
+            try
+            {
+                JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            JobList = MainWin.ReadJobNotes(JobList);
             try
             {
                 AssignedJobList = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
@@ -639,8 +649,15 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                 }
             }
-
-            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            try
+            {
+                SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            }
+            catch (JsonReaderException)
+            {
+                SelectedOperations = (LastSelectedJob as Job).JobInfo["Operations"];
+            }
+            
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
@@ -663,17 +680,16 @@ namespace IPM_Job_Manager_net
         
         private void AdminWindow_Closing(object sender, CancelEventArgs e)
         {
-            if (isLogoutPressed != true)
+            if (isLogoutPressed == false && isRefreshPressed == false)
             {
-                isLogoutPressed = false;
-                try
-                {
-                    MainWin.Close();
-                }
-                catch (InvalidOperationException)
-                {
-                    return;
-                }
+                 try
+                 {
+                     MainWin.Close();
+                 }
+                 catch (InvalidOperationException)
+                 {
+                     return;
+                 }
             }
         }
 
@@ -750,6 +766,28 @@ namespace IPM_Job_Manager_net
                     RefreshWindow(lstAssignedJobs);
                 }
             }
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            JobList.Clear();
+            isRefreshPressed = true;
+            MainWin.JobList.Clear();
+            MainWin.GetData(MainWin.QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            JobNotes.Clear();
+            try
+            {
+                JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            MainWin.JobList = MainWin.ReadJobNotes(MainWin.JobList);
+            Window NewWindow = new AdminWindow();
+            NewWindow.Owner = Application.Current.MainWindow;
+            NewWindow.Show();
+            this.Close();
         }
     }
 }
