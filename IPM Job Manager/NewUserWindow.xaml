@@ -27,15 +27,15 @@
             <Label Content="Password : " Grid.Column="0" Grid.Row="1"></Label>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="92,25,46,20" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <StackPanel Grid.Row="1" Margin="92,25,25,20"  Grid.ColumnSpan="2" Grid.RowSpan="2">
             <TextBox x:Name="UserBox"></TextBox>
             <PasswordBox x:Name="PwBox" Margin="0,5"></PasswordBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <CheckBox x:Name="isAdmin" Content="Admin" Margin="0,0,20,0"/>
+                <Button Content="Save" x:Name="btnSave" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="btnSave_Click" Margin="0,0,0,0"/>
+                <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click" Margin="20,0,0,0"/>
+            </StackPanel>
         </StackPanel>
-
-        <CheckBox x:Name="isAdmin" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="92,3,170,-3">Admin</CheckBox>
-
-        <Button Content="Save" x:Name="btnSave" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="btnSave_Click" Margin="136,0,46,0"></Button>
-        <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click" Margin="41,0,141,0"></Button>
     </Grid>
 
 </Window>
