@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.IO;
 using Newtonsoft.Json;
+using System.Timers;
 
 namespace IPM_Job_Manager_net
 {
@@ -90,6 +91,8 @@ namespace IPM_Job_Manager_net
             set { _lastSelectedJob = value; }
         }
 
+        public Timer RefreshTimer;
+
         public string AssignedJobListPath = @"I:\Program Files\IPM Job Manager\Data Files\assigned_job_list.json";
         public string JobListPath = @"I:\Program Files\IPM Job Manager\Data Files\job_list.json";
         public string UserListPath = @"I:\Program Files\IPM Job Manager\Data Files\Users.json";
@@ -114,23 +117,53 @@ namespace IPM_Job_Manager_net
         {
             InitializeComponent();
             this.DataContext = this;
-            JsonUserList = ReadUserJson(UserListPath);
-            foreach (User user in JsonUserList.Users)
-            {
-                UserList.Add(user);
-            }
-            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
-            JobList = ReadJobsJson(JobListPath);
             try
             {
-                AssignedJobList = ReadJobsJson(AssignedJobListPath);
+                JsonUserList = ReadUserJson(UserListPath);
+                foreach (User user in JsonUserList.Users)
+                {
+                    UserList.Add(user);
+                }
             }
             catch (FileNotFoundException)
             {
                 return;
             }
+            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
             try
             {
+                JobList = ReadJobsJson(JobListPath);
+                AssignedJobList = ReadJobsJson(AssignedJobListPath);
+                JobNotes = ReadJobsJson(JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            SetTimer();
+            JobList = ReadJobNotes(JobList);
+            AssignedJobList = ReadJobNotes(AssignedJobList);
+            WriteJobsJson(AssignedJobList, AssignedJobListPath);
+        }
+
+        public void SetTimer()
+        {
+            // Create a timer with a two second interval.
+            RefreshTimer = new Timer(600000);
+            // Hook up the Elapsed event for the timer. 
+            RefreshTimer.Elapsed += OnTimedEvent;
+            RefreshTimer.AutoReset = true;
+            RefreshTimer.Enabled = true;
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            JobList.Clear();
+            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            try
+            {
+                JobList = ReadJobsJson(JobListPath);
+                AssignedJobList = ReadJobsJson(AssignedJobListPath);
                 JobNotes = ReadJobsJson(JobNotesPath);
             }
             catch (FileNotFoundException)
@@ -140,6 +173,38 @@ namespace IPM_Job_Manager_net
             JobList = ReadJobNotes(JobList);
             AssignedJobList = ReadJobNotes(AssignedJobList);
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
+            if (LastSelectedUser != null && LastSelectedJob != null)
+            {
+                this.Dispatcher.Invoke(() => RefreshWindow());
+            }
+            Console.WriteLine("Refresh Success");
+            this.Dispatcher.Invoke(() => RefreshAdminJobs());
+        }
+
+        public void RefreshAdminJobs()
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.Title == "IPM Job Manager")
+                {
+                    AdminWindow adminWindow = (AdminWindow)window;
+                    adminWindow.JobList.Clear();
+                    adminWindow.AssignedJobList.Clear();
+                    adminWindow.JobNotes.Clear();
+                    foreach (Job job1 in JobList)
+                    {
+                        adminWindow.JobList.Add(job1);
+                    }
+                    foreach (Job job2 in JobNotes)
+                    {
+                        adminWindow.JobNotes.Add(job2);
+                    }
+                    foreach (Job job3 in AssignedJobList)
+                    {
+                        adminWindow.AssignedJobList.Add(job3);
+                    }
+                }
+            }
         }
 
         public ObservableCollection<Job> ReadJobNotes(ObservableCollection<Job> jobs)
@@ -240,12 +305,14 @@ namespace IPM_Job_Manager_net
 
                 List<string> AssignedEmployeeList = new List<string>();
                 Dictionary<string, string> Operations = new Dictionary<string, string>();
+                Dictionary<string, bool> CompletedOperations = new Dictionary<string, bool>();
 
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     JobList.Add(new Job());
                     JobList[i].JobInfo.Add("AssignedEmployees", AssignedEmployeeList);
                     JobList[i].JobInfo.Add("Operations", Operations);
+                    JobList[i].JobInfo.Add("CompletedOperations", CompletedOperations);
                     JobList[i].JobInfo.Add("Notes", "");
                     JobList[i].JobInfo.Add("Priority", 0);
                     foreach (DataColumn column in dataTable.Columns)
@@ -485,14 +552,6 @@ namespace IPM_Job_Manager_net
         private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedAssignee = lstAssigned.SelectedItem;
-        }
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            if (LastSelectedUser != null && LastSelectedJob != null)
-            {
-                RefreshWindow();
-            }
         }
     }
 }

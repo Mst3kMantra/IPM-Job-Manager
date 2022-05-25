@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Timers;
 
 namespace IPM_Job_Manager_net
 {
@@ -99,7 +100,6 @@ namespace IPM_Job_Manager_net
         public bool isLogoutPressed = false;
         public bool isRefreshPressed = false;
 
-
         public AdminWindow()
         {
             InitializeComponent();
@@ -124,6 +124,11 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+        }
+
+        private void OnTimedEvent()
+        {
+
         }
 
         public void RefreshWindow(ListView list)
@@ -175,8 +180,14 @@ namespace IPM_Job_Manager_net
             {
                 CurEmployeeJobs.Add(sortedjob);
             }
-
-            list.SelectedItem = CurEmployeeJobs[LastJobIndex];
+            try
+            {
+                list.SelectedItem = CurEmployeeJobs[LastJobIndex];
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                list.SelectedItem = null;
+            }
             LastSelectedJob = list.SelectedItem;
 
             if (LastSelectedJob == null) { return; }
@@ -235,11 +246,13 @@ namespace IPM_Job_Manager_net
             newJob.JobInfo["AssignedEmployees"].Add(employee.Username);
             CurEmployeeJobs.Add(newJob);
             MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+            RefreshWindow(lstAssignedJobs);
         }
 
         public void UnassignOperations(Job job)
         {
-            JobNotes = MainWin.JobNotes;
+            JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
+
             if (OperationList != null)
             {
                 foreach (Job jobnote in JobNotes)
@@ -456,7 +469,6 @@ namespace IPM_Job_Manager_net
                 }
                 else
                 {
-                    UnassignOperations(SelectedJob);
                     RemoveJob(SelectedUser, SelectedJob);
                 }
             }
@@ -517,12 +529,15 @@ namespace IPM_Job_Manager_net
                             LastSelectedJob = orderedJob;
                         }
                     }
-                    foreach (object item in lstAssignedJobs.Items)
+                    if (LastSelectedJob != null)
                     {
-                        if ((item as Job).JobInfo["JobNo"] == (LastSelectedJob as Job).JobInfo["JobNo"])
+                        foreach (object item in lstAssignedJobs.Items)
                         {
-                            lstAssignedJobs.SelectedItem = item;
-                            LastSelectedJob = lstAssignedJobs.SelectedItem;
+                            if ((item as Job).JobInfo["JobNo"] == (LastSelectedJob as Job).JobInfo["JobNo"])
+                            {
+                                lstAssignedJobs.SelectedItem = item;
+                                LastSelectedJob = lstAssignedJobs.SelectedItem;
+                            }
                         }
                     }
                 }
@@ -570,12 +585,15 @@ namespace IPM_Job_Manager_net
                             LastSelectedJob = orderedJob;
                         }
                     }
-                    foreach (object item in lstAssignedJobs.Items)
+                    if (LastSelectedJob != null)
                     {
-                        if ((item as Job).JobInfo["JobNo"] == (LastSelectedJob as Job).JobInfo["JobNo"])
+                        foreach (object item in lstAssignedJobs.Items)
                         {
-                            lstAssignedJobs.SelectedItem = item;
-                            LastSelectedJob = lstAssignedJobs.SelectedItem;
+                            if ((item as Job).JobInfo["JobNo"] == (LastSelectedJob as Job).JobInfo["JobNo"])
+                            {
+                                lstAssignedJobs.SelectedItem = item;
+                                LastSelectedJob = lstAssignedJobs.SelectedItem;
+                            }
                         }
                     }
                 }
@@ -766,28 +784,6 @@ namespace IPM_Job_Manager_net
                     RefreshWindow(lstAssignedJobs);
                 }
             }
-        }
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            JobList.Clear();
-            isRefreshPressed = true;
-            MainWin.JobList.Clear();
-            MainWin.GetData(MainWin.QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
-            JobNotes.Clear();
-            try
-            {
-                JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
-            }
-            catch (FileNotFoundException)
-            {
-                return;
-            }
-            MainWin.JobList = MainWin.ReadJobNotes(MainWin.JobList);
-            Window NewWindow = new AdminWindow();
-            NewWindow.Owner = Application.Current.MainWindow;
-            NewWindow.Show();
-            this.Close();
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)

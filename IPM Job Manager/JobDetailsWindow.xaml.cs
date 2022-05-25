@@ -64,7 +64,6 @@ namespace IPM_Job_Manager_net
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
-                Console.WriteLine(key);
             }
 
             foreach (string value in SelectedOperations.Values)

@@ -68,21 +68,22 @@ namespace IPM_Job_Manager_net
                 if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.IsAdmin == true)
                 {   
                     ProvidedPassword = PwBox.Password;
-                    string HashedPassword = HashPassword(ProvidedPassword, user.Salt);
-                    if (user.Password == HashedPassword)
+                    if (user.Salt != null)
                     {
-                        Console.WriteLine(HashedPassword);
-                        Console.WriteLine(user.Password);
-                        AdminWin.Show();
-                        this.Close();
-                        MainWin.Hide();
-                        isLoginSuccessful = true;
+                        string HashedPassword = HashPassword(ProvidedPassword, user.Salt);
+                        if (user.Password == HashedPassword)
+                        {
+                            AdminWin.Show();
+                            this.Close();
+                            MainWin.Hide();
+                            isLoginSuccessful = true;
+                        }
                     }
                 }
             }
             if (isLoginSuccessful == false)
             {
-                MessageBox.Show("Invalid Username or Password. Try Again.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Invalid username, password, or permission level. Try again.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

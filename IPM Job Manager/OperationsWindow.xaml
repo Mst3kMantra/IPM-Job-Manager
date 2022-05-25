@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="Operations Editor" Height="380" Width="650"
+        Title="Operations Editor" Height="400" Width="650"
         WindowStartupLocation="CenterOwner"
         Closing="OperationsWindow_Closing">
 

@@ -83,6 +83,7 @@ namespace IPM_Job_Manager_net
 
         private void btnSaveNotes_Click(object sender, RoutedEventArgs e)
         {
+            bool isJobAlreadyInNotes = false;
             if (string.IsNullOrWhiteSpace(txtNotes.Text) == false && txtNotes.Text.Length != 0)
             {
                 if (JobNotes != null)
@@ -95,20 +96,12 @@ namespace IPM_Job_Manager_net
                             {
                                 job.JobInfo["Notes"] = txtNotes.Text;
                                 MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
-                                break;
-                            }
-                            else
-                            {
-                                Job newNotes = new Job();
-                                newNotes.JobInfo.Add("Notes", txtNotes.Text);
-                                newNotes.JobInfo.Add("PartNo", SelectedJob.JobInfo["PartNo"]);
-                                JobNotes.Add(newNotes);
-                                MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                                isJobAlreadyInNotes = true;
                                 break;
                             }
                         }
                     }
-                    else
+                    else if (isJobAlreadyInNotes == false)
                     {
                         Job newNotes = new Job();
                         newNotes.JobInfo.Add("Notes", txtNotes.Text);

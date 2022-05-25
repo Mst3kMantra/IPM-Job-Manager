@@ -131,36 +131,37 @@ namespace IPM_Job_Manager_net
             }
         }
 
-        public void WriteToNotes(Job SelectedJob)
+        public void WriteToNotes(Job ChangedJob)
         {
+            bool isPartInJobNotes = false;
             if (JobNotes != null)
             {
                 if (JobNotes.Count > 0)
                 {
                     foreach (Job job in JobNotes)
                     {
-                        if (job.JobInfo["PartNo"] == SelectedJob.JobInfo["PartNo"])
+                        if (job.JobInfo["PartNo"] == ChangedJob.JobInfo["PartNo"])
                         {
-                            job.JobInfo["Operations"] = SelectedJob.JobInfo["Operations"];
+                            job.JobInfo["Operations"] = ChangedJob.JobInfo["Operations"];
                             MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                            isPartInJobNotes = true;
                             break;
                         }
-                        else
-                        {
-                            Job newNotes = new Job();
-                            newNotes.JobInfo.Add("Operations", SelectedJob.JobInfo["Operations"]);
-                            newNotes.JobInfo.Add("PartNo", SelectedJob.JobInfo["PartNo"]);
-                            JobNotes.Add(newNotes);
-                            MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
-                            break;
-                        }
+                    }
+                    if (isPartInJobNotes == false)
+                    {
+                        Job newNotes = new Job();
+                        newNotes.JobInfo.Add("Operations", ChangedJob.JobInfo["Operations"]);
+                        newNotes.JobInfo.Add("PartNo", ChangedJob.JobInfo["PartNo"]);
+                        JobNotes.Add(newNotes);
+                        MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
                     }
                 }
                 else
                 {
                     Job newNotes = new Job();
-                    newNotes.JobInfo.Add("Operations", SelectedJob.JobInfo["Operations"]);
-                    newNotes.JobInfo.Add("PartNo", SelectedJob.JobInfo["PartNo"]);
+                    newNotes.JobInfo.Add("Operations", ChangedJob.JobInfo["Operations"]);
+                    newNotes.JobInfo.Add("PartNo", ChangedJob.JobInfo["PartNo"]);
                     JobNotes.Add(newNotes);
                     MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
                 }
@@ -171,6 +172,7 @@ namespace IPM_Job_Manager_net
             if (string.IsNullOrWhiteSpace(txtOperations.Text) == false && txtOperations.Text.Length != 0)
             {
                 AssignedJobList[JobIndex].JobInfo["Operations"].Add(txtOperations.Text, "");
+                AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Add(txtOperations.Text, false);
                 OperationList.Add(txtOperations.Text);
                 AssignedEmployeeList.Add("");
                 MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
@@ -185,6 +187,7 @@ namespace IPM_Job_Manager_net
             if (SelectedOperation != null)
             {
                 AssignedJobList[JobIndex].JobInfo["Operations"].Remove(SelectedOperation.ToString());
+                AssignedJobList[JobIndex].JobInfo["Completed Operations"].Remove(SelectedOperation.ToString());
                 int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
                 OperationList.Remove(SelectedOperation.ToString());
                 AssignedEmployeeList.RemoveAt(OpIndex);

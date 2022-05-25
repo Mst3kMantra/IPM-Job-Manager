@@ -76,14 +76,15 @@
                 </ListView.View>
             </ListView>
 
-            <Grid Grid.Row="2" Grid.Column="0" Background="LightGray">
+            <Grid x:Name="OperationsGrid" Grid.Row="2" Grid.Column="0" Background="LightGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="100*"/>
                 </Grid.ColumnDefinitions>
 
@@ -103,8 +104,9 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Label Background="LightGray" Grid.Column="2" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
-                <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="2"/>
+                <Label Background="LightGray" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
+                <Label Background="LightGray" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
+                <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="3"/>
             </Grid>
         </StackPanel>
 
@@ -121,7 +123,6 @@
             </ListBox>
 
             <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Bottom">
-                <Button x:Name="btnRefresh" Margin="0,5,0,0" Click="btnRefresh_Click">Refresh</Button>
                 <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
                 <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
             </StackPanel>

@@ -1,6 +1,3 @@
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager net.exe.config
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager net.exe
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager net.pdb
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\EntityFramework.dll
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\EntityFramework.SqlServer.dll
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Newtonsoft.Json.dll
@@ -18,8 +15,6 @@ C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Rel
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\NotesWindow.g.cs
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\OperationsWindow.g.cs
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\App.g.cs
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net_MarkupCompile.cache
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net_MarkupCompile.lref
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\App.baml
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\AdminWindow.baml
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\JobDetailsWindow.baml
@@ -27,16 +22,21 @@ C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Rel
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\MainWindow.baml
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\NotesWindow.baml
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\OperationsWindow.baml
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net.g.resources
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM_Job_Manager_net.Properties.Resources.resources
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.GenerateResource.cache
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.CoreCompileInputs.cache
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.csproj.CopyComplete
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net.exe
-C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager net.pdb
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\NewUserWindow.g.cs
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Microsoft.AspNetCore.Cryptography.Internal.xml
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\NewUserWindow.baml
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager.exe.config
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager.exe
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\bin\Release\IPM Job Manager.pdb
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager_MarkupCompile.cache
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager_MarkupCompile.lref
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.g.resources
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.exe
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Release\IPM Job Manager.pdb

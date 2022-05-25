@@ -76,7 +76,7 @@ namespace IPM_Job_Manager_net {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/IPM Job Manager net;component/jobdetailswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/IPM Job Manager;component/jobdetailswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\JobDetailsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
