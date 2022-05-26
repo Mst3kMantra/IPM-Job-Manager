@@ -131,3 +131,5 @@ C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Deb
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.g.resources
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.exe
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\IPM Job Manager.pdb
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\CompletedJobsWindow.g.cs
+C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\obj\Debug\CompletedJobsWindow.baml

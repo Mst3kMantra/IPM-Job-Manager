@@ -124,15 +124,17 @@
             <Grid Background="LightGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="125"/>
+                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150*"/>
                     <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
                 <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
+                <Label Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
                 <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -147,9 +149,10 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <ListBox Grid.Column="2" Grid.Row="1" x:Name="lstStatus"/>
             </Grid>
             <Label Background="LightGray"  Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
-            <TextBlock Height="125" x:Name="txtNotes" TextWrapping="Wrap"/>
+            <TextBlock Height="150" x:Name="txtNotes" TextWrapping="Wrap"/>
         </StackPanel>
 
         <StackPanel Background="White" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom">

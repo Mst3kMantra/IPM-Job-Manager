@@ -108,6 +108,9 @@
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CompletedJobsWindow.xaml.cs">
+      <DependentUpon>CompletedJobsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Job.cs" />
     <Compile Include="JobDetailsWindow.xaml.cs">
       <DependentUpon>JobDetailsWindow.xaml</DependentUpon>
@@ -123,6 +126,10 @@
     </Compile>
     <Compile Include="User.cs" />
     <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CompletedJobsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

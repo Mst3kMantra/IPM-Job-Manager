@@ -47,6 +47,13 @@ namespace IPM_Job_Manager_net
             set { _assignedJobList = value; }
         }
 
+        private Dictionary<string, bool> _completedOperations = new Dictionary<string, bool>();
+        public Dictionary<string, bool> CompletedOperations
+        {
+            get { return _completedOperations; }
+            set { _completedOperations = value; }
+        }
+
         private ObservableCollection<Job> _curEmployeeJobs = new ObservableCollection<Job>();
         public ObservableCollection<Job> CurEmployeeJobs
         {
@@ -230,67 +237,46 @@ namespace IPM_Job_Manager_net
                 AssignedJobList.Add(JobList[jobIndex]);
             }
 
-            foreach (Job assignedJob in AssignedJobList)
+            if (LastSelectedJob != null)
             {
-                if (JobList[jobIndex].JobInfo["JobNo"] == assignedJob.JobInfo["JobNo"])
+                foreach (Job assignedJob in AssignedJobList)
                 {
-                    assignedJob.JobInfo["AssignedEmployees"].Add(employee.Username);
-                    CurEmployeeJobs.Add(assignedJob);
-                    MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
-                    return;
-                }
-            }
-
-            AssignedJobList.Add(JobList[jobIndex]);
-            var newJob = AssignedJobList[AssignedJobList.Count - 1];
-            newJob.JobInfo["AssignedEmployees"].Add(employee.Username);
-            CurEmployeeJobs.Add(newJob);
-            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
-            RefreshWindow(lstAssignedJobs);
-        }
-
-        public void UnassignOperations(Job job)
-        {
-            JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
-
-            if (OperationList != null)
-            {
-                foreach (Job jobnote in JobNotes)
-                {
-                    if (jobnote.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    if (JobList[jobIndex].JobInfo["JobNo"] == assignedJob.JobInfo["JobNo"])
                     {
-                        foreach (string operation in OperationList)
+                        SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(assignedJob.JobInfo["Operations"].ToString());
+                        assignedJob.JobInfo["AssignedEmployees"].Add(employee.Username);
+                        foreach (string key in SelectedOperations.Keys)
                         {
-                            jobnote.JobInfo["Operations"][operation] = "";
+                            if (!assignedJob.JobInfo["CompletedOperations"].ContainsKey(key))
+                            {
+                                assignedJob.JobInfo["CompletedOperations"].Add(key, false);
+                            }
                         }
+                        CurEmployeeJobs.Add(assignedJob);
+                        MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                        return;
                     }
                 }
-                foreach (Job assignedjob in AssignedJobList)
+
+                AssignedJobList.Add(JobList[jobIndex]);
+                var newJob = AssignedJobList[AssignedJobList.Count - 1];
+                SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(newJob.JobInfo["Operations"].ToString());
+                newJob.JobInfo["AssignedEmployees"].Add(employee.Username);
+                foreach (string key in SelectedOperations.Keys)
                 {
-                    if (assignedjob.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    if (!newJob.JobInfo["CompletedOperations"].ContainsKey(key))
                     {
-                        foreach (string operation in OperationList)
-                        {
-                            assignedjob.JobInfo["Operations"][operation] = "";
-                        }
+                        newJob.JobInfo["CompletedOperations"].Add(key, false);
                     }
                 }
-                foreach (Job oldjob in JobList)
-                {
-                    if (oldjob.JobInfo["PartNo"] == job.JobInfo["PartNo"])
-                    {
-                        foreach (string operation in OperationList)
-                        {
-                            oldjob.JobInfo["Operations"][operation] = "";
-                        }
-                    }
-                }
+                CurEmployeeJobs.Add(newJob);
                 MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
-                MainWin.WriteJobsJson(JobList, MainWin.JobListPath);
-                MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                RefreshWindow(lstAssignedJobs);
             }
+
         }
 
+        
         public void RemoveJob(User employee, Job job)
         {
             foreach (Job job2 in AssignedJobList)
@@ -335,6 +321,7 @@ namespace IPM_Job_Manager_net
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             isLogoutPressed = true;
+            MainWin.RefreshJobs();
             MainWin.Show();
             Close();
         }
@@ -619,6 +606,14 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (lstStatus != null)
+            {
+                if (lstStatus.Items.Count > 0)
+                {
+                    lstStatus.Items.Clear();
+                }
+            }
+
             txtNotes.Text = "";
 
             User CurItem = lstUsers.SelectedItem as User;
@@ -650,6 +645,10 @@ namespace IPM_Job_Manager_net
             {
                 CurEmployeeJobs.Add(sortedjob);
             }
+            if (lstJobs.SelectedItem != null)
+            {
+                LastSelectedJob = lstJobs.SelectedItem;
+            }
         }
 
         private void lstJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -667,13 +666,36 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                 }
             }
-            try
+
+            if (lstStatus != null)
             {
-                SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+                if (lstStatus.Items.Count > 0)
+                {
+                    lstStatus.Items.Clear();
+                }
             }
-            catch (JsonReaderException)
+
+            CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
+            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+
+            foreach (bool value in CompletedOperations.Values)
             {
-                SelectedOperations = (LastSelectedJob as Job).JobInfo["Operations"];
+                if (value == true)
+                {
+                    TextBlock complete = new TextBlock
+                    {
+                        Text = "Complete"
+                    };
+                    lstStatus.Items.Add(complete);
+                }
+                else if (value == false)
+                {
+                    TextBlock incomplete = new TextBlock
+                    {
+                        Text = "Incomplete"
+                    };
+                    lstStatus.Items.Add(incomplete);
+                }
             }
             
             foreach (string key in SelectedOperations.Keys)
@@ -727,7 +749,37 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (lstStatus != null)
+            {
+                if (lstStatus.Items.Count > 0)
+                {
+                    lstStatus.Items.Clear();
+                }
+            }
+
+            CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+
+            foreach (bool value in CompletedOperations.Values)
+            {
+                if (value == true)
+                {
+                    TextBlock complete = new TextBlock
+                    {
+                        Text = "Complete"
+                    };
+                    lstStatus.Items.Add(complete);
+                }
+                else if (value == false)
+                {
+                    TextBlock incomplete = new TextBlock
+                    {
+                        Text = "Incomplete"
+                    };
+                    lstStatus.Items.Add(incomplete);
+                }
+            }
+
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);

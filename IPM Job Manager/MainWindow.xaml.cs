@@ -63,10 +63,17 @@ namespace IPM_Job_Manager_net
         }
 
         private ObservableCollection<Job> _jobNotes = new ObservableCollection<Job>();
-        public ObservableCollection <Job> JobNotes
+        public ObservableCollection<Job> JobNotes
         {
             get { return _jobNotes; }
             set { _jobNotes = value; }
+        }
+
+        private ObservableCollection<Job> _CompletedJobs = new ObservableCollection<Job>();
+        public ObservableCollection<Job> CompletedJobs
+        {
+            get { return _CompletedJobs; }
+            set { _CompletedJobs = value; }
         }
 
         private Dictionary<string, string> _selectedOperations = new Dictionary<string, string>();
@@ -74,6 +81,13 @@ namespace IPM_Job_Manager_net
         {
             get { return _selectedOperations; }
             set { _selectedOperations = value; }
+        }
+
+        private Dictionary<string, bool> _completedOperations = new Dictionary<string, bool>();
+        public Dictionary<string, bool> CompletedOperations
+        {
+            get { return _completedOperations; }
+            set { _completedOperations = value; }
         }
 
         public Root JsonUserList;
@@ -97,6 +111,7 @@ namespace IPM_Job_Manager_net
         public string JobListPath = @"I:\Program Files\IPM Job Manager\Data Files\job_list.json";
         public string UserListPath = @"I:\Program Files\IPM Job Manager\Data Files\Users.json";
         public string JobNotesPath = @"I:\Program Files\IPM Job Manager\Data Files\job_notes.json";
+        public string CompletedJobsPath = @"I:\Program Files\IPM Job Manager\Data Files\completed_jobs.json";
         public string QueryString = "SELECT * FROM [Job List]";
 
         #region DataSet, DataAdapter, DataTable
@@ -144,6 +159,14 @@ namespace IPM_Job_Manager_net
             JobList = ReadJobNotes(JobList);
             AssignedJobList = ReadJobNotes(AssignedJobList);
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
+            try
+            {
+                CompletedJobs = ReadJobsJson(CompletedJobsPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
         }
 
         public void SetTimer()
@@ -173,9 +196,11 @@ namespace IPM_Job_Manager_net
             JobList = ReadJobNotes(JobList);
             AssignedJobList = ReadJobNotes(AssignedJobList);
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
+            CompletedJobs.Clear();
+            CompletedJobs = ReadJobsJson(CompletedJobsPath);
             if (LastSelectedUser != null && LastSelectedJob != null)
             {
-                this.Dispatcher.Invoke(() => RefreshWindow());
+                this.Dispatcher.Invoke(() => RefreshJobs());
             }
             Console.WriteLine("Refresh Success");
             this.Dispatcher.Invoke(() => RefreshAdminJobs());
@@ -344,6 +369,124 @@ namespace IPM_Job_Manager_net
             return SortedJobs;
         }
 
+        public void UnassignOperations(Job job)
+        {
+            JobNotes = ReadJobsJson(JobNotesPath);
+
+            if (OperationList != null)
+            {
+                foreach (Job jobnote in JobNotes)
+                {
+                    if (jobnote.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        foreach (string operation in OperationList)
+                        {
+                            jobnote.JobInfo["Operations"][operation] = "";
+                        }
+                    }
+                }
+
+                CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>(job.JobInfo["CompletedOperations"].ToString());
+
+                foreach (Job assignedjob in AssignedJobList)
+                {
+                    if (assignedjob.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        foreach (string operation in OperationList)
+                        {
+                            assignedjob.JobInfo["Operations"][operation] = "";
+                        }
+                    }
+                    if (assignedjob.JobInfo["JobNo"] == job.JobInfo["JobNo"])
+                    {
+                        foreach (string key in CompletedOperations.Keys)
+                        {
+                            assignedjob.JobInfo["CompletedOperations"][key] = false;
+                        }
+                    }
+                }
+                foreach (Job oldjob in JobList)
+                {
+                    if (oldjob.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        foreach (string operation in OperationList)
+                        {
+                            oldjob.JobInfo["Operations"][operation] = "";
+                        }
+                    }
+                    if (oldjob.JobInfo["JobNo"] == job.JobInfo["JobNo"])
+                    {
+                        foreach (string key in CompletedOperations.Keys)
+                        {
+                            oldjob.JobInfo["CompletedOperations"][key] = false;
+                        }
+                    }
+                }
+                WriteJobsJson(AssignedJobList, AssignedJobListPath);
+                WriteJobsJson(JobList, JobListPath);
+                WriteJobsJson(JobNotes, JobNotesPath);
+            }
+        }
+
+        public void RefreshJobs()
+        {
+            LastSelectedUser = lstUsers.SelectedItem;
+            lstStatus.Items.Clear();
+            if (LastSelectedUser == null) { return; }
+            if (CurEmployeeJobs.Count != 0)
+            {
+                CurEmployeeJobs.Clear();
+            }
+
+            try
+            {
+                AssignedJobList = ReadJobsJson(AssignedJobListPath);
+                JobNotes = ReadJobsJson(JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            JobList = ReadJobNotes(JobList);
+            AssignedJobList = ReadJobNotes(AssignedJobList);
+            WriteJobsJson(AssignedJobList, AssignedJobListPath);
+
+            User CurItem = LastSelectedUser as User;
+
+            ObservableCollection<Job> jobs = new ObservableCollection<Job>();
+            jobs = ReadJobsJson(AssignedJobListPath);
+
+            foreach (Job job in jobs)
+            {
+                foreach (string employee in job.JobInfo["AssignedEmployees"])
+                {
+                    if (employee == CurItem.Username)
+                    {
+                        CurEmployeeJobs.Add(job);
+                    }
+                }
+
+            }
+
+            var SortedJobs = SortJobs(CurEmployeeJobs);
+            CurEmployeeJobs.Clear();
+            foreach (Job sortedjob in SortedJobs)
+            {
+                CurEmployeeJobs.Add(sortedjob);
+            }
+
+            if (SelectedOperations != null)
+            {
+                if (SelectedOperations.Count > 0)
+                {
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
+                }
+            }
+            txtNotes.Text = "";
+        }
+
         public void RefreshWindow()
         {
             LastSelectedUser = lstUsers.SelectedItem;
@@ -395,10 +538,18 @@ namespace IPM_Job_Manager_net
                 CurEmployeeJobs.Add(sortedjob);
             }
 
-            lstAssignedJobs.SelectedItem = CurEmployeeJobs[LastJobIndex];
-            LastSelectedJob = lstAssignedJobs.SelectedItem;
-
-            if (LastSelectedJob == null) { return; }
+            if (CurEmployeeJobs.Count > 0)
+            {
+                try
+                {
+                    lstAssignedJobs.SelectedItem = CurEmployeeJobs[LastJobIndex];
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    lstAssignedJobs.SelectedItem = CurEmployeeJobs[0];
+                }
+                LastSelectedJob = lstAssignedJobs.SelectedItem;
+            }
 
             if (SelectedOperations != null)
             {
@@ -409,6 +560,8 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                 }
             }
+
+            if (LastSelectedJob == null) { return; }
 
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
             foreach (string key in SelectedOperations.Keys)
@@ -433,9 +586,10 @@ namespace IPM_Job_Manager_net
 
         private void btnEditNotes_Click(object sender, RoutedEventArgs e)
         {
+            Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
             if (LastSelectedJob != null)
             {
-                Window NotesWin = new NotesWindow(LastSelectedJob as Job);
+                Window NotesWin = new NotesWindow(LastSelectedJob);
                 NotesWin.Owner = this;
                 bool? DialogResult = NotesWin.ShowDialog();
                 if (DialogResult == true)
@@ -456,10 +610,11 @@ namespace IPM_Job_Manager_net
 
         private void lstAssignedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LastSelectedJob = lstAssignedJobs.SelectedItem;
+            Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
+            User LastSelectedUser = lstUsers.SelectedItem as User;
 
             if (LastSelectedJob == null) { return; }
-
+            if (LastSelectedUser == null) { return; }
             if (SelectedOperations != null)
             {
                 if (SelectedOperations.Count > 0)
@@ -470,7 +625,48 @@ namespace IPM_Job_Manager_net
                 }
             }
 
-            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            if (lstStatus != null)
+            {
+                if (lstStatus.Items.Count > 0)
+                {
+                    lstStatus.Items.Clear();
+                }
+            }
+
+            CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>(LastSelectedJob.JobInfo["CompletedOperations"].ToString());
+            SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(LastSelectedJob.JobInfo["Operations"].ToString());
+
+            try
+            {
+                foreach (string key in CompletedOperations.Keys)
+                {
+                    foreach (KeyValuePair<string, string> kvp in SelectedOperations)
+                    {
+                        if (kvp.Key == key)
+                        {
+                            CheckBox OpCheck = new CheckBox
+                            {
+                                Tag = key,
+                                Content = "Complete",
+                                Name = SelectedOperations[key].Replace(" ", ""),
+                                FontSize = 10
+                            };
+                            OpCheck.Checked += new RoutedEventHandler(HandleOpChecked);
+                            OpCheck.Unchecked += new RoutedEventHandler(HandleOpUnchecked);
+                            if (CompletedOperations[key] == true)
+                            {
+                                OpCheck.IsChecked = true;
+                            }
+                            lstStatus.Items.Add(OpCheck);
+                        }
+                    }
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                return;
+            }
+
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
@@ -488,13 +684,12 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
-            txtNotes.Text = (LastSelectedJob as Job).JobInfo["Notes"].ToString();
+            txtNotes.Text = LastSelectedJob.JobInfo["Notes"].ToString();
         }
 
         private void lstUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LastSelectedUser = lstUsers.SelectedItem;
-            Job SelectedJob = LastSelectedJob as Job;
 
             if (SelectedOperations != null)
             {
@@ -503,6 +698,14 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                }
+            }
+
+            if (lstStatus != null)
+            {
+                if (lstStatus.Items.Count > 0)
+                {
+                    lstStatus.Items.Clear();
                 }
             }
 
@@ -552,6 +755,116 @@ namespace IPM_Job_Manager_net
         private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedAssignee = lstAssigned.SelectedItem;
+        }
+
+        private void HandleOpChecked(object sender, RoutedEventArgs e)
+        {
+            Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
+            User LastSelectedUser = lstUsers.SelectedItem as User;
+            CheckBox checkBox = sender as CheckBox;
+            bool AllAssignmentsDone = false;
+            bool isJobInCompletedJobs = false;
+            int AssignmentCheckedCounter = 0;
+            List<CheckBox> AllAssignments = new List<CheckBox>();
+            if (LastSelectedJob != null && LastSelectedUser != null && lstStatus.Items.Count > 0)
+            {
+                if (checkBox.IsChecked == true)
+                {
+                    foreach (Job job in AssignedJobList)
+                    {
+                        if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                        {
+                            job.JobInfo["CompletedOperations"][checkBox.Tag] = checkBox.IsChecked;
+                            WriteJobsJson(AssignedJobList, AssignedJobListPath);
+                        }
+                    }
+                }
+                foreach (object item in lstStatus.Items)
+                {
+                    if (item.GetType() == typeof(CheckBox))
+                    {
+                        CheckBox OpCheckBox = item as CheckBox;
+                        if (OpCheckBox.Name == LastSelectedUser.Username)
+                        {
+                            AllAssignments.Add(OpCheckBox);
+                        }
+                    }
+                }
+                if (AllAssignments.Count > 0)
+                {
+                    foreach (CheckBox OpCheckBox in AllAssignments)
+                    {
+                        if (OpCheckBox.IsChecked == true)
+                        {
+                            AssignmentCheckedCounter++;
+                        }
+                    }
+                    if (AssignmentCheckedCounter == AllAssignments.Count)
+                    {
+                        AllAssignmentsDone = true;
+                    }
+
+                    if (AllAssignmentsDone)
+                    {
+                        foreach (Job job in CompletedJobs)
+                        {
+                            if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                            {
+                                isJobInCompletedJobs = true;
+                                break;
+                            }
+                        }
+                        if (!isJobInCompletedJobs)
+                        {
+                            CompletedJobs.Add(LastSelectedJob);
+                        }
+                        foreach (Job job2 in AssignedJobList)
+                        {
+                            if (job2.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                            {
+                                for (int i = 0; i < job2.JobInfo["AssignedEmployees"].Count; i++)
+                                {
+                                    if (job2.JobInfo["AssignedEmployees"][i] == checkBox.Name)
+                                    {
+                                        job2.JobInfo["AssignedEmployees"].RemoveAt(i);
+                                        i = 0;
+                                    }
+                                }
+                                if (job2.JobInfo["AssignedEmployees"].Count == 0)
+                                {
+                                    UnassignOperations(LastSelectedJob);
+                                    AssignedJobList.Remove(job2);
+                                }
+                                break;
+                            }
+                        }
+                        WriteJobsJson(AssignedJobList, AssignedJobListPath);
+                        WriteJobsJson(CompletedJobs, CompletedJobsPath);
+                        RefreshJobs();
+                    }
+                }
+            }
+        }
+
+        private void HandleOpUnchecked(object sender, RoutedEventArgs e)
+        {
+            LastSelectedJob = lstAssignedJobs.SelectedItem;
+            CheckBox checkBox = sender as CheckBox;
+            Job SelectedJob = LastSelectedJob as Job;
+            if (SelectedJob != null)
+            {
+                if (checkBox.IsChecked == false)
+                {
+                    foreach (Job job in AssignedJobList)
+                    {
+                        if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                        {
+                            job.JobInfo["CompletedOperations"][checkBox.Tag] = checkBox.IsChecked;
+                            WriteJobsJson(AssignedJobList, AssignedJobListPath);
+                        }
+                    }
+                }
+            }
         }
     }
 }

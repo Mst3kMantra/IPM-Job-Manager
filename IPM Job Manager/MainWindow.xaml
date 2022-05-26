@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Viewer" Height="525" Width="1000">
+        Title="IPM Job Viewer" Height="525" Width="800">
     <Grid Margin="10">
 
         <Grid.RowDefinitions>
@@ -58,20 +58,6 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Status" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text=""/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Est. Time" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text=""/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -83,8 +69,8 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="100*"/>
                 </Grid.ColumnDefinitions>
 
@@ -104,6 +90,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <ListBox x:Name="lstStatus" Grid.Column="2" Grid.Row="1"/>
                 <Label Background="LightGray" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
                 <Label Background="LightGray" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
                 <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="3"/>
@@ -122,10 +109,11 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Bottom">
-                <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
-                <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
-            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="0,406,0,0" VerticalAlignment="Top">
+            <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
+            <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
         </StackPanel>
 
 
