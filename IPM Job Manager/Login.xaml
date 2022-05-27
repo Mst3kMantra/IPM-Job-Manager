@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Login" Height="200" Width="400"
         WindowStartupLocation="CenterOwner">
-    <Grid Margin="10" Background="LightGray">
+    <Grid Margin="5" Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -25,9 +25,11 @@
             <Label Content="Password : " Grid.Column="0" Grid.Row="1"></Label>
         </StackPanel>
 
+        <CheckBox Grid.Row="1" IsChecked="True" FontSize="10" x:Name="chkRememberUser" Grid.ColumnSpan="2" Margin="15,79,229,2">Remember Username</CheckBox>
+
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,25,23,0">
-            <TextBox x:Name="UserBox"></TextBox>
-            <PasswordBox x:Name="PwBox" Margin="0,7.6"></PasswordBox>
+            <TextBox Focusable="True" Loaded="UserBox_Loaded" x:Name="UserBox"></TextBox>
+            <PasswordBox Focusable="True" Loaded="PwBox_Loaded" x:Name="PwBox" Margin="0,7.6"></PasswordBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click"></Button>
                 <Button Content="Login" x:Name="loginBtn" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="ButtonLogin_Click" Margin="25,0,0,0"></Button>

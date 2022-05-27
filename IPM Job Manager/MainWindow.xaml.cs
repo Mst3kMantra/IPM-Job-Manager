@@ -131,6 +131,12 @@ namespace IPM_Job_Manager_net
         public MainWindow()
         {
             InitializeComponent();
+            this.LocationChanged += new EventHandler(SaveWindowPos);
+            this.SizeChanged += new SizeChangedEventHandler(SaveWindowSize);
+            Left = Properties.Settings.Default.SavedLeft;
+            Top = Properties.Settings.Default.SavedTop;
+            Height = Properties.Settings.Default.SavedHeight;
+            Width = Properties.Settings.Default.SavedWidth;
             this.DataContext = this;
             try
             {
@@ -167,6 +173,7 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+            CountJobs();
         }
 
         public void SetTimer()
@@ -202,7 +209,6 @@ namespace IPM_Job_Manager_net
             {
                 this.Dispatcher.Invoke(() => RefreshJobs());
             }
-            Console.WriteLine("Refresh Success");
             this.Dispatcher.Invoke(() => RefreshAdminJobs());
         }
 
@@ -227,6 +233,27 @@ namespace IPM_Job_Manager_net
                     foreach (Job job3 in AssignedJobList)
                     {
                         adminWindow.AssignedJobList.Add(job3);
+                    }
+                }
+            }
+        }
+
+        public void CountJobs()
+        {
+            foreach (User user in UserList)
+            {
+                user.JobsAssigned = 0;
+            }
+            foreach (Job job in AssignedJobList)
+            {
+                foreach (User user in UserList)
+                {
+                    foreach (string employee in job.JobInfo["AssignedEmployees"])
+                    {
+                        if (employee == user.Username)
+                        {
+                            user.JobsAssigned++;
+                        }
                     }
                 }
             }
@@ -649,7 +676,6 @@ namespace IPM_Job_Manager_net
                                 Tag = key,
                                 Content = "Complete",
                                 Name = SelectedOperations[key].Replace(" ", ""),
-                                FontSize = 10
                             };
                             OpCheck.Checked += new RoutedEventHandler(HandleOpChecked);
                             OpCheck.Unchecked += new RoutedEventHandler(HandleOpUnchecked);
@@ -816,6 +842,8 @@ namespace IPM_Job_Manager_net
                         }
                         if (!isJobInCompletedJobs)
                         {
+                            string CompleteDate = DateTime.Now.ToString("MM/dd/yyyy h:mm tt");
+                            LastSelectedJob.JobInfo.Add("CompletedDate", CompleteDate);
                             CompletedJobs.Add(LastSelectedJob);
                         }
                         foreach (Job job2 in AssignedJobList)
@@ -841,6 +869,7 @@ namespace IPM_Job_Manager_net
                         WriteJobsJson(AssignedJobList, AssignedJobListPath);
                         WriteJobsJson(CompletedJobs, CompletedJobsPath);
                         RefreshJobs();
+                        CountJobs();
                     }
                 }
             }
@@ -865,6 +894,20 @@ namespace IPM_Job_Manager_net
                     }
                 }
             }
+        }
+
+        private void SaveWindowPos(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SavedLeft = Left;
+            Properties.Settings.Default.SavedTop = Top;
+            Properties.Settings.Default.Save();
+        }
+
+        private void SaveWindowSize(object sender, SizeChangedEventArgs e)
+        {
+            Properties.Settings.Default.SavedHeight = Height;
+            Properties.Settings.Default.SavedWidth = Width;
+            Properties.Settings.Default.Save();
         }
     }
 }

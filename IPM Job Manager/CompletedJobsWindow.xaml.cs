@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace IPM_Job_Manager_net
 {
@@ -26,12 +27,48 @@ namespace IPM_Job_Manager_net
             get { return _completedJobs; }
             set { _completedJobs = value; }
         }
-        MainWindow MainWin;
+        public MainWindow MainWin;
+        public Job SelectedJob;
         public CompletedJobsWindow()
         {
             InitializeComponent();
             MainWin = Application.Current.MainWindow as MainWindow;
-            CompletedJobs = MainWin.ReadJobsJson(MainWin.CompletedJobsPath);
+            this.DataContext = this;
+            try
+            {
+                CompletedJobs = MainWin.ReadJobsJson(MainWin.CompletedJobsPath);
+            }
+            catch (FileNotFoundException)
+            {
+                this.Close();
+                return;
+            }
+        }
+
+        private void btnRemoveJob_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedJob != null)
+            {
+                foreach (Job job in CompletedJobs)
+                {
+                    if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                    {
+                        CompletedJobs.Remove(job);
+                        break;
+                    }
+                }
+                MainWin.WriteJobsJson(CompletedJobs, MainWin.CompletedJobsPath);
+            }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lstCompletedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedJob = lstCompletedJobs.SelectedItem as Job;
         }
     }
 }

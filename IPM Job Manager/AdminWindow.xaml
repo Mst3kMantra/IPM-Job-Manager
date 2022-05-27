@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Manager" Height="800" Width="1350"
+        Title="IPM Job Manager" Height="800" Width="1400"
         WindowStartupLocation="CenterOwner"
         Closing="AdminWindow_Closing">
     <Grid Margin="10">
@@ -26,17 +26,38 @@
         <Label Style="{StaticResource LabelTitle}" Grid.Column="4" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="LightGray" Grid.RowSpan="2" VerticalAlignment="Top">Employees</Label>
         <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Background="LightGray" Margin="0,0,5,0">Jobs</Label>
         <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Background="LightGray" Margin="0,0,5,0">Assigned Jobs</Label>
-        <ListBox Grid.Row="1" x:Name="lstUsers" Margin="0,0,0,356" Grid.Column="4" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Username}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListView x:Name="lstUsers" Grid.Column="3" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}" Grid.ColumnSpan="2" Margin="606,0,0,356">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
+                    <GridViewColumn Header="Name" Width="75">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Left" Text="{Binding Path=Username}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Jobs Assigned" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" Text="{Binding Path=JobsAssigned}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <ListView Grid.Row="1" x:Name="lstJobs" SelectionChanged="lstJobs_SelectionChanged" Grid.Column="2" Margin="0,0,5,0" ItemsSource="{Binding JobList, Mode=OneWay}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
                     <GridViewColumn Header="Job No." Width="80">
@@ -60,7 +81,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Part Description" Width="225">
+                    <GridViewColumn Header="Part Description" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
@@ -70,16 +91,28 @@
                     <GridViewColumn Header="Priority" Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[Priority]}"/>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[Priority]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Qty" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[QTY Due]}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        
+
         <StackPanel Grid.Column="3" Grid.Row="1" Margin="0,0,5,0">
             <ListView HorizontalContentAlignment="Stretch" Height="400" Grid.Row="1" SelectionChanged="lstAssignedJobs_SelectionChanged" x:Name="lstAssignedJobs" Grid.Column="3" ItemsSource="{Binding CurEmployeeJobs,Mode=OneWay}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
                         <GridViewColumn Header="Job No." Width="80">
@@ -103,7 +136,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Part Description" Width="225">
+                        <GridViewColumn Header="Part Description" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
@@ -113,7 +146,14 @@
                         <GridViewColumn Header="Priority" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[Priority]}"/>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[Priority]}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Qty" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[QTY Due]}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -161,6 +201,7 @@
             <Button x:Name="btnAddPrio" Margin="0,5,0,0" Click="btnAddPrio_Click">Increase Priority</Button>
             <Button x:Name="btnLowerPrio" Margin="0,5,0,0" Click="btnLowerPrio_Click">Reduce Priority</Button>
             <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
+            <Button x:Name="btnViewCompletedJobs" Margin="0,5,0,0" Click="btnViewCompletedJobs_Click">View Completed Jobs</Button>
             <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
             <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
             <Button x:Name="btnAddUser" Margin="0,5,0,0" Click="btnAddUser_Click">Add New User</Button>

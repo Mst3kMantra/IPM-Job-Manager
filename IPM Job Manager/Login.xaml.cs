@@ -42,7 +42,10 @@ namespace IPM_Job_Manager_net
             Userlist = JsonUserList;
             MainWin = LastWindow;
             AdminWin = NewWindow;
-
+            if (Properties.Settings.Default.SavedUsername != null)
+            {
+                UserBox.Text = Properties.Settings.Default.SavedUsername;
+            }
         }
 
 
@@ -62,7 +65,6 @@ namespace IPM_Job_Manager_net
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             isLoginSuccessful = false;
-
             foreach (User user in Userlist.Users)
             {
                 if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text) && user.Username == UserBox.Text && user.IsAdmin == true)
@@ -73,6 +75,11 @@ namespace IPM_Job_Manager_net
                         string HashedPassword = HashPassword(ProvidedPassword, user.Salt);
                         if (user.Password == HashedPassword)
                         {
+                            if (chkRememberUser.IsChecked == true)
+                            {
+                                Properties.Settings.Default.SavedUsername = UserBox.Text;
+                                Properties.Settings.Default.Save();
+                            }
                             AdminWin.Show();
                             this.Close();
                             MainWin.Hide();
@@ -90,6 +97,22 @@ namespace IPM_Job_Manager_net
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void PwBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(UserBox.Text))
+            {
+                Keyboard.Focus(PwBox);
+            }
+        }
+
+        private void UserBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(UserBox.Text))
+            {
+                Keyboard.Focus(UserBox);
+            }
         }
     }
 }

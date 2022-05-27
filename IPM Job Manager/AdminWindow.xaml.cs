@@ -113,7 +113,11 @@ namespace IPM_Job_Manager_net
             DataContext = this;
             MainWin = Application.Current.MainWindow as MainWindow;
             JobList = MainWin.ReadJobsJson(MainWin.JobListPath);
-            UserList = MainWin.UserList;
+            Root JsonUserList = MainWin.ReadUserJson(MainWin.UserListPath);
+            foreach (User user in JsonUserList.Users)
+            {
+                UserList.Add(user);
+            }
             try
             {
                 JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
@@ -131,11 +135,28 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+            CountJobs();
         }
 
-        private void OnTimedEvent()
+        public void CountJobs()
         {
-
+            foreach (User user in UserList)
+            {
+                user.JobsAssigned = 0;
+            }
+            foreach (Job job in AssignedJobList)
+            {
+                foreach (User user in UserList)
+                {
+                    foreach (string employee in job.JobInfo["AssignedEmployees"])
+                    {
+                        if (employee == user.Username)
+                        {
+                            user.JobsAssigned++;
+                        }
+                    }
+                }
+            }
         }
 
         public void RefreshWindow(ListView list)
@@ -321,6 +342,7 @@ namespace IPM_Job_Manager_net
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             isLogoutPressed = true;
+            MainWin.CountJobs();
             MainWin.RefreshJobs();
             MainWin.Show();
             Close();
@@ -388,6 +410,7 @@ namespace IPM_Job_Manager_net
                     CurEmployeeJobs.Add(sortedjob);
                 }
             }
+            CountJobs();
         }
 
         private void btnViewJob_Click(object sender, RoutedEventArgs e)
@@ -473,6 +496,7 @@ namespace IPM_Job_Manager_net
                     CurEmployeeJobs.Add(sortedjob);
                 }
             }
+            CountJobs();
         }
 
         private void btnAddPrio_Click(object sender, RoutedEventArgs e)
@@ -843,6 +867,21 @@ namespace IPM_Job_Manager_net
             Window NewUserWindow = new NewUserWindow();
             NewUserWindow.Owner = this;
             NewUserWindow.ShowDialog();
+        }
+
+        private void btnViewCompletedJobs_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Window CompleteJobsWindow = new CompletedJobsWindow();
+                CompleteJobsWindow.Owner = this;
+                CompleteJobsWindow.ShowDialog();
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("No completed jobs to display.", "View Completed Jobs Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
     }
 }

@@ -49,6 +49,7 @@ namespace IPM_Job_Manager_net
             InitializeComponent();
             txtNotes.Text = job.JobInfo["Notes"];
             txtNotes.Focus();
+            txtNotes.CaretIndex = txtNotes.Text.Length;
             DataContext = this;
             MainWin = Application.Current.MainWindow as MainWindow;
             SelectedJob = job;
