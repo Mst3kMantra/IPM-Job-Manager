@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Manager" Height="800" Width="1400"
+        Title="IPM Job Manager" Height="825" Width="1400"
         WindowStartupLocation="CenterOwner"
         Closing="AdminWindow_Closing">
     <Grid Margin="10">
@@ -191,8 +191,29 @@
                 </ListBox>
                 <ListBox Grid.Column="2" Grid.Row="1" x:Name="lstStatus"/>
             </Grid>
-            <Label Background="LightGray"  Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
-            <TextBlock Height="150" x:Name="txtNotes" TextWrapping="Wrap"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Background="LightGray" Grid.Row="0" Grid.Column="0" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
+                <Label Background="LightGray" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Style="{StaticResource ResourceKey=JobTitle}">Attached Files</Label>
+                <TextBlock Height="150" x:Name="txtNotes" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"/>
+                <ListBox x:Name="lstAttachedFiles" SelectionMode="Multiple" SelectionChanged="lstAttachedFiles_SelectionChanged" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AttachedFileList}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </Grid>
         </StackPanel>
 
         <StackPanel Background="White" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom">
@@ -203,6 +224,9 @@
             <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
             <Button x:Name="btnViewCompletedJobs" Margin="0,5,0,0" Click="btnViewCompletedJobs_Click">View Completed Jobs</Button>
             <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
+            <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
+            <Button x:Name="btnAttachFile" Margin="0,5,0,0" Click="btnAttachFile_Click">Attach Files</Button>
+            <Button x:Name="btnDetachFile" Margin="0,5,0,0" Click="btnDetachFile_Click">Detach Files</Button>
             <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
             <Button x:Name="btnAddUser" Margin="0,5,0,0" Click="btnAddUser_Click">Add New User</Button>
             <Button x:Name="btnLogout" Margin="0,5,0,0" Click="btnLogout_Click" Padding="0,0,0,0">Logout</Button>

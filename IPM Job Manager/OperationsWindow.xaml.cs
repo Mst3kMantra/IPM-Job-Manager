@@ -171,13 +171,17 @@ namespace IPM_Job_Manager_net
         {
             if (string.IsNullOrWhiteSpace(txtOperations.Text) == false && txtOperations.Text.Length != 0)
             {
-                AssignedJobList[JobIndex].JobInfo["Operations"].Add(txtOperations.Text, "");
-                AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Add(txtOperations.Text, false);
-                OperationList.Add(txtOperations.Text);
-                AssignedEmployeeList.Add("");
-                MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
-                WriteToNotes(AssignedJobList[JobIndex]);
-                isDataChanged = true;
+                if (!AssignedJobList[JobIndex].JobInfo["Operations"].ContainsKey(txtOperations.Text))
+                {
+                    AssignedJobList[JobIndex].JobInfo["Operations"].Add(txtOperations.Text, "");
+                    AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Add(txtOperations.Text, false);
+                    OperationList.Add(txtOperations.Text);
+                    AssignedEmployeeList.Add("");
+                    MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                    WriteToNotes(AssignedJobList[JobIndex]);
+                    isDataChanged = true;
+                }
+                else return;
             }
             else MessageBox.Show("No operation text detected.", "Add Operation Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
@@ -187,7 +191,10 @@ namespace IPM_Job_Manager_net
             if (SelectedOperation != null)
             {
                 AssignedJobList[JobIndex].JobInfo["Operations"].Remove(SelectedOperation.ToString());
-                AssignedJobList[JobIndex].JobInfo["Completed Operations"].Remove(SelectedOperation.ToString());
+                if (AssignedJobList[JobIndex].JobInfo["CompletedOperations"].ContainsKey(SelectedOperation.ToString()))
+                {
+                    AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Remove(SelectedOperation.ToString());
+                }
                 int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
                 OperationList.Remove(SelectedOperation.ToString());
                 AssignedEmployeeList.RemoveAt(OpIndex);
@@ -257,5 +264,6 @@ namespace IPM_Job_Manager_net
                 DialogResult = true;
             }
         }
+
     }
 }

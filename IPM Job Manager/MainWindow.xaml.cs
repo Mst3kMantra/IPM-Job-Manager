@@ -90,12 +90,20 @@ namespace IPM_Job_Manager_net
             set { _completedOperations = value; }
         }
 
+        private ObservableCollection<string> _attachedFileList = new ObservableCollection<string>();
+        public ObservableCollection<string> AttachedFileList
+        {
+            get { return _attachedFileList; }
+            set { _attachedFileList = value; }
+        }
+
         public Root JsonUserList;
 
         public const int MaxPriority = 20;
 
         public object SelectedOperation;
         public object SelectedAssignee;
+        public object SelectedFileName;
 
         public object LastSelectedUser;
         private object _lastSelectedJob;
@@ -179,7 +187,7 @@ namespace IPM_Job_Manager_net
         public void SetTimer()
         {
             // Create a timer with a two second interval.
-            RefreshTimer = new Timer(600000);
+            RefreshTimer = new Timer(60000);
             // Hook up the Elapsed event for the timer. 
             RefreshTimer.Elapsed += OnTimedEvent;
             RefreshTimer.AutoReset = true;
@@ -205,6 +213,7 @@ namespace IPM_Job_Manager_net
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
             CompletedJobs.Clear();
             CompletedJobs = ReadJobsJson(CompletedJobsPath);
+            CountJobs();
             if (LastSelectedUser != null && LastSelectedJob != null)
             {
                 this.Dispatcher.Invoke(() => RefreshJobs());
@@ -274,6 +283,10 @@ namespace IPM_Job_Manager_net
                         if (jobnotes.JobInfo.ContainsKey("Operations"))
                         {
                             job.JobInfo["Operations"] = jobnotes.JobInfo["Operations"];
+                        }
+                        if (jobnotes.JobInfo.ContainsKey("AttachedFiles"))
+                        {
+                            job.JobInfo["AttachedFiles"] = jobnotes.JobInfo["AttachedFiles"];
                         }
                     }
                 }
@@ -358,6 +371,7 @@ namespace IPM_Job_Manager_net
                 List<string> AssignedEmployeeList = new List<string>();
                 Dictionary<string, string> Operations = new Dictionary<string, string>();
                 Dictionary<string, bool> CompletedOperations = new Dictionary<string, bool>();
+                List<string> AttachedFileList = new List<string>();
 
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
@@ -367,6 +381,7 @@ namespace IPM_Job_Manager_net
                     JobList[i].JobInfo.Add("CompletedOperations", CompletedOperations);
                     JobList[i].JobInfo.Add("Notes", "");
                     JobList[i].JobInfo.Add("Priority", 0);
+                    JobList[i].JobInfo.Add("AttachedFiles", AttachedFileList);
                     foreach (DataColumn column in dataTable.Columns)
                     {
                         JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
@@ -500,6 +515,11 @@ namespace IPM_Job_Manager_net
             foreach (Job sortedjob in SortedJobs)
             {
                 CurEmployeeJobs.Add(sortedjob);
+            }
+
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
             }
 
             if (SelectedOperations != null)
@@ -660,6 +680,20 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
+            }
+
+            if ((LastSelectedJob as Job).JobInfo.ContainsKey("AttachedFiles"))
+            {
+
+                foreach (string filename in (LastSelectedJob as Job).JobInfo["AttachedFiles"])
+                {
+                    AttachedFileList.Add(filename);
+                }
+            }
+
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>(LastSelectedJob.JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(LastSelectedJob.JobInfo["Operations"].ToString());
 
@@ -727,6 +761,14 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0)
+                {
+                    AttachedFileList.Clear();
+                }
+            }
+
             if (lstStatus != null)
             {
                 if (lstStatus.Items.Count > 0)
@@ -790,6 +832,7 @@ namespace IPM_Job_Manager_net
             CheckBox checkBox = sender as CheckBox;
             bool AllAssignmentsDone = false;
             bool isJobInCompletedJobs = false;
+            bool AllOpsDone = false;
             int AssignmentCheckedCounter = 0;
             List<CheckBox> AllAssignments = new List<CheckBox>();
             if (LastSelectedJob != null && LastSelectedUser != null && lstStatus.Items.Count > 0)
@@ -832,20 +875,6 @@ namespace IPM_Job_Manager_net
 
                     if (AllAssignmentsDone)
                     {
-                        foreach (Job job in CompletedJobs)
-                        {
-                            if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
-                            {
-                                isJobInCompletedJobs = true;
-                                break;
-                            }
-                        }
-                        if (!isJobInCompletedJobs)
-                        {
-                            string CompleteDate = DateTime.Now.ToString("MM/dd/yyyy h:mm tt");
-                            LastSelectedJob.JobInfo.Add("CompletedDate", CompleteDate);
-                            CompletedJobs.Add(LastSelectedJob);
-                        }
                         foreach (Job job2 in AssignedJobList)
                         {
                             if (job2.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
@@ -860,10 +889,28 @@ namespace IPM_Job_Manager_net
                                 }
                                 if (job2.JobInfo["AssignedEmployees"].Count == 0)
                                 {
+                                    AllOpsDone = true;
                                     UnassignOperations(LastSelectedJob);
                                     AssignedJobList.Remove(job2);
                                 }
                                 break;
+                            }
+                        }
+                        if (AllOpsDone)
+                        {
+                            foreach (Job job in CompletedJobs)
+                            {
+                                if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                                {
+                                    isJobInCompletedJobs = true;
+                                    break;
+                                }
+                            }
+                            if (!isJobInCompletedJobs)
+                            {
+                                string CompleteDate = DateTime.Now.ToString("MM/dd/yyyy h:mm tt");
+                                LastSelectedJob.JobInfo.Add("CompletedDate", CompleteDate);
+                                CompletedJobs.Add(LastSelectedJob);
                             }
                         }
                         WriteJobsJson(AssignedJobList, AssignedJobListPath);
@@ -908,6 +955,20 @@ namespace IPM_Job_Manager_net
             Properties.Settings.Default.SavedHeight = Height;
             Properties.Settings.Default.SavedWidth = Width;
             Properties.Settings.Default.Save();
+        }
+
+        private void lstAttachedFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedFileName = lstAttachedFiles.SelectedItem;
+        }
+
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedFileName != null)
+            {
+                string FilePath = SelectedFileName.ToString();
+                System.Diagnostics.Process.Start(FilePath);
+            }
         }
     }
 }

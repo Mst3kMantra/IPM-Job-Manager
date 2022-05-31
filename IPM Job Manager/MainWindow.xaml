@@ -83,7 +83,8 @@
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="75*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
@@ -104,8 +105,16 @@
                 </ListBox>
                 <ListBox x:Name="lstStatus" Grid.Column="2" Grid.Row="1"/>
                 <Label Background="LightGray" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
-                <Label Background="LightGray" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
-                <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="3"/>
+                <Label Background="LightGray" Grid.Column="4" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
+                <Label Background="LightGray" Grid.Row="0" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}">Attached Files</Label>
+                <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="4"/>
+                <ListBox x:Name="lstAttachedFiles" SelectionChanged="lstAttachedFiles_SelectionChanged" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding AttachedFileList}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </StackPanel>
 
@@ -139,8 +148,9 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Margin="0,406,0,0" VerticalAlignment="Top">
+        <StackPanel Grid.Column="1" Margin="0,380,0,0" VerticalAlignment="Top">
             <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
+            <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
             <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
         </StackPanel>
 

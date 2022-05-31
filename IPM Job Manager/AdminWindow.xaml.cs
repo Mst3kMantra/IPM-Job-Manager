@@ -54,6 +54,13 @@ namespace IPM_Job_Manager_net
             set { _completedOperations = value; }
         }
 
+        private ObservableCollection<Job> _CompletedJobs = new ObservableCollection<Job>();
+        public ObservableCollection<Job> CompletedJobs
+        {
+            get { return _CompletedJobs; }
+            set { _CompletedJobs = value; }
+        }
+
         private ObservableCollection<Job> _curEmployeeJobs = new ObservableCollection<Job>();
         public ObservableCollection<Job> CurEmployeeJobs
         {
@@ -66,6 +73,13 @@ namespace IPM_Job_Manager_net
         {
             get { return _operationList; }
             set { _operationList = value; }
+        }
+
+        private ObservableCollection<string> _attachedFileList = new ObservableCollection<string>();
+        public ObservableCollection <string> AttachedFileList
+        {
+            get { return _attachedFileList; }
+            set { _attachedFileList = value; }
         }
 
         private ObservableCollection<string> _assignedEmployeeList = new ObservableCollection<string>();
@@ -104,6 +118,8 @@ namespace IPM_Job_Manager_net
         public object SelectedOperation;
         public object SelectedAssignee;
 
+        public object SelectedFileName;
+
         public bool isLogoutPressed = false;
         public bool isRefreshPressed = false;
 
@@ -136,6 +152,7 @@ namespace IPM_Job_Manager_net
                 return;
             }
             CountJobs();
+            CompletedJobs = MainWin.CompletedJobs;
         }
 
         public void CountJobs()
@@ -161,6 +178,8 @@ namespace IPM_Job_Manager_net
 
         public void RefreshWindow(ListView list)
         {
+            AssignedJobList.Clear();
+            AssignedJobList = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
             LastSelectedUser = lstUsers.SelectedItem;
             int LastJobIndex = list.SelectedIndex;
 
@@ -339,6 +358,167 @@ namespace IPM_Job_Manager_net
             MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
         }
 
+        public void UnassignOperations(Job job)
+        {
+            JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
+
+            if (OperationList != null)
+            {
+                foreach (Job jobnote in JobNotes)
+                {
+                    if (jobnote.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        foreach (string operation in OperationList)
+                        {
+                            jobnote.JobInfo["Operations"][operation] = "";
+                        }
+                    }
+                }
+
+                CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>(job.JobInfo["CompletedOperations"].ToString());
+
+                foreach (Job assignedjob in AssignedJobList)
+                {
+                    if (assignedjob.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        foreach (string operation in OperationList)
+                        {
+                            assignedjob.JobInfo["Operations"][operation] = "";
+                        }
+                    }
+                    if (assignedjob.JobInfo["JobNo"] == job.JobInfo["JobNo"])
+                    {
+                        foreach (string key in CompletedOperations.Keys)
+                        {
+                            assignedjob.JobInfo["CompletedOperations"][key] = false;
+                        }
+                    }
+                }
+                foreach (Job oldjob in JobList)
+                {
+                    if (oldjob.JobInfo["PartNo"] == job.JobInfo["PartNo"])
+                    {
+                        foreach (string operation in OperationList)
+                        {
+                            oldjob.JobInfo["Operations"][operation] = "";
+                        }
+                    }
+                    if (oldjob.JobInfo["JobNo"] == job.JobInfo["JobNo"])
+                    {
+                        foreach (string key in CompletedOperations.Keys)
+                        {
+                            oldjob.JobInfo["CompletedOperations"][key] = false;
+                        }
+                    }
+                }
+                MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                MainWin.WriteJobsJson(JobList, MainWin.JobListPath);
+                MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+            }
+        }
+
+        public void RefreshJobs()
+        {
+            LastSelectedUser = lstUsers.SelectedItem;
+            lstStatus.Items.Clear();
+            AttachedFileList.Clear();
+            if (LastSelectedUser == null) { return; }
+            if (CurEmployeeJobs.Count != 0)
+            {
+                CurEmployeeJobs.Clear();
+            }
+
+            try
+            {
+                AssignedJobList = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
+                JobNotes = MainWin.ReadJobsJson(MainWin.JobNotesPath);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            JobList = MainWin.ReadJobNotes(JobList);
+            AssignedJobList = MainWin.ReadJobNotes(AssignedJobList);
+            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+
+            User CurItem = LastSelectedUser as User;
+
+            ObservableCollection<Job> jobs = new ObservableCollection<Job>();
+            jobs = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
+
+            foreach (Job job in jobs)
+            {
+                foreach (string employee in job.JobInfo["AssignedEmployees"])
+                {
+                    if (employee == CurItem.Username)
+                    {
+                        CurEmployeeJobs.Add(job);
+                    }
+                }
+
+            }
+
+            var SortedJobs = MainWin.SortJobs(CurEmployeeJobs);
+            CurEmployeeJobs.Clear();
+            foreach (Job sortedjob in SortedJobs)
+            {
+                CurEmployeeJobs.Add(sortedjob);
+            }
+
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
+            }
+
+            if (SelectedOperations != null)
+            {
+                if (SelectedOperations.Count > 0)
+                {
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
+                }
+            }
+            txtNotes.Text = "";
+        }
+
+        public void WriteFileToNotes(Job ChangedJob)
+        {
+            bool isPartInJobNotes = false;
+            if (JobNotes != null)
+            {
+                if (JobNotes.Count > 0)
+                {
+                    foreach (Job job in JobNotes)
+                    {
+                        if (job.JobInfo["PartNo"] == ChangedJob.JobInfo["PartNo"])
+                        {
+                            job.JobInfo["AttachedFiles"] = ChangedJob.JobInfo["AttachedFiles"];
+                            MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                            isPartInJobNotes = true;
+                            break;
+                        }
+                    }
+                    if (isPartInJobNotes == false)
+                    {
+                        Job newNotes = new Job();
+                        newNotes.JobInfo.Add("AttachedFiles", ChangedJob.JobInfo["AttachedFiles"]);
+                        newNotes.JobInfo.Add("PartNo", ChangedJob.JobInfo["PartNo"]);
+                        JobNotes.Add(newNotes);
+                        MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                    }
+                }
+                else
+                {
+                    Job newNotes = new Job();
+                    newNotes.JobInfo.Add("AttachedFiles", ChangedJob.JobInfo["AttachedFiles"]);
+                    newNotes.JobInfo.Add("PartNo", ChangedJob.JobInfo["PartNo"]);
+                    JobNotes.Add(newNotes);
+                    MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                }
+            }
+        }
+
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             isLogoutPressed = true;
@@ -497,6 +677,25 @@ namespace IPM_Job_Manager_net
                 }
             }
             CountJobs();
+            lstStatus.Items.Clear();
+            if (SelectedOperations != null)
+            {
+                if (SelectedOperations.Count > 0)
+                {
+                    SelectedOperations.Clear();
+                    OperationList.Clear();
+                    AssignedEmployeeList.Clear();
+                }
+            }
+
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0)
+                {
+                    AttachedFileList.Clear();
+                }
+            }
+            txtNotes.Text = "";
         }
 
         private void btnAddPrio_Click(object sender, RoutedEventArgs e)
@@ -630,6 +829,14 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0)
+                {
+                    AttachedFileList.Clear();
+                }
+            }
+
             if (lstStatus != null)
             {
                 if (lstStatus.Items.Count > 0)
@@ -691,6 +898,11 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
+            }
+
             if (lstStatus != null)
             {
                 if (lstStatus.Items.Count > 0)
@@ -699,29 +911,48 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if ((LastSelectedJob as Job).JobInfo.ContainsKey("AttachedFiles"))
+            {
+
+                foreach (string filename in (LastSelectedJob as Job).JobInfo["AttachedFiles"])
+                {
+                    AttachedFileList.Add(filename);
+                }
+            }
+
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
 
-            foreach (bool value in CompletedOperations.Values)
+            try
             {
-                if (value == true)
+                foreach (string key in CompletedOperations.Keys)
                 {
-                    TextBlock complete = new TextBlock
+                    foreach (KeyValuePair<string, string> kvp in SelectedOperations)
                     {
-                        Text = "Complete"
-                    };
-                    lstStatus.Items.Add(complete);
-                }
-                else if (value == false)
-                {
-                    TextBlock incomplete = new TextBlock
-                    {
-                        Text = "Incomplete"
-                    };
-                    lstStatus.Items.Add(incomplete);
+                        if (kvp.Key == key)
+                        {
+                            CheckBox OpCheck = new CheckBox
+                            {
+                                Tag = key,
+                                Content = "Complete",
+                                Name = SelectedOperations[key].Replace(" ", ""),
+                            };
+                            OpCheck.Checked += new RoutedEventHandler(HandleOpChecked);
+                            OpCheck.Unchecked += new RoutedEventHandler(HandleOpUnchecked);
+                            if (CompletedOperations[key] == true)
+                            {
+                                OpCheck.IsChecked = true;
+                            }
+                            lstStatus.Items.Add(OpCheck);
+                        }
+                    }
                 }
             }
-            
+            catch (InvalidOperationException)
+            {
+                return;
+            }
+
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
@@ -781,27 +1012,51 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (AttachedFileList != null)
+            {
+                if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
+            }
+
+            if ((LastSelectedJob as Job).JobInfo.ContainsKey("AttachedFiles"))
+            {
+
+                foreach (string filename in (LastSelectedJob as Job).JobInfo["AttachedFiles"])
+                {
+                    AttachedFileList.Add(filename);
+                }
+            }
+
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
 
-            foreach (bool value in CompletedOperations.Values)
+            try
             {
-                if (value == true)
+                foreach (string key in CompletedOperations.Keys)
                 {
-                    TextBlock complete = new TextBlock
+                    foreach (KeyValuePair<string, string> kvp in SelectedOperations)
                     {
-                        Text = "Complete"
-                    };
-                    lstStatus.Items.Add(complete);
+                        if (kvp.Key == key)
+                        {
+                            CheckBox OpCheck = new CheckBox
+                            {
+                                Tag = key,
+                                Content = "Complete",
+                                Name = SelectedOperations[key].Replace(" ", ""),
+                            };
+                            OpCheck.Checked += new RoutedEventHandler(HandleOpChecked);
+                            OpCheck.Unchecked += new RoutedEventHandler(HandleOpUnchecked);
+                            if (CompletedOperations[key] == true)
+                            {
+                                OpCheck.IsChecked = true;
+                            }
+                            lstStatus.Items.Add(OpCheck);
+                        }
+                    }
                 }
-                else if (value == false)
-                {
-                    TextBlock incomplete = new TextBlock
-                    {
-                        Text = "Incomplete"
-                    };
-                    lstStatus.Items.Add(incomplete);
-                }
+            }
+            catch (InvalidOperationException)
+            {
+                return;
             }
 
             foreach (string key in SelectedOperations.Keys)
@@ -881,6 +1136,277 @@ namespace IPM_Job_Manager_net
             {
                 MessageBox.Show("No completed jobs to display.", "View Completed Jobs Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
+            }
+        }
+
+        private void btnAttachFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (LastSelectedJob != null)
+            {
+                Job SelectedJob = LastSelectedJob as Job;
+                int JobIndex = 0;
+                foreach (Job job in AssignedJobList)
+                {
+                    if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                    {
+                        JobIndex = AssignedJobList.IndexOf(job);
+                    }
+                }
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.Filter = "PDF Files|*.pdf|Word Documents|*.doc|Text Files|*.txt" +
+                             "|Image files(*.png; *.jpeg)| *.png; *.jpeg" +
+                             "|All Files|*.*";
+                dlg.InitialDirectory = @"I:\";
+                dlg.Multiselect = true;
+                bool? DialogResult = dlg.ShowDialog();
+                if (DialogResult == true)
+                {
+                    if (dlg.FileNames.Count() > 1)
+                    {
+                        foreach (string FileName in dlg.FileNames)
+                        {
+                            if (SelectedJob.JobInfo["AttachedFiles"].Contains(FileName) == false)
+                            {
+                                AssignedJobList[JobIndex].JobInfo["AttachedFiles"].Add(FileName);
+                                AttachedFileList.Add(FileName);
+                            }
+                        }
+                    }
+                    else if (SelectedJob.JobInfo["AttachedFiles"].Contains(dlg.FileName) == false)
+                    {
+                        AssignedJobList[JobIndex].JobInfo["AttachedFiles"].Add(dlg.FileName);
+                        AttachedFileList.Add(dlg.FileName);
+                    }
+                    MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                    WriteFileToNotes(AssignedJobList[JobIndex]);
+                }
+            }
+        }
+
+        private void lstAttachedFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedFileName = lstAttachedFiles.SelectedItem;
+        }
+
+        private void btnDetachFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedFileName != null && LastSelectedJob != null)
+            {
+                if (lstAttachedFiles.SelectedItems.Count == 1)
+                {
+                    string FilePath = SelectedFileName.ToString();
+                    Job SelectedJob = LastSelectedJob as Job;
+                    AttachedFileList.Remove(FilePath);
+                    foreach (Job job in AssignedJobList)
+                    {
+                        if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                        {
+                            for (int i = 0; i < job.JobInfo["AttachedFiles"].Count; i++)
+                            {
+                                if (job.JobInfo["AttachedFiles"][i] == FilePath)
+                                {
+                                    job.JobInfo["AttachedFiles"].RemoveAt(i);
+                                    break;
+                                }
+                            }
+                            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                            break;
+                        }
+                    }
+                    foreach (Job job in JobNotes)
+                    {
+                        if (job.JobInfo["PartNo"] == SelectedJob.JobInfo["PartNo"])
+                        {
+                            for (int i = 0; i < job.JobInfo["AttachedFiles"].Count; i++)
+                            {
+                                if (job.JobInfo["AttachedFiles"][i] == FilePath)
+                                {
+                                    job.JobInfo["AttachedFiles"].RemoveAt(i);
+                                    break;
+                                }
+                            }
+                            MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                            break;
+                        }
+                    }
+                }
+                else if (lstAttachedFiles.SelectedItems.Count > 1)
+                {
+                    Job SelectedJob = LastSelectedJob as Job;
+                    foreach (Job job in AssignedJobList)
+                    {
+                        if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                        {
+                            for (int i = job.JobInfo["AttachedFiles"].Count - 1; i > -1; i--)
+                            {
+                                foreach (object item in lstAttachedFiles.SelectedItems)
+                                {
+                                    if (job.JobInfo["AttachedFiles"][i] == item.ToString())
+                                    {
+                                        job.JobInfo["AttachedFiles"].RemoveAt(i);
+                                        i = job.JobInfo["AttachedFiles"].Count;
+                                        break;
+                                    }
+                                }
+                            }
+                            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                            break;
+                        }
+                    }
+                    foreach (Job job in JobNotes)
+                    {
+                        if (job.JobInfo["PartNo"] == SelectedJob.JobInfo["PartNo"])
+                        {
+                            for (int i = job.JobInfo["AttachedFiles"].Count - 1; i > -1; i--)
+                            {
+                                foreach (object item in lstAttachedFiles.SelectedItems)
+                                {
+                                    if (job.JobInfo["AttachedFiles"][i] == item.ToString())
+                                    {
+                                        job.JobInfo["AttachedFiles"].RemoveAt(i);
+                                        i = job.JobInfo["AttachedFiles"].Count;
+                                        break;
+                                    }
+                                }
+                            }
+                            MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < lstAttachedFiles.SelectedItems.Count; i++)
+                    {
+                        AttachedFileList.Remove(lstAttachedFiles.SelectedItems[i].ToString());
+                        i = -1;
+                    }
+                }
+            }
+        }
+
+        private void HandleOpChecked(object sender, RoutedEventArgs e)
+        {
+            Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
+            User LastSelectedUser = lstUsers.SelectedItem as User;
+            CheckBox checkBox = sender as CheckBox;
+            bool AllAssignmentsDone = false;
+            bool isJobInCompletedJobs = false;
+            bool AllOpsDone = false;
+            int AssignmentCheckedCounter = 0;
+            List<CheckBox> AllAssignments = new List<CheckBox>();
+            if (LastSelectedJob != null && LastSelectedUser != null && lstStatus.Items.Count > 0)
+            {
+                if (checkBox.IsChecked == true)
+                {
+                    foreach (Job job in AssignedJobList)
+                    {
+                        if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                        {
+                            job.JobInfo["CompletedOperations"][checkBox.Tag] = checkBox.IsChecked;
+                            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                        }
+                    }
+                }
+                foreach (object item in lstStatus.Items)
+                {
+                    if (item.GetType() == typeof(CheckBox))
+                    {
+                        CheckBox OpCheckBox = item as CheckBox;
+                        if (OpCheckBox.Name == LastSelectedUser.Username)
+                        {
+                            AllAssignments.Add(OpCheckBox);
+                        }
+                    }
+                }
+                if (AllAssignments.Count > 0)
+                {
+                    foreach (CheckBox OpCheckBox in AllAssignments)
+                    {
+                        if (OpCheckBox.IsChecked == true)
+                        {
+                            AssignmentCheckedCounter++;
+                        }
+                    }
+                    if (AssignmentCheckedCounter == AllAssignments.Count)
+                    {
+                        AllAssignmentsDone = true;
+                    }
+
+                    if (AllAssignmentsDone)
+                    {
+                        foreach (Job job2 in AssignedJobList)
+                        {
+                            if (job2.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                            {
+                                for (int i = 0; i < job2.JobInfo["AssignedEmployees"].Count; i++)
+                                {
+                                    if (job2.JobInfo["AssignedEmployees"][i] == checkBox.Name)
+                                    {
+                                        job2.JobInfo["AssignedEmployees"].RemoveAt(i);
+                                        i = 0;
+                                    }
+                                }
+                                if (job2.JobInfo["AssignedEmployees"].Count == 0)
+                                {
+                                    AllOpsDone = true;
+                                    UnassignOperations(LastSelectedJob);
+                                    AssignedJobList.Remove(job2);
+                                }
+                                break;
+                            }
+                        }
+                        if (AllOpsDone)
+                        {
+                            foreach (Job job in CompletedJobs)
+                            {
+                                if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                                {
+                                    isJobInCompletedJobs = true;
+                                    break;
+                                }
+                            }
+                            if (!isJobInCompletedJobs)
+                            {
+                                string CompleteDate = DateTime.Now.ToString("MM/dd/yyyy h:mm tt");
+                                LastSelectedJob.JobInfo.Add("CompletedDate", CompleteDate);
+                                CompletedJobs.Add(LastSelectedJob);
+                            }
+                        }
+                        MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                        MainWin.WriteJobsJson(CompletedJobs, MainWin.CompletedJobsPath);
+                        RefreshJobs();
+                        RefreshWindow(lstAssignedJobs);
+                        CountJobs();
+                    }
+                }
+            }
+        }
+
+        private void HandleOpUnchecked(object sender, RoutedEventArgs e)
+        {
+            LastSelectedJob = lstAssignedJobs.SelectedItem;
+            CheckBox checkBox = sender as CheckBox;
+            Job SelectedJob = LastSelectedJob as Job;
+            if (SelectedJob != null)
+            {
+                if (checkBox.IsChecked == false)
+                {
+                    foreach (Job job in AssignedJobList)
+                    {
+                        if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                        {
+                            job.JobInfo["CompletedOperations"][checkBox.Tag] = checkBox.IsChecked;
+                            MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedFileName != null)
+            {
+                string FilePath = SelectedFileName.ToString();
+                System.Diagnostics.Process.Start(FilePath);
             }
         }
     }
