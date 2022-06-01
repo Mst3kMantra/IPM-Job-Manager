@@ -5,157 +5,171 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="IPM Job Viewer" Height="525" Width="800">
-    <Grid Margin="10">
+        Title="IPM Job Viewer" Height="525" Width="825">
+    <Border BorderThickness="1" CornerRadius="8" BorderBrush="#FF092373" Margin="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D2D" Offset="0.85"/>
+                <GradientStop Color="#FF353535" Offset="0.597"/>
+                <GradientStop Color="#FF1D1D1D" Offset="0.107"/>
+                <GradientStop Color="#FF2D2D2D" Offset="0.31"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Margin="10">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="50*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="0,0,5,0">
-            <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Background="LightGray" Height="75" VerticalAlignment="Top">Employee Assigned Jobs</Label>
-            <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstAssignedJobs_SelectionChanged" Height="250" x:Name="lstAssignedJobs" Grid.Column="0" ItemsSource="{Binding CurEmployeeJobs, Mode=OneWay}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
-                        <GridViewColumn Header="Job No." Width="80">
-                            <GridViewColumn.CellTemplate>
+            <StackPanel Margin="0,0,5,0">
+                <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Height="60"  VerticalAlignment="Top" Foreground="#FFECECEC">Employee Assigned Jobs</Label>
+                <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstAssignedJobs_SelectionChanged" Height="250" x:Name="lstAssignedJobs" Grid.Column="0" ItemsSource="{Binding CurEmployeeJobs, Mode=OneWay}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
+                            <GridViewColumn Header="Job No." Width="80">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[JobNo]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Customer" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[CustDesc]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Part No." Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartNo]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Part Description" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Priority" Width="50">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[Priority]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Qty" Width="50">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[QTY Due]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Border BorderThickness="2" BorderBrush="#FF092373" CornerRadius="2">
+                    <Grid x:Name="OperationsGrid" Grid.Row="2" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="75*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#FF092373"/>
+                        <Border Grid.Column="1" BorderThickness="1,0,1,0" BorderBrush="#FF092373"/>
+                        <Border Grid.Column="2" BorderThickness="1,0,1,0" BorderBrush="#FF092373"/>
+                        <Border Grid.Column="3" BorderThickness="1,0,1,0" BorderBrush="#FF092373"/>
+                        <Border Grid.Column="4" BorderBrush="#FF092373"/>
+                        <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Operations</Label>
+                        <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Assigned</Label>
+                        <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}" Grid.ColumnSpan="1" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[JobNo]}"/>
+                                    <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Customer" Width="100">
-                            <GridViewColumn.CellTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[CustDesc]}"/>
+                                    <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Part No." Width="100">
-                            <GridViewColumn.CellTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lstStatus" Grid.Column="2" Grid.Row="1"/>
+                        <Label Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Status</Label>
+                        <Label Grid.Column="4" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Notes:</Label>
+                        <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Attached Files</Label>
+                        <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="4"/>
+                        <ListBox x:Name="lstAttachedFiles" SelectionChanged="lstAttachedFiles_SelectionChanged" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding AttachedFileList}">
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartNo]}"/>
+                                    <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Part Description" Width="200">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Priority" Width="50">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[Priority]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Qty" Width="50">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[QTY Due]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </StackPanel>
 
-            <Grid x:Name="OperationsGrid" Grid.Row="2" Grid.Column="0" Background="LightGray">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="75*"/>
-                </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <Label Style="{StaticResource LabelTitle}" Grid.Row="0" Grid.Column="1" Padding="10px" Height="60" Foreground="White">Employees</Label>
+                <ListView x:Name="lstUsers" Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
+                            <GridViewColumn Header="Name" Width="65">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Left" Text="{Binding Path=Username}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Jobs Assigned" Width="80">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{Binding Path=JobsAssigned}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
-                <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
-                <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
-                <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" ItemsSource="{Binding OperationList}" Grid.ColumnSpan="1" Height="100" Margin="0,31,0,0" Grid.RowSpan="2" VerticalAlignment="Top">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <ListBox x:Name="lstStatus" Grid.Column="2" Grid.Row="1"/>
-                <Label Background="LightGray" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
-                <Label Background="LightGray" Grid.Column="4" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
-                <Label Background="LightGray" Grid.Row="0" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}">Attached Files</Label>
-                <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="4"/>
-                <ListBox x:Name="lstAttachedFiles" SelectionChanged="lstAttachedFiles_SelectionChanged" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding AttachedFileList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="0,370,0,0" VerticalAlignment="Top">
+                <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
+                <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
+                <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
+            </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <Label Style="{StaticResource LabelTitle}" Grid.Row="0" Grid.Column="1" Padding="10px" Background="LightGray" Height="75">Employees</Label>
-            <ListView x:Name="lstUsers" Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
-                        <GridViewColumn Header="Name" Width="65">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Left" Text="{Binding Path=Username}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Jobs Assigned" Width="80">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobsAssigned}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-        </StackPanel>
-
-        <StackPanel Grid.Column="1" Margin="0,380,0,0" VerticalAlignment="Top">
-            <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
-            <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
-            <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="ButtonAdminLogin_Click">Admin Login</Button>
-        </StackPanel>
-
-
-    </Grid>
+        </Grid>
+    </Border>
 
 </Window>
 

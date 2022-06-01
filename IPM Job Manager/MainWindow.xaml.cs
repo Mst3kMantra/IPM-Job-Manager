@@ -101,6 +101,8 @@ namespace IPM_Job_Manager_net
 
         public const int MaxPriority = 20;
 
+        public bool isAddingBoxes;
+
         public object SelectedOperation;
         public object SelectedAssignee;
         public object SelectedFileName;
@@ -187,7 +189,7 @@ namespace IPM_Job_Manager_net
         public void SetTimer()
         {
             // Create a timer with a two second interval.
-            RefreshTimer = new Timer(60000);
+            RefreshTimer = new Timer(300000);
             // Hook up the Elapsed event for the timer. 
             RefreshTimer.Elapsed += OnTimedEvent;
             RefreshTimer.AutoReset = true;
@@ -659,6 +661,7 @@ namespace IPM_Job_Manager_net
         {
             Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
             User LastSelectedUser = lstUsers.SelectedItem as User;
+            isAddingBoxes = true;
 
             if (LastSelectedJob == null) { return; }
             if (LastSelectedUser == null) { return; }
@@ -688,7 +691,7 @@ namespace IPM_Job_Manager_net
             if ((LastSelectedJob as Job).JobInfo.ContainsKey("AttachedFiles"))
             {
 
-                foreach (string filename in (LastSelectedJob as Job).JobInfo["AttachedFiles"])
+                foreach (string filename in LastSelectedJob.JobInfo["AttachedFiles"])
                 {
                     AttachedFileList.Add(filename);
                 }
@@ -726,6 +729,8 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+
+            isAddingBoxes = false;
 
             foreach (string key in SelectedOperations.Keys)
             {
@@ -827,6 +832,7 @@ namespace IPM_Job_Manager_net
 
         private void HandleOpChecked(object sender, RoutedEventArgs e)
         {
+            if (isAddingBoxes == true) return;
             Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
             User LastSelectedUser = lstUsers.SelectedItem as User;
             CheckBox checkBox = sender as CheckBox;

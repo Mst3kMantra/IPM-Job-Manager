@@ -76,24 +76,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7170D5D128E81EC549419CE9CB352B69"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D0B8C2DF5115115490B5A34F0C72AF45"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B164A495AC63A7FE21CF24D282B55593"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AF593C18C88B443B9D640B4BD21B5B33"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -112,6 +94,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D0B8C2DF5115115490B5A34F0C72AF45"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B164A495AC63A7FE21CF24D282B55593"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_ECB235203558FB8BE4A5D769BFD1D950"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -119,6 +113,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B7E6EAA7523092AB5960AB4B5E57F4C3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7170D5D128E81EC549419CE9CB352B69"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -139,6 +139,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Installer Release 32-bit"
         {
@@ -155,6 +171,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Installer Release 64-bit"
         {
@@ -171,6 +195,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -485,7 +525,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IPM Job Manager"
         "ProductCode" = "8:{D9BA2F5A-44C4-42A5-B9A0-BBCA2A564EEC}"
-        "PackageCode" = "8:{3DB8B448-8448-4C04-95BC-4D03A4362118}"
+        "PackageCode" = "8:{F691418A-1EFA-4FBE-8FC8-D4C660B12D70}"
         "UpgradeCode" = "8:{0E7B3DB7-5D89-4F56-8E76-295329EDAC36}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1034,7 +1074,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AF593C18C88B443B9D640B4BD21B5B33"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\IPM Job Manager\\obj\\Release 64-bit\\IPM Job Manager.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_BC055A222BAA4C2CAF73FDC28FB6265A"

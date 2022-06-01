@@ -18,8 +18,8 @@
             <ColumnDefinition Width="400*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="5" Background="LightGray">
-            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" Background="LightGray"  VerticalAlignment="Top">Operations Editor</Label>
+        <StackPanel Margin="5" Background="#FFCE4D4D">
+            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" Background="#FFCE4D4D"  VerticalAlignment="Top">Operations Editor</Label>
             <TextBox SpellCheck.IsEnabled="True" x:Name="txtOperations" Height="150"></TextBox>
             <Grid>
                 <Grid.RowDefinitions>
@@ -50,7 +50,7 @@
             </Grid>
         </StackPanel>
         <StackPanel Margin="5,5,5,5" Grid.Column="1">
-            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="LightGray"  VerticalAlignment="Top">Employees</Label>
+            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="#FFCE4D4D"  VerticalAlignment="Top">Employees</Label>
             <ListBox x:Name="lstEmployees" SelectionChanged="lstEmployees_SelectionChanged" ItemsSource="{Binding UserList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -58,7 +58,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="btnAddOperation" Click="btnAddOperation_Click" Margin="0,5,0,0">Add Operation</Button>
+            <Button x:Name="btnAddOperation" IsDefault="True" Click="btnAddOperation_Click" Margin="0,5,0,0">Add Operation</Button>
             <Button x:Name="btnRemoveOperation" Click="btnRemoveOperation_Click" Margin="0,5,0,0">Remove Operation</Button>
             <Button x:Name="btnAssignOperation" Click="btnAssignOperation_Click" Margin="0,5,0,0">Assign Operation</Button>
             <Button x:Name="btnUnassignOperation" Click="btnUnassignOperation_Click" Margin="0,5,0,0">Unassign Operation</Button>

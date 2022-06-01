@@ -107,6 +107,8 @@ namespace IPM_Job_Manager_net
 
         public MainWindow mainWindow;
 
+        public bool isAddingBoxes;
+
         public object LastSelectedUser;
 
         private object _lastSelectedJob;
@@ -885,6 +887,7 @@ namespace IPM_Job_Manager_net
         private void lstJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LastSelectedJob = lstJobs.SelectedItem;
+            isAddingBoxes = true;
 
             if (LastSelectedJob == null) { return; }
 
@@ -952,6 +955,7 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+            isAddingBoxes = false;
 
             foreach (string key in SelectedOperations.Keys)
             {
@@ -991,6 +995,7 @@ namespace IPM_Job_Manager_net
         private void lstAssignedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LastSelectedJob = lstAssignedJobs.SelectedItem;
+            isAddingBoxes = true;
 
             if (LastSelectedJob == null) { return; }
 
@@ -1058,6 +1063,8 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+
+            isAddingBoxes = false;
 
             foreach (string key in SelectedOperations.Keys)
             {
@@ -1284,6 +1291,7 @@ namespace IPM_Job_Manager_net
 
         private void HandleOpChecked(object sender, RoutedEventArgs e)
         {
+            if (isAddingBoxes == true) return;
             Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
             User LastSelectedUser = lstUsers.SelectedItem as User;
             CheckBox checkBox = sender as CheckBox;
@@ -1408,6 +1416,11 @@ namespace IPM_Job_Manager_net
                 string FilePath = SelectedFileName.ToString();
                 System.Diagnostics.Process.Start(FilePath);
             }
+        }
+
+        private void btnNewJob_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

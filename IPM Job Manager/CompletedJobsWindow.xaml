@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Margin="0,0,0,0">
-            <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Background="LightGray" Height="50" VerticalAlignment="Top">Completed Jobs</Label>
+            <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Background="#FFCE4D4D" Height="50" VerticalAlignment="Top">Completed Jobs</Label>
             <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstCompletedJobs_SelectionChanged" Height="350" x:Name="lstCompletedJobs" Grid.Column="0" ItemsSource="{Binding CompletedJobs,Mode=OneWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

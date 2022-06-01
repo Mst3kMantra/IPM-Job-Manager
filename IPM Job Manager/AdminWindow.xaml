@@ -23,9 +23,9 @@
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Style="{StaticResource LabelTitle}" Grid.Column="4" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="LightGray" Grid.RowSpan="2" VerticalAlignment="Top">Employees</Label>
-        <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Background="LightGray" Margin="0,0,5,0">Jobs</Label>
-        <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Background="LightGray" Margin="0,0,5,0">Assigned Jobs</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="4" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="#FFCE4D4D" Grid.RowSpan="2" VerticalAlignment="Top">Employees</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Background="#FFCE4D4D" Margin="0,0,5,0">Jobs</Label>
+        <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Background="#FFCE4D4D" Margin="0,0,5,0">Assigned Jobs</Label>
         <ListView x:Name="lstUsers" Grid.Column="3" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}" Grid.ColumnSpan="2" Margin="606,0,0,356">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -161,7 +161,7 @@
                 </ListView.View>
             </ListView>
 
-            <Grid Background="LightGray">
+            <Grid Background="#FFCE4D4D">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="100"/>
@@ -202,8 +202,8 @@
                     <ColumnDefinition Width="100*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Background="LightGray" Grid.Row="0" Grid.Column="0" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
-                <Label Background="LightGray" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Style="{StaticResource ResourceKey=JobTitle}">Attached Files</Label>
+                <Label Background="#FFCE4D4D" Grid.Row="0" Grid.Column="0" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
+                <Label Background="#FFCE4D4D" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Style="{StaticResource ResourceKey=JobTitle}">Attached Files</Label>
                 <TextBlock Height="150" x:Name="txtNotes" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"/>
                 <ListBox x:Name="lstAttachedFiles" SelectionMode="Multiple" SelectionChanged="lstAttachedFiles_SelectionChanged" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AttachedFileList}">
                     <ListBox.ItemTemplate>
@@ -217,13 +217,14 @@
         </StackPanel>
 
         <StackPanel Background="White" Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom">
+            <Button x:Name="btnNewJob" Margin="0,5,0,0" Click="btnNewJob_Click">New Job</Button>
             <Button x:Name="btnAssign" Margin="0,5,0,0" Click="btnAssignJob_Click">Assign Job</Button>
             <Button x:Name="btnRemove" Margin="0,5,0,0" Click="btnRemoveJob_Click">Remove Job</Button>
             <Button x:Name="btnAddPrio" Margin="0,5,0,0" Click="btnAddPrio_Click">Increase Priority</Button>
-            <Button x:Name="btnLowerPrio" Margin="0,5,0,0" Click="btnLowerPrio_Click">Reduce Priority</Button>
+            <Button x:Name="btnLowerPrio" Margin="0,5,0,0" Click="btnLowerPrio_Click">Decrease Priority</Button>
+            <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
             <Button x:Name="btnView" Margin="0,5,0,0" Click="btnViewJob_Click">View Job Details</Button>
             <Button x:Name="btnViewCompletedJobs" Margin="0,5,0,0" Click="btnViewCompletedJobs_Click">View Completed Jobs</Button>
-            <Button x:Name="btnEditOperations" Margin="0,5,0,0" Click="btnEditOperations_Click">Edit Operations</Button>
             <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
             <Button x:Name="btnAttachFile" Margin="0,5,0,0" Click="btnAttachFile_Click">Attach Files</Button>
             <Button x:Name="btnDetachFile" Margin="0,5,0,0" Click="btnDetachFile_Click">Detach Files</Button>

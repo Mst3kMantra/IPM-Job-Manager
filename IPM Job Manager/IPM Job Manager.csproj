@@ -115,6 +115,9 @@
     <Compile Include="JobDetailsWindow.xaml.cs">
       <DependentUpon>JobDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewJobWindow.xaml.cs">
+      <DependentUpon>NewJobWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewUserWindow.xaml.cs">
       <DependentUpon>NewUserWindow.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewJobWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Login" Height="200" Width="400"
         WindowStartupLocation="CenterOwner">
-    <Grid Margin="5" Background="LightGray">
+    <Grid Margin="5" Background="#FFE44B4B">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
