@@ -5,63 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="Operations Editor" Height="400" Width="650"
+        Title="Operations Editor" Width="650" Height="500"
         WindowStartupLocation="CenterOwner"
         Closing="OperationsWindow_Closing">
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="100*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Margin="5" Background="#FFCE4D4D">
-            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" Background="#FFCE4D4D"  VerticalAlignment="Top">Operations Editor</Label>
-            <TextBox SpellCheck.IsEnabled="True" x:Name="txtOperations" Height="150"></TextBox>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150*"/>
-                    <ColumnDefinition Width="100*"/>
-                </Grid.ColumnDefinitions>
+    <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D2D" Offset="0.85"/>
+                <GradientStop Color="#FF353535" Offset="0.597"/>
+                <GradientStop Color="#FF1D1D1D" Offset="0.107"/>
+                <GradientStop Color="#FF2D2D2D" Offset="0.31"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400*"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="5">
+                
+                <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" VerticalAlignment="Top">Operations Editor</Label>
+                <TextBox SpellCheck.IsEnabled="True" x:Name="txtOperations" Height="150"/>
+                <Border BorderThickness="2" BorderBrush="White" CornerRadius="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
-                <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
-                <ListBox x:Name="lstOperations" Height="100" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
+                        <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="White"/>
+                        <Border Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="White"/>
+                        <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
+                        <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
+                        <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="5,5,5,5" Grid.Column="1">
+                <Label Style="{StaticResource JobTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" VerticalAlignment="Top">Employees</Label>
+                <ListBox x:Name="lstEmployees" SelectionChanged="lstEmployees_SelectionChanged" ItemsSource="{Binding UserList}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
+                            <TextBlock Text ="{Binding Path=Username}"></TextBlock>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </StackPanel>
-        <StackPanel Margin="5,5,5,5" Grid.Column="1">
-            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" Background="#FFCE4D4D"  VerticalAlignment="Top">Employees</Label>
-            <ListBox x:Name="lstEmployees" SelectionChanged="lstEmployees_SelectionChanged" ItemsSource="{Binding UserList}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text ="{Binding Path=Username}"></TextBlock>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <Button x:Name="btnAddOperation" IsDefault="True" Click="btnAddOperation_Click" Margin="0,5,0,0">Add Operation</Button>
-            <Button x:Name="btnRemoveOperation" Click="btnRemoveOperation_Click" Margin="0,5,0,0">Remove Operation</Button>
-            <Button x:Name="btnAssignOperation" Click="btnAssignOperation_Click" Margin="0,5,0,0">Assign Operation</Button>
-            <Button x:Name="btnUnassignOperation" Click="btnUnassignOperation_Click" Margin="0,5,0,0">Unassign Operation</Button>
-        </StackPanel>
-    </Grid>
+                <Button x:Name="btnAddOperation" IsDefault="True" Click="btnAddOperation_Click" Margin="0,5,0,0">Add Operation</Button>
+                <Button x:Name="btnRemoveOperation" Click="btnRemoveOperation_Click" Margin="0,5,0,0">Remove Operation</Button>
+                <Button x:Name="btnAssignOperation" Click="btnAssignOperation_Click" Margin="0,5,0,0">Assign Operation</Button>
+                <Button x:Name="btnUnassignOperation" Click="btnUnassignOperation_Click" Margin="0,5,0,0">Unassign Operation</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

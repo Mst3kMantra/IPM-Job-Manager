@@ -5,37 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="New User" Height="200" Width="425"
+        Title="New User" Height="200" Width="400"
         WindowStartupLocation="CenterOwner">
 
+    <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D2D" Offset="0.85"/>
+                <GradientStop Color="#FF353535" Offset="0.597"/>
+                <GradientStop Color="#FF1D1D1D" Offset="0.107"/>
+                <GradientStop Color="#FF2D2D2D" Offset="0.31"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
 
-    <Grid Margin="10" Background="#FFE44B4B">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
-        <Label Style="{StaticResource LabelTitle}" Content="New User" Grid.Column="0" Grid.Row="0"></Label>
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,20,0,0">
-            <Label Content="Username : " Grid.Column="0" Grid.Row="1"></Label>
-            <Label Content="Password : " Grid.Column="0" Grid.Row="1"></Label>
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Margin="92,25,25,20"  Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <TextBox x:Name="UserBox"></TextBox>
-            <PasswordBox x:Name="PwBox" Margin="0,5"></PasswordBox>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <CheckBox x:Name="isAdmin" Content="Admin" Margin="0,0,20,0"/>
-                <Button Content="Save" x:Name="btnSave" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="btnSave_Click" Margin="0,0,0,0"/>
-                <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click" Margin="20,0,0,0"/>
+            <Label Style="{StaticResource LabelTitle}" Content="New User" Grid.Column="0" Grid.Row="0"></Label>
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,20,0,0">
+                <Label Foreground="White" Content="Username : " Grid.Column="0" Grid.Row="1"></Label>
+                <Label Foreground="White" Content="Password : " Grid.Column="0" Grid.Row="1"></Label>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+
+            <StackPanel Grid.Row="1" Margin="92,25,25,20"  Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="UserBox"></TextBox>
+                <PasswordBox x:Name="PwBox" Margin="0,5"></PasswordBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <CheckBox Foreground="White" x:Name="isAdmin" Content="Admin" Margin="0,0,20,0"/>
+                    <Button Content="Save" x:Name="btnSave" IsDefault="True" Grid.Row="2" Grid.Column="1" Width="80" Click="btnSave_Click" Margin="0,0,0,0"/>
+                    <Button Content="Cancel" x:Name="btnCancel" Grid.Row="2" Grid.Column="1" Width="80" Click="btnCancel_Click" Margin="20,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
 
 </Window>

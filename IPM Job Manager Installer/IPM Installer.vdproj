@@ -525,7 +525,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IPM Job Manager"
         "ProductCode" = "8:{D9BA2F5A-44C4-42A5-B9A0-BBCA2A564EEC}"
-        "PackageCode" = "8:{F691418A-1EFA-4FBE-8FC8-D4C660B12D70}"
+        "PackageCode" = "8:{D8AC24F7-98A1-4A08-B9FB-3D505C85D60B}"
         "UpgradeCode" = "8:{0E7B3DB7-5D89-4F56-8E76-295329EDAC36}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

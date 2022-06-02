@@ -7,77 +7,86 @@
         mc:Ignorable="d"
         Title="CompletedJobsWindow" Height="525" Width="675"
         WindowStartupLocation="CenterOwner">
-    
-    
-    <Grid Margin="10">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D2D" Offset="0.85"/>
+                <GradientStop Color="#FF353535" Offset="0.597"/>
+                <GradientStop Color="#FF1D1D1D" Offset="0.107"/>
+                <GradientStop Color="#FF2D2D2D" Offset="0.31"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Margin="10">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Margin="0,0,0,0">
-            <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Background="#FFCE4D4D" Height="50" VerticalAlignment="Top">Completed Jobs</Label>
-            <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstCompletedJobs_SelectionChanged" Height="350" x:Name="lstCompletedJobs" Grid.Column="0" ItemsSource="{Binding CompletedJobs,Mode=OneWay}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
-                        <GridViewColumn Header="Job No." Width="80">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[JobNo]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Customer" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[CustDesc]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Part No." Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartNo]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Part Description" Width="200">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Priority" Width="50">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[Priority]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Completed Date" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[CompletedDate]}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <StackPanel VerticalAlignment="Center" Margin="0,5,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Height="50" Width="100" Margin="0,0,100,0" x:Name="btnRemoveJob" Click="btnRemoveJob_Click">Remove Job</Button>
-                <Button Width="100" x:Name="btnClose" Click="btnClose_Click">Close</Button>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="0,0,0,0">
+                <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Height="50" VerticalAlignment="Top">Completed Jobs</Label>
+                <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstCompletedJobs_SelectionChanged" Height="350" x:Name="lstCompletedJobs" Grid.Column="0" ItemsSource="{Binding CompletedJobs,Mode=OneWay}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Assigned Job Information">
+                            <GridViewColumn Header="Job No." Width="80">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{Binding Path=JobInfo[JobNo]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Customer" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[CustDesc]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Part No." Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartNo]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Part Description" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=JobInfo[PartDesc]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Priority" Width="50">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[Priority]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Completed Date" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[CompletedDate]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel VerticalAlignment="Center" Margin="0,5,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Height="50" Width="100" Margin="0,0,100,0" x:Name="btnRemoveJob" Click="btnRemoveJob_Click">Remove Job</Button>
+                    <Button Width="100" x:Name="btnClose" Click="btnClose_Click">Close</Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </Border>
 </Window>

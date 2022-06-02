@@ -841,6 +841,7 @@ namespace IPM_Job_Manager_net
             bool AllOpsDone = false;
             int AssignmentCheckedCounter = 0;
             List<CheckBox> AllAssignments = new List<CheckBox>();
+            if (checkBox.Name != LastSelectedUser.Username) { return; }
             if (LastSelectedJob != null && LastSelectedUser != null && lstStatus.Items.Count > 0)
             {
                 if (checkBox.IsChecked == true)

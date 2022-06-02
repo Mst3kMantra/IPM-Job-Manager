@@ -8,19 +8,28 @@
         Title="Notes Editor" Height="350" Width="560"
         WindowStartupLocation="CenterOwner">
 
-
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="20*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Margin="5" Background="LightGray">
-            <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" Background="#FFCE4D4D"  VerticalAlignment="Top">Notes Editor</Label>
-            <TextBox SpellCheck.IsEnabled="True" AcceptsTab="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Focusable="True" x:Name="txtNotes" Height="200"></TextBox>
-        </StackPanel>
-        <Button HorizontalAlignment="Right"  Grid.Row="1" x:Name="btnSaveNotes" Click="btnSaveNotes_Click" Margin="0,0,5,0" Height="30" Width="150">Save Notes</Button>
-    </Grid>
+    <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D2D" Offset="0.85"/>
+                <GradientStop Color="#FF353535" Offset="0.597"/>
+                <GradientStop Color="#FF1D1D1D" Offset="0.107"/>
+                <GradientStop Color="#FF2D2D2D" Offset="0.31"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="5">
+                <Label Style="{StaticResource JobTitle}" Grid.Column="0" Padding="10px" Margin="0,0,0,0" VerticalAlignment="Top">Notes Editor</Label>
+                <TextBox SpellCheck.IsEnabled="True" AcceptsTab="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Focusable="True" x:Name="txtNotes" Height="200"></TextBox>
+            </StackPanel>
+            <Button HorizontalAlignment="Right"  Grid.Row="1" x:Name="btnSaveNotes" Click="btnSaveNotes_Click" Margin="0,0,5,0" Height="30" Width="150">Save Notes</Button>
+        </Grid>
+    </Border>
 </Window>
