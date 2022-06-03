@@ -29,7 +29,7 @@
 
             <StackPanel Margin="0,0,0,0">
                 <Label Style="{StaticResource LabelTitle}" Grid.Column="0" Padding="10px" Height="50" VerticalAlignment="Top">Completed Jobs</Label>
-                <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstCompletedJobs_SelectionChanged" Height="350" x:Name="lstCompletedJobs" Grid.Column="0" ItemsSource="{Binding CompletedJobs,Mode=OneWay}">
+                <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" PreviewMouseLeftButtonUp="lstCompletedJobs_PreviewMouseLeftButtonUp" Height="350" x:Name="lstCompletedJobs" Grid.Column="0" ItemsSource="{Binding CompletedJobs,Mode=OneWay}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />

@@ -143,6 +143,7 @@ namespace IPM_Job_Manager_net
                         if (job.JobInfo["PartNo"] == ChangedJob.JobInfo["PartNo"])
                         {
                             job.JobInfo["Operations"] = ChangedJob.JobInfo["Operations"];
+                            job.JobInfo["OperationTime"] = ChangedJob.JobInfo["OperationTime"];
                             MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
                             isPartInJobNotes = true;
                             break;
@@ -152,6 +153,7 @@ namespace IPM_Job_Manager_net
                     {
                         Job newNotes = new Job();
                         newNotes.JobInfo.Add("Operations", ChangedJob.JobInfo["Operations"]);
+                        newNotes.JobInfo.Add("OperationTime", ChangedJob.JobInfo["OperationTime"]);
                         newNotes.JobInfo.Add("PartNo", ChangedJob.JobInfo["PartNo"]);
                         JobNotes.Add(newNotes);
                         MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
@@ -161,6 +163,7 @@ namespace IPM_Job_Manager_net
                 {
                     Job newNotes = new Job();
                     newNotes.JobInfo.Add("Operations", ChangedJob.JobInfo["Operations"]);
+                    newNotes.JobInfo.Add("OperationTime", ChangedJob.JobInfo["OperationTime"]);
                     newNotes.JobInfo.Add("PartNo", ChangedJob.JobInfo["PartNo"]);
                     JobNotes.Add(newNotes);
                     MainWin.WriteJobsJson(JobNotes, MainWin.JobNotesPath);
@@ -175,6 +178,7 @@ namespace IPM_Job_Manager_net
                 {
                     AssignedJobList[JobIndex].JobInfo["Operations"].Add(txtOperations.Text, "");
                     AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Add(txtOperations.Text, false);
+                    AssignedJobList[JobIndex].JobInfo["OperationTime"].Add(txtOperations.Text, 0);
                     OperationList.Add(txtOperations.Text);
                     AssignedEmployeeList.Add("");
                     MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
@@ -194,6 +198,10 @@ namespace IPM_Job_Manager_net
                 if (AssignedJobList[JobIndex].JobInfo["CompletedOperations"].ContainsKey(SelectedOperation.ToString()))
                 {
                     AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Remove(SelectedOperation.ToString());
+                }
+                if (AssignedJobList[JobIndex].JobInfo["OperationTime"].ContainsKey(SelectedOperation.ToString()))
+                {
+                    AssignedJobList[JobIndex].JobInfo["OperationTime"].Remove(SelectedOperation.ToString());
                 }
                 int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
                 OperationList.Remove(SelectedOperation.ToString());
@@ -242,21 +250,6 @@ namespace IPM_Job_Manager_net
             isDataChanged=true;
         }
 
-        private void lstEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedUser = lstEmployees.SelectedItem as User;
-        }
-
-        private void lstOperations_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedOperation = lstOperations.SelectedItem;
-        }
-
-        private void lstAssigned_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedAssignee = lstAssigned.SelectedItem;
-        }
-
         private void OperationsWindow_Closing(object sender, CancelEventArgs e)
         {
             if (isDataChanged)
@@ -265,5 +258,19 @@ namespace IPM_Job_Manager_net
             }
         }
 
+        private void lstOperations_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            SelectedOperation = lstOperations.SelectedItem;
+        }
+
+        private void lstAssigned_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            SelectedAssignee = lstAssigned.SelectedItem;
+        }
+
+        private void lstEmployees_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            SelectedUser = lstEmployees.SelectedItem as User;
+        }
     }
 }

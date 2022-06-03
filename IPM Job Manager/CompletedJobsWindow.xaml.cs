@@ -66,7 +66,7 @@ namespace IPM_Job_Manager_net
             this.Close();
         }
 
-        private void lstCompletedJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lstCompletedJobs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             SelectedJob = lstCompletedJobs.SelectedItem as Job;
         }

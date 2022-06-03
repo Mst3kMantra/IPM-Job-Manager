@@ -5,85 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="NewJobWindow" Height="332" Width="590"
+        Title="NewJobWindow" Height="360" Width="590"
         WindowStartupLocation="CenterOwner">
-    <Grid Margin="10">
+    <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D2D" Offset="0.85"/>
+                <GradientStop Color="#FF353535" Offset="0.597"/>
+                <GradientStop Color="#FF1D1D1D" Offset="0.107"/>
+                <GradientStop Color="#FF2D2D2D" Offset="0.31"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Margin="10">
 
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="300"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <Border BorderThickness="2,2,2,0" BorderBrush="SlateBlue">
+            <StackPanel Grid.Column="0">
+                <Border BorderThickness="1,1,1,0" BorderBrush="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Job Number: "/>
+                        <TextBlock VerticalAlignment="Center" Width="100" Text="{Binding Path=DisplayedJob.JobInfo[JobNo]}"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="White" BorderThickness="1px">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Customer: "/>
+                        <ComboBox Margin="41,0,0,0" VerticalAlignment="Center" Width="150" Text="{Binding Path=DisplayedJob.JobInfo[CustDesc]}"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="White" BorderThickness="1,0,1,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Part Number: "/>
+                        <ComboBox Margin="17,0,0,0" VerticalAlignment="Center" Width="100" Text="{Binding Path=DisplayedJob.JobInfo[PartNo]}"/>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="White" BorderThickness="1px">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Part Description :"/>
+                        <TextBox VerticalAlignment="Center" Width="298" Height="75" TextWrapping="Wrap" Text="{Binding Path=DisplayedJob.JobInfo[PartDesc]}"/>
+                    </WrapPanel>
+                </Border>
+                <Border BorderBrush="White" BorderThickness="1px">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Notes: "/>
+                        <TextBox VerticalAlignment="Center" Width="298" Height="75" TextWrapping="Wrap" Text="{Binding Path=DisplayedJob.JobInfo[Notes]}"/>
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel x:Name="ShippingData" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
-                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Job Number: "/>
-                    <ComboBox VerticalAlignment="Center" Width="100" Text="{Binding Path=DisplayedJob.JobInfo[JobNo]}"/>
+                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Due Date: "/>
+                    <DatePicker VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[Due Date]}"/>
                 </StackPanel>
-            </Border>
-            <Border BorderBrush="SlateBlue" BorderThickness="1px">
                 <StackPanel Orientation="Horizontal">
-                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Customer: "/>
-                    <ComboBox VerticalAlignment="Center" Width="150" Text="{Binding Path=DisplayedJob.JobInfo[CustDesc]}"/>
+                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Quantity Due: "/>
+                    <TextBox VerticalAlignment="Center" Width="30" Text="{Binding Path=DisplayedJob.JobInfo[QTY Due]}"/>
                 </StackPanel>
-            </Border>
-            <Border BorderBrush="SlateBlue" BorderThickness="1px">
                 <StackPanel Orientation="Horizontal">
-                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Part Number: "/>
-                    <ComboBox VerticalAlignment="Center" Width="100" Text="{Binding Path=DisplayedJob.JobInfo[PartNo]}"/>
+                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Quantity Ordered: "/>
+                    <TextBox VerticalAlignment="Center" Width="30" Text="{Binding Path=DisplayedJob.JobInfo[QtyOrdered]}"/>
                 </StackPanel>
-            </Border>
-            <Border BorderBrush="SlateBlue" BorderThickness="1px">
-                <WrapPanel Orientation="Horizontal">
-                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Part Description :"/>
-                    <TextBox VerticalAlignment="Center" Width="298" Height="50" TextWrapping="Wrap" Text="{Binding Path=DisplayedJob.JobInfo[PartDesc]}"/>
-                </WrapPanel>
-            </Border>
-            <Border BorderBrush="SlateBlue" BorderThickness="1px">
-                <WrapPanel Orientation="Horizontal">
-                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Notes: "/>
-                    <TextBox VerticalAlignment="Center" Width="298" Height="75" TextWrapping="Wrap" Text="{Binding Path=DisplayedJob.JobInfo[Notes]}"/>
-                </WrapPanel>
-            </Border>
-        </StackPanel>
-
-        <StackPanel x:Name="ShippingData" Grid.Column="1">
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="PO Number: "/>
-                <TextBlock VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[PONum]}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Shipped: "/>
+                    <TextBox VerticalAlignment="Center" Width="30" Text="{Binding Path=DisplayedJob.JobInfo[Shipped]}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Unit Price: "/>
+                    <TextBox VerticalAlignment="Center" Width="30" Text="{Binding Path=DisplayedJob.JobInfo[UnitPrice]}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Value Due: "/>
+                    <TextBox VerticalAlignment="Center" Width="30" Text="{Binding Path=DisplayedJob.JobInfo[Value Due]}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Due Date: "/>
-                <DatePicker VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[Due Date]}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Quantity Due: "/>
-                <TextBox VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[QTY Due]}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Quantity Ordered: "/>
-                <TextBox VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[QtyOrdered]}"/>
-            </StackPanel> 
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Shipped: "/>
-                <TextBox VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[Shipped]}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Unit Price: "/>
-                <TextBox VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[UnitPrice]}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Value Due: "/>
-                <TextBox VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[Value Due]}"/>
-            </StackPanel>
-        </StackPanel>
 
 
-    </Grid>
+        </Grid>
+    </Border>
 </Window>

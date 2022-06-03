@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Operations Editor" Width="650" Height="500"
         WindowStartupLocation="CenterOwner"
+        SizeToContent="Height"
         Closing="OperationsWindow_Closing">
 
     <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
@@ -46,14 +47,14 @@
                         <Border Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="White"/>
                         <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
                         <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
-                        <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
+                        <ListBox x:Name="lstOperations" PreviewMouseLeftButtonUp="lstOperations_PreviewMouseLeftButtonUp" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
+                        <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" PreviewMouseLeftButtonUp="lstAssigned_PreviewMouseLeftButtonUp" ItemsSource="{Binding AssignedEmployeeList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}"/>
@@ -65,7 +66,7 @@
             </StackPanel>
             <StackPanel Margin="5,5,5,5" Grid.Column="1">
                 <Label Style="{StaticResource JobTitle}" Grid.Column="0" Grid.ColumnSpan="2" Padding="10px" Margin="0,0,0,0" VerticalAlignment="Top">Employees</Label>
-                <ListBox x:Name="lstEmployees" SelectionChanged="lstEmployees_SelectionChanged" ItemsSource="{Binding UserList}">
+                <ListBox x:Name="lstEmployees" PreviewMouseLeftButtonUp="lstEmployees_PreviewMouseLeftButtonUp" ItemsSource="{Binding UserList}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text ="{Binding Path=Username}"></TextBlock>

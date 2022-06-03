@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="IPM Job Manager" Height="725" Width="1400"
         WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
         Closing="AdminWindow_Closing">
     <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
         <Border.Background>
@@ -36,7 +37,7 @@
             <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Margin="0,0,5,0">Jobs</Label>
             <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Margin="0,0,5,0">Assigned Jobs</Label>
             <StackPanel Grid.Column="4" Grid.Row="1">
-                <ListView x:Name="lstUsers" Grid.Column="4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="lstUsers_SelectionChanged" ItemsSource="{Binding UserList, Mode=OneWay}" VerticalAlignment="Top">
+                <ListView x:Name="lstUsers" Grid.Column="4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" PreviewMouseLeftButtonUp="lstUsers_PreviewMouseLeftButtonUp" ItemsSource="{Binding UserList, Mode=OneWay}" VerticalAlignment="Top">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -79,7 +80,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <ListView Grid.Row="1" x:Name="lstJobs" Height="600" VerticalAlignment="Top" SelectionChanged="lstJobs_SelectionChanged" Grid.Column="2" Margin="0,0,5,0" ItemsSource="{Binding JobList, Mode=OneWay}">
+            <ListView PreviewMouseLeftButtonUp="lstJobs_PreviewMouseLeftButtonUp" Grid.Row="1" x:Name="lstJobs" Height="550" VerticalAlignment="Top" Grid.Column="2" Margin="0,0,5,0" ItemsSource="{Binding JobList, Mode=OneWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -134,7 +135,7 @@
             </ListView>
 
             <StackPanel Grid.Column="3" Grid.Row="1" Margin="0,0,5,0">
-                <ListView HorizontalContentAlignment="Stretch" Grid.Row="1" SelectionChanged="lstAssignedJobs_SelectionChanged" x:Name="lstAssignedJobs" Grid.Column="3" ItemsSource="{Binding CurEmployeeJobs,Mode=OneWay}">
+                <ListView HorizontalContentAlignment="Stretch" PreviewMouseLeftButtonUp="lstAssignedJobs_PreviewMouseLeftButtonUp" Height="300" Grid.Row="1" x:Name="lstAssignedJobs" Grid.Column="3" ItemsSource="{Binding CurEmployeeJobs,Mode=OneWay}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -206,14 +207,14 @@
                         <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
                         <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
                         <Label Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
-                        <ListBox x:Name="lstOperations" SelectionChanged="lstOperations_SelectionChanged" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
+                        <ListBox x:Name="lstOperations" PreviewMouseLeftButtonUp="lstOperations_PreviewMouseLeftButtonUp" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" SelectionChanged="lstAssigned_SelectionChanged" ItemsSource="{Binding AssignedEmployeeList}">
+                        <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" PreviewMouseLeftButtonUp="lstAssigned_PreviewMouseLeftButtonUp" ItemsSource="{Binding AssignedEmployeeList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}"/>
@@ -241,7 +242,7 @@
                         <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ResourceKey=JobTitle}">Notes:</Label>
                         <Label HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Style="{StaticResource ResourceKey=JobTitle}">Attached Files</Label>
                         <TextBlock Height="125" Background="White" x:Name="txtNotes" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"/>
-                        <ListBox x:Name="lstAttachedFiles" SelectionMode="Multiple" SelectionChanged="lstAttachedFiles_SelectionChanged" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AttachedFileList}">
+                        <ListBox x:Name="lstAttachedFiles" SelectionMode="Multiple" PreviewMouseLeftButtonUp="lstAttachedFiles_PreviewMouseLeftButtonUp" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AttachedFileList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}"/>

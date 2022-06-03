@@ -62,7 +62,6 @@ namespace IPM_Job_Manager_net
             if (!string.IsNullOrWhiteSpace(PwBox.Password) && !string.IsNullOrWhiteSpace(UserBox.Text))
             {
                 User NewUser = new User();
-                AdminWindow adminWindow = Owner as AdminWindow;
                 Password = PwBox.Password;
                 Username = UserBox.Text;
                 PasswordSalt = GetSalt();
@@ -73,6 +72,21 @@ namespace IPM_Job_Manager_net
                 if (isAdmin.IsChecked == true)
                 {
                     NewUser.IsAdmin = true;
+                }
+                Userlist.Users.Add(NewUser);
+                MainWin.UserList.Add(NewUser);
+                MainWin.WriteUserJson(Userlist, MainWin.UserListPath);
+            }
+            else if (!string.IsNullOrWhiteSpace(UserBox.Text))
+            {
+                User NewUser = new User();
+                Password = PwBox.Password;
+                Username = UserBox.Text;
+                NewUser.Password = Password;
+                NewUser.Username = Username;
+                if (isAdmin.IsChecked == false)
+                {
+                    NewUser.IsAdmin = false;
                 }
                 Userlist.Users.Add(NewUser);
                 MainWin.UserList.Add(NewUser);
