@@ -106,13 +106,8 @@
                         <Border Grid.Column="5" BorderThickness="1,0,0,0" BorderBrush="White"/>
                         <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Operations</Label>
                         <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Assigned</Label>
-                        <Label Grid.Column="4" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Time</Label>
-                        <ListBox x:Name="lstOperationTimes" Grid.Column="4" ItemsSource="{Binding OperationTimes}" Grid.Row="1">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
+                        <Label Grid.Column="4" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Cycle Time</Label>
+                        <ListBox x:Name="lstOperationTimes" Grid.Column="4" Grid.Row="1">
                         </ListBox>
                         <ListBox x:Name="lstOperations" PreviewMouseLeftButtonUp="lstOperations_PreviewMouseLeftButtonUp" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}" Grid.ColumnSpan="1" Grid.RowSpan="2">
                             <ListBox.ItemTemplate>
@@ -132,7 +127,7 @@
                         <Label Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Status</Label>
                         <Label Grid.Column="5" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Notes:</Label>
                         <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Attached Files</Label>
-                        <TextBlock Background="White" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="5"/>
+                        <TextBlock Background="White" MaxWidth="300" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="5"/>
                         <ListBox x:Name="lstAttachedFiles" PreviewMouseLeftButtonUp="lstAttachedFiles_PreviewMouseLeftButtonUp" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding AttachedFileList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>

@@ -55,13 +55,6 @@ namespace IPM_Job_Manager_net
             set { _operationList = value; }
         }
 
-        private ObservableCollection<int> _operationTimes = new ObservableCollection<int>();
-        public ObservableCollection<int> OperationTimes
-        {
-            get { return _operationTimes; }
-            set { _operationTimes = value; }
-        }
-
         private ObservableCollection<string> _assignedEmployeeList = new ObservableCollection<string>();
         public ObservableCollection<string> AssignedEmployeeList
         {
@@ -552,7 +545,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
-                    OperationTimes.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
             txtNotes.Text = "";
@@ -575,7 +568,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
-                    OperationTimes.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -630,7 +623,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
-                    OperationTimes.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -648,9 +641,46 @@ namespace IPM_Job_Manager_net
                 AssignedEmployeeList.Add(value);
             }
 
-            foreach (int value in SelectedTimes.Values)
+            foreach (KeyValuePair<string, int> kvp in SelectedTimes)
             {
-                OperationTimes.Add(value);
+                if (kvp.Value > 0)
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+
+                    if (kvp.Value >= 60)
+                    {
+                        minutes = kvp.Value / 60;
+                        seconds += kvp.Value % 60;
+                    }
+                    else seconds = kvp.Value;
+
+                    if (minutes >= 60)
+                    {
+                        hours = (minutes / 60) - (minutes % 60);
+                        minutes += minutes % 60;
+                    }
+                    if (minutes % 60 == 0)
+                    {
+                        hours += minutes / 60;
+                    }
+
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
+                else
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
             }
 
             if (OperationList.Count > 0)
@@ -832,9 +862,11 @@ namespace IPM_Job_Manager_net
 
         private void btnEditOpTime_Click(object sender, RoutedEventArgs e)
         {
-            string TargetOperation = SelectedOperation.ToString();
+            TextBlock TargetTime = lstOperationTimes.SelectedItem as TextBlock;
             Job SelectedJob = LastSelectedJob as Job;
-
+            Window OpTimeWin = new OpTimeWindow(SelectedJob, TargetTime);
+            OpTimeWin.Owner = this;
+            OpTimeWin.ShowDialog();
         }
 
         private void lstAssignedJobs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -852,7 +884,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
-                    OperationTimes.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -924,9 +956,46 @@ namespace IPM_Job_Manager_net
                 AssignedEmployeeList.Add(value);
             }
 
-            foreach (int value in SelectedTimes.Values)
+            foreach (KeyValuePair<string, int> kvp in SelectedTimes)
             {
-                OperationTimes.Add(value);
+                if (kvp.Value > 0)
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+
+                    if (kvp.Value >= 60)
+                    {
+                        minutes = kvp.Value / 60;
+                        seconds += kvp.Value % 60;
+                    }
+                    else seconds = kvp.Value;
+
+                    if (minutes >= 60)
+                    {
+                        hours = (minutes / 60) - (minutes % 60);
+                        minutes += minutes % 60;
+                    }
+                    if (minutes % 60 == 0)
+                    {
+                        hours += minutes / 60;
+                    }
+
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
+                else
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
             }
 
             if (OperationList.Count > 0)
@@ -955,7 +1024,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
-                    OperationTimes.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 

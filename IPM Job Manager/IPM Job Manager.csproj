@@ -127,6 +127,9 @@
     <Compile Include="OperationsWindow.xaml.cs">
       <DependentUpon>OperationsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OpTimeWindow.xaml.cs">
+      <DependentUpon>OpTimeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="User.cs" />
     <Page Include="AdminWindow.xaml">
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OperationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpTimeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
