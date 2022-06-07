@@ -324,6 +324,50 @@ namespace IPM_Job_Manager_net
 
         }
 
+        public void CalculateOpTime(Dictionary<string, int> times)
+        {
+            foreach (KeyValuePair<string, int> kvp in times)
+            {
+                if (kvp.Value > 0)
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+
+                    if (kvp.Value >= 60)
+                    {
+                        minutes = kvp.Value / 60;
+                        seconds += kvp.Value % 60;
+                    }
+                    else seconds = kvp.Value;
+
+                    if (minutes >= 60)
+                    {
+                        hours = (minutes / 60);
+                    }
+                    if (hours > 0)
+                    {
+                        minutes -= hours * 60;
+                    }
+
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
+                else
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
+            }
+        }
+
         public void WriteUserJson(Root users, string JsonPath)
         {
             JsonSerializer serializer = new JsonSerializer();
@@ -396,6 +440,7 @@ namespace IPM_Job_Manager_net
                     JobList[i].JobInfo.Add("CompletedOperations", CompletedOperations);
                     JobList[i].JobInfo.Add("Notes", "");
                     JobList[i].JobInfo.Add("Priority", 0);
+                    JobList[i].JobInfo.Add("EstTime", "");
                     JobList[i].JobInfo.Add("AttachedFiles", AttachedFileList);
                     JobList[i].JobInfo.Add("OperationTime", OperationTime);
                     foreach (DataColumn column in dataTable.Columns)
@@ -641,47 +686,7 @@ namespace IPM_Job_Manager_net
                 AssignedEmployeeList.Add(value);
             }
 
-            foreach (KeyValuePair<string, int> kvp in SelectedTimes)
-            {
-                if (kvp.Value > 0)
-                {
-                    int hours = 0;
-                    int minutes = 0;
-                    int seconds = 0;
-
-                    if (kvp.Value >= 60)
-                    {
-                        minutes = kvp.Value / 60;
-                        seconds += kvp.Value % 60;
-                    }
-                    else seconds = kvp.Value;
-
-                    if (minutes >= 60)
-                    {
-                        hours = (minutes / 60) - (minutes % 60);
-                        minutes += minutes % 60;
-                    }
-                    if (minutes % 60 == 0)
-                    {
-                        hours += minutes / 60;
-                    }
-
-                    TextBlock Time = new TextBlock();
-                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
-                    Time.Tag = kvp.Key;
-                    lstOperationTimes.Items.Add(Time);
-                }
-                else
-                {
-                    int hours = 0;
-                    int minutes = 0;
-                    int seconds = 0;
-                    TextBlock Time = new TextBlock();
-                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
-                    Time.Tag = kvp.Key;
-                    lstOperationTimes.Items.Add(Time);
-                }
-            }
+            CalculateOpTime(SelectedTimes);
 
             if (OperationList.Count > 0)
             {
@@ -862,11 +867,20 @@ namespace IPM_Job_Manager_net
 
         private void btnEditOpTime_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock TargetTime = lstOperationTimes.SelectedItem as TextBlock;
-            Job SelectedJob = LastSelectedJob as Job;
-            Window OpTimeWin = new OpTimeWindow(SelectedJob, TargetTime);
-            OpTimeWin.Owner = this;
-            OpTimeWin.ShowDialog();
+            if (lstOperations.SelectedItem != null)
+            {
+                LastSelectedJob = lstAssignedJobs.SelectedItem;
+                if (LastSelectedJob == null) return;
+                TextBlock TargetTime = lstOperationTimes.SelectedItem as TextBlock;
+                Job SelectedJob = LastSelectedJob as Job;
+                Window OpTimeWin = new OpTimeWindow(SelectedJob, TargetTime);
+                OpTimeWin.Owner = this;
+                bool? DialogResult = OpTimeWin.ShowDialog();
+                if (DialogResult == true)
+                {
+                    RefreshWindow();
+                }
+            }
         }
 
         private void lstAssignedJobs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -956,47 +970,7 @@ namespace IPM_Job_Manager_net
                 AssignedEmployeeList.Add(value);
             }
 
-            foreach (KeyValuePair<string, int> kvp in SelectedTimes)
-            {
-                if (kvp.Value > 0)
-                {
-                    int hours = 0;
-                    int minutes = 0;
-                    int seconds = 0;
-
-                    if (kvp.Value >= 60)
-                    {
-                        minutes = kvp.Value / 60;
-                        seconds += kvp.Value % 60;
-                    }
-                    else seconds = kvp.Value;
-
-                    if (minutes >= 60)
-                    {
-                        hours = (minutes / 60) - (minutes % 60);
-                        minutes += minutes % 60;
-                    }
-                    if (minutes % 60 == 0)
-                    {
-                        hours += minutes / 60;
-                    }
-
-                    TextBlock Time = new TextBlock();
-                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
-                    Time.Tag = kvp.Key;
-                    lstOperationTimes.Items.Add(Time);
-                }
-                else
-                {
-                    int hours = 0;
-                    int minutes = 0;
-                    int seconds = 0;
-                    TextBlock Time = new TextBlock();
-                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
-                    Time.Tag = kvp.Key;
-                    lstOperationTimes.Items.Add(Time);
-                }
-            }
+            CalculateOpTime(SelectedTimes);
 
             if (OperationList.Count > 0)
             {

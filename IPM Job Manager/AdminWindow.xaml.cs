@@ -54,13 +54,6 @@ namespace IPM_Job_Manager_net
             set { _completedOperations = value; }
         }
 
-        private Dictionary<string, int> _operationTime = new Dictionary<string, int>();
-        public Dictionary<string, int> OperationTime
-        {
-            get { return _operationTime; }
-            set { _operationTime = value; }
-        }
-
         private ObservableCollection<Job> _CompletedJobs = new ObservableCollection<Job>();
         public ObservableCollection<Job> CompletedJobs
         {
@@ -101,6 +94,13 @@ namespace IPM_Job_Manager_net
         {
             get { return _selectedOperations; }
             set { _selectedOperations = value; }
+        }
+
+        private Dictionary<string, int> _selectedTimes = new Dictionary<string, int>();
+        public Dictionary<string, int> SelectedTimes
+        {
+            get { return _selectedTimes; }
+            set { _selectedTimes = value; }
         }
 
         private ObservableCollection<Job> _jobNotes = new ObservableCollection<Job>();
@@ -185,6 +185,50 @@ namespace IPM_Job_Manager_net
             }
         }
 
+        public void CalculateOpTime(Dictionary<string, int> times)
+        {
+            foreach (KeyValuePair<string, int> kvp in times)
+            {
+                if (kvp.Value > 0)
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+
+                    if (kvp.Value >= 60)
+                    {
+                        minutes = kvp.Value / 60;
+                        seconds += kvp.Value % 60;
+                    }
+                    else seconds = kvp.Value;
+
+                    if (minutes >= 60)
+                    {
+                        hours = (minutes / 60);
+                    }
+                    if (hours > 0)
+                    {
+                        minutes -= hours * 60;
+                    }
+
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
+                else
+                {
+                    int hours = 0;
+                    int minutes = 0;
+                    int seconds = 0;
+                    TextBlock Time = new TextBlock();
+                    Time.Text = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+                    Time.Tag = kvp.Key;
+                    lstOperationTimes.Items.Add(Time);
+                }
+            }
+        }
+
         public void RefreshWindow(ListView list)
         {
             AssignedJobList.Clear();
@@ -204,6 +248,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -246,6 +291,8 @@ namespace IPM_Job_Manager_net
             }
             LastSelectedJob = list.SelectedItem;
 
+            CalculateTime();
+
             if (LastSelectedJob == null) { return; }
 
             if (SelectedOperations != null)
@@ -255,10 +302,12 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
@@ -276,6 +325,8 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
+
+            CalculateOpTime(SelectedTimes);
         }
 
         public void AssignJob(User employee, int jobIndex)
@@ -494,9 +545,47 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
             txtNotes.Text = "";
+        }
+
+        public void CalculateTime()
+        {
+            foreach (Job job in CurEmployeeJobs)
+            {
+                int totalTime = 0;
+                int hours = 0;
+                int minutes = 0;
+                int seconds = 0;
+                SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>(job.JobInfo["OperationTime"].ToString());
+
+                foreach (int value in SelectedTimes.Values)
+                {
+                    totalTime += value;
+                }
+                if (totalTime > 0)
+                {
+                    totalTime *= int.Parse(job.JobInfo["QTY Due"]);
+                    if (totalTime >= 60)
+                    {
+                        minutes = totalTime / 60;
+                        seconds += totalTime % 60;
+                    }
+                    else seconds = totalTime;
+
+                    if (minutes >= 60)
+                    {
+                        hours = (minutes / 60);
+                    }
+                    if (hours > 0)
+                    {
+                        minutes -= hours * 60;
+                    }
+                }
+                job.JobInfo["EstTime"] = $"Hrs: {hours} | Mins: {minutes} | Secs: {seconds}";
+            }
         }
 
         public void WriteFileToNotes(Job ChangedJob)
@@ -608,6 +697,7 @@ namespace IPM_Job_Manager_net
                 }
             }
             CountJobs();
+            CalculateTime();
         }
 
         private void btnViewJob_Click(object sender, RoutedEventArgs e)
@@ -702,6 +792,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -756,6 +847,7 @@ namespace IPM_Job_Manager_net
                             LastSelectedJob = orderedJob;
                         }
                     }
+                    CalculateTime();
                     if (LastSelectedJob != null)
                     {
                         foreach (object item in lstAssignedJobs.Items)
@@ -812,6 +904,7 @@ namespace IPM_Job_Manager_net
                             LastSelectedJob = orderedJob;
                         }
                     }
+                    CalculateTime();
                     if (LastSelectedJob != null)
                     {
                         foreach (object item in lstAssignedJobs.Items)
@@ -1179,6 +1272,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -1206,7 +1300,7 @@ namespace IPM_Job_Manager_net
 
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
-            OperationTime = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
+            SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
 
             try
             {
@@ -1259,6 +1353,7 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
+            CalculateOpTime(SelectedTimes);
             txtNotes.Text = (LastSelectedJob as Job).JobInfo["Notes"].ToString();
         }
 
@@ -1276,6 +1371,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -1303,6 +1399,7 @@ namespace IPM_Job_Manager_net
 
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
+            SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
 
             try
             {
@@ -1352,6 +1449,7 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Add("");
                 }
             }
+            CalculateOpTime(SelectedTimes);
             txtNotes.Text = (LastSelectedJob as Job).JobInfo["Notes"].ToString();
         }
 
@@ -1376,6 +1474,7 @@ namespace IPM_Job_Manager_net
                     SelectedOperations.Clear();
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
+                    lstOperationTimes.Items.Clear();
                 }
             }
 
@@ -1426,6 +1525,7 @@ namespace IPM_Job_Manager_net
             {
                 CurEmployeeJobs.Add(sortedjob);
             }
+            CalculateTime();
             if (lstJobs.SelectedItem != null)
             {
                 LastSelectedJob = lstJobs.SelectedItem;
