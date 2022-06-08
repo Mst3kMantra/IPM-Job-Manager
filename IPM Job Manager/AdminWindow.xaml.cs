@@ -1461,7 +1461,7 @@ namespace IPM_Job_Manager_net
         private void lstUsers_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             LastSelectedUser = lstUsers.SelectedItem;
-
+            if (LastSelectedUser == null) return;
             if (CurEmployeeJobs.Count > 0)
             {
                 CurEmployeeJobs.Clear();

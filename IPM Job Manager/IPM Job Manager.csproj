@@ -130,6 +130,9 @@
     <Compile Include="OpTimeWindow.xaml.cs">
       <DependentUpon>OpTimeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuantityWindow.xaml.cs">
+      <DependentUpon>QuantityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="User.cs" />
     <Page Include="AdminWindow.xaml">
@@ -180,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OpTimeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuantityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -104,7 +104,12 @@ namespace IPM_Job_Manager_net
             set { _attachedFileList = value; }
         }
 
-        public Root JsonUserList;
+        private Root _jsonUserList = new Root();
+        public Root JsonUserList
+        {
+            get { return _jsonUserList; }
+            set { _jsonUserList = value; }
+        }
 
         public const int MaxPriority = 20;
 
@@ -713,7 +718,7 @@ namespace IPM_Job_Manager_net
             }
         }
 
-        private void ButtonAdminLogin_Click(object sender, RoutedEventArgs e)
+        private void btnAdminLogin_Click(object sender, RoutedEventArgs e)
         {
             var AdminWin = new AdminWindow();
             var LoginWin = new Login(this, JsonUserList, AdminWin);
@@ -991,6 +996,7 @@ namespace IPM_Job_Manager_net
         {
             LastSelectedUser = lstUsers.SelectedItem;
 
+            if (LastSelectedUser == null) return;
             if (SelectedOperations != null)
             {
                 if (SelectedOperations.Count > 0)
@@ -1059,6 +1065,55 @@ namespace IPM_Job_Manager_net
         private void lstOperations_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             SelectedOperation = lstOperations.SelectedItem;
+        }
+
+        private void btnClockIn_Click(object sender, RoutedEventArgs e)
+        {
+            User SelectedUser = lstUsers.SelectedItem as User;
+            Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
+            if (SelectedUser != null && SelectedJob != null)
+            {
+                foreach (User user in JsonUserList.Users)
+                {
+                    if (user.Username == SelectedUser.Username)
+                    {
+                        user.ClockedInJob = SelectedJob;
+                        user.isPunchedIn = true;
+                        user.ClockInTime = DateTime.Now;
+                        WriteUserJson(JsonUserList, UserListPath);
+                        return;
+                    } 
+                }
+            }
+            
+        }
+
+        private void btnClockOut_Click(object sender, RoutedEventArgs e)
+        {
+            User SelectedUser = lstUsers.SelectedItem as User;
+            Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
+            if (SelectedUser != null && SelectedJob != null)
+            {
+                foreach (User user in JsonUserList.Users)
+                {
+                    if (user.Username == SelectedUser.Username)
+                    {
+                        user.ClockedInJob = null;
+                        user.isPunchedIn = false;
+                        user.ClockOutTime = DateTime.Now;
+
+                        WriteUserJson(JsonUserList, UserListPath);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void CalculateClock(User user)
+        {
+            TimeSpan TotalTime = new TimeSpan();
+            TotalTime = user.ClockInTime - user.ClockOutTime;
+
         }
     }
 }

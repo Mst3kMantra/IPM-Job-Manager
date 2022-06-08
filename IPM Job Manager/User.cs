@@ -31,6 +31,12 @@ namespace IPM_Job_Manager_net
 
         public byte[] Salt { get; set; }
 
+        public bool isPunchedIn { get; set; }
+
+        public DateTime ClockInTime { get; set; }
+        public DateTime ClockOutTime { get; set; }
+        public Job ClockedInJob { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

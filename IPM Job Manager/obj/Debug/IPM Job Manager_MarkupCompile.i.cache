@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\wstev\OneDrive\Documents\GitHub\IPM-Job-Manager\IPM Job Manager\App.xaml
-10717110246
+11-727316181
 
-18-77803324
+19-1029086317
 201727995564
-AdminWindow.xaml;CompletedJobsWindow.xaml;JobDetailsWindow.xaml;Login.xaml;MainWindow.xaml;NewJobWindow.xaml;NewUserWindow.xaml;NotesWindow.xaml;OperationsWindow.xaml;OpTimeWindow.xaml;
+AdminWindow.xaml;CompletedJobsWindow.xaml;JobDetailsWindow.xaml;Login.xaml;MainWindow.xaml;NewJobWindow.xaml;NewUserWindow.xaml;NotesWindow.xaml;OperationsWindow.xaml;OpTimeWindow.xaml;QuantityWindow.xaml;
 
 True
 
