@@ -156,8 +156,6 @@ namespace IPM_Job_Manager_net
             this.SizeChanged += new SizeChangedEventHandler(SaveWindowSize);
             Left = Properties.Settings.Default.SavedLeft;
             Top = Properties.Settings.Default.SavedTop;
-            Height = Properties.Settings.Default.SavedHeight;
-            Width = Properties.Settings.Default.SavedWidth;
             this.DataContext = this;
             try
             {
@@ -244,6 +242,13 @@ namespace IPM_Job_Manager_net
                     adminWindow.JobList.Clear();
                     adminWindow.AssignedJobList.Clear();
                     adminWindow.JobNotes.Clear();
+                    adminWindow.UserList.Clear();
+                    JsonUserList.Users.Clear();
+                    JsonUserList = ReadUserJson(UserListPath);
+                    foreach (User user in JsonUserList.Users)
+                    {
+                        adminWindow.UserList.Add(user);
+                    }
                     foreach (Job job1 in JobList)
                     {
                         adminWindow.JobList.Add(job1);
@@ -870,24 +875,6 @@ namespace IPM_Job_Manager_net
             }
         }
 
-        private void btnEditOpTime_Click(object sender, RoutedEventArgs e)
-        {
-            if (lstOperations.SelectedItem != null)
-            {
-                LastSelectedJob = lstAssignedJobs.SelectedItem;
-                if (LastSelectedJob == null) return;
-                TextBlock TargetTime = lstOperationTimes.SelectedItem as TextBlock;
-                Job SelectedJob = LastSelectedJob as Job;
-                Window OpTimeWin = new OpTimeWindow(SelectedJob, TargetTime);
-                OpTimeWin.Owner = this;
-                bool? DialogResult = OpTimeWin.ShowDialog();
-                if (DialogResult == true)
-                {
-                    RefreshWindow();
-                }
-            }
-        }
-
         private void lstAssignedJobs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
@@ -1071,7 +1058,8 @@ namespace IPM_Job_Manager_net
         {
             User SelectedUser = lstUsers.SelectedItem as User;
             Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
-            if (SelectedUser != null && SelectedJob != null)
+            SelectedOperation = lstOperations.SelectedItem;
+            if (SelectedUser != null && SelectedJob != null && SelectedOperation != null)
             {
                 foreach (User user in JsonUserList.Users)
                 {
@@ -1080,18 +1068,32 @@ namespace IPM_Job_Manager_net
                         user.ClockedInJob = SelectedJob;
                         user.isPunchedIn = true;
                         user.ClockInTime = DateTime.Now;
+                        user.TrackedOperation = SelectedOperation.ToString();
                         WriteUserJson(JsonUserList, UserListPath);
                         return;
                     } 
                 }
             }
-            
+            else if (SelectedJob == null)
+            {
+                MessageBox.Show("Clock in error, please select a job to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (SelectedUser == null)
+            {
+                MessageBox.Show("Clock in error, please select a employee to clock in as.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (SelectedOperation == null)
+            {
+                MessageBox.Show("Clock in error, please select a operation to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnClockOut_Click(object sender, RoutedEventArgs e)
         {
             User SelectedUser = lstUsers.SelectedItem as User;
             Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
+            int PartsDone;
+            int CycleTime;
             if (SelectedUser != null && SelectedJob != null)
             {
                 foreach (User user in JsonUserList.Users)
@@ -1101,18 +1103,45 @@ namespace IPM_Job_Manager_net
                         user.ClockedInJob = null;
                         user.isPunchedIn = false;
                         user.ClockOutTime = DateTime.Now;
-
-                        WriteUserJson(JsonUserList, UserListPath);
+                        QuantityWindow QuantityWin = new QuantityWindow();
+                        QuantityWin.Owner = this;
+                        bool? DialogResult = QuantityWin.ShowDialog();
+                        if (DialogResult == true)
+                        {
+                            PartsDone = QuantityWin.PartsFinished;
+                            CycleTime = CalculateClock(user, PartsDone);
+                            foreach (Job job in AssignedJobList)
+                            {
+                                if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                                {
+                                    job.JobInfo["OperationTime"][user.TrackedOperation] = CycleTime;
+                                    break;
+                                }
+                            }
+                            user.TrackedOperation = null;
+                            user.isPunchedIn = false;
+                            WriteUserJson(JsonUserList, UserListPath);
+                            WriteJobsJson(AssignedJobList, AssignedJobListPath);
+                            RefreshWindow();
+                        }
                         break;
                     }
                 }
             }
         }
 
-        public void CalculateClock(User user)
+        public int CalculateClock(User user, int parts)
         {
             TimeSpan TotalTime = new TimeSpan();
-            TotalTime = user.ClockInTime - user.ClockOutTime;
+            TotalTime = user.ClockOutTime - user.ClockInTime;
+            double TotalSeconds = TotalTime.TotalSeconds;
+            double CycleTime = TotalSeconds / parts;
+            Math.Round(CycleTime, 0, MidpointRounding.AwayFromZero);
+            return (int)CycleTime;
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

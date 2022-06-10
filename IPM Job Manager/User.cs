@@ -35,7 +35,22 @@ namespace IPM_Job_Manager_net
 
         public DateTime ClockInTime { get; set; }
         public DateTime ClockOutTime { get; set; }
-        public Job ClockedInJob { get; set; }
+
+        public string TrackedOperation { get; set; }
+
+        private Job _clockedInJob = new Job();
+        public Job ClockedInJob
+        {
+            get { return _clockedInJob; }
+            set
+            {
+                if (value != _clockedInJob)
+                {
+                    this._clockedInJob = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

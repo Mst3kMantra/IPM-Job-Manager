@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="QuantityWindow" Height="160" Width="250"
+        Title="QuantityWindow" Height="200" Width="250"
         WindowStartupLocation="CenterOwner">
 
     <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
@@ -31,7 +31,7 @@
 
             <Label Grid.Column="0" Margin="0,30,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Parts Finished</Label>
 
-            <TextBox x:Name="txtParts"  Grid.Row="1" Width="50"></TextBox>
+            <TextBox x:Name="txtParts" Focusable="True" Grid.Row="1" Width="50"></TextBox>
             <Button Grid.Row="2" IsDefault="True" Grid.Column="1" MaxWidth="80" Height="30" Margin="0,13,0,-13" x:Name="btnSave" Click="btnSave_Click">Save</Button>
         </Grid>
     </Border>

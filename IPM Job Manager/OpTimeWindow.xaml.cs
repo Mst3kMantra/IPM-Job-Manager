@@ -112,7 +112,6 @@ namespace IPM_Job_Manager_net
                 MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
                 WriteToNotes(AssignedJobList[JobIndex]);
                 DialogResult = true;
-                //Add jobnotes writing also.
             }
         }
     }

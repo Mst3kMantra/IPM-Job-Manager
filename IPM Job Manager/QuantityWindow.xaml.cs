@@ -19,9 +19,20 @@ namespace IPM_Job_Manager_net
     /// </summary>
     public partial class QuantityWindow : Window
     {
+        public int PartsFinished;
         public QuantityWindow()
         {
             InitializeComponent();
+            txtParts.Focus();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtParts.Text) && txtParts.Text.All(c => char.IsDigit(c)))
+            {
+                PartsFinished = int.Parse(txtParts.Text, System.Globalization.NumberStyles.AllowLeadingWhite | System.Globalization.NumberStyles.AllowTrailingWhite);
+                DialogResult = true;
+            }
         }
     }
 }

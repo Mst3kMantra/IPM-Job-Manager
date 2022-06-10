@@ -25,5 +25,26 @@
     <Setting Name="SavedUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="isUsingDatabase" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UsersFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"Users.json"</Value>
+    </Setting>
+    <Setting Name="JobListFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"job_list.json"</Value>
+    </Setting>
+    <Setting Name="AssignedJoblistFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"assigned_job_list.json"</Value>
+    </Setting>
+    <Setting Name="JobNotesFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"job_notes.json"</Value>
+    </Setting>
+    <Setting Name="DataFileDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FirstTimeSetupDone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">false</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

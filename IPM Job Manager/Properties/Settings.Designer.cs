@@ -93,5 +93,89 @@ namespace IPM_Job_Manager_net.Properties {
                 this["SavedUsername"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isUsingDatabase {
+            get {
+                return ((bool)(this["isUsingDatabase"]));
+            }
+            set {
+                this["isUsingDatabase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"Users.json\"")]
+        public string UsersFile {
+            get {
+                return ((string)(this["UsersFile"]));
+            }
+            set {
+                this["UsersFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"job_list.json\"")]
+        public string JobListFile {
+            get {
+                return ((string)(this["JobListFile"]));
+            }
+            set {
+                this["JobListFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"assigned_job_list.json\"")]
+        public string AssignedJoblistFile {
+            get {
+                return ((string)(this["AssignedJoblistFile"]));
+            }
+            set {
+                this["AssignedJoblistFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"job_notes.json\"")]
+        public string JobNotesFile {
+            get {
+                return ((string)(this["JobNotesFile"]));
+            }
+            set {
+                this["JobNotesFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DataFileDirectory {
+            get {
+                return ((string)(this["DataFileDirectory"]));
+            }
+            set {
+                this["DataFileDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("false")]
+        public string FirstTimeSetupDone {
+            get {
+                return ((string)(this["FirstTimeSetupDone"]));
+            }
+            set {
+                this["FirstTimeSetupDone"] = value;
+            }
+        }
     }
 }

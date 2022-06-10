@@ -59,11 +59,17 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
+                            <GridViewColumn Header="Clocked In Job" Width="auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{Binding Path=ClockedInJob.JobInfo[JobNo]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <StackPanel>
-                    <Button x:Name="btnNewJob" Margin="0,5,0,0" Click="btnNewJob_Click">New Job</Button>
+                <StackPanel MaxWidth="150">
                     <Button x:Name="btnAssign" Margin="0,5,0,0" Click="btnAssignJob_Click">Assign Job</Button>
                     <Button x:Name="btnRemove" Margin="0,5,0,0" Click="btnRemoveJob_Click">Remove Job</Button>
                     <Button x:Name="btnAddPrio" Margin="0,5,0,0" Click="btnAddPrio_Click">Increase Priority</Button>

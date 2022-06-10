@@ -173,12 +173,12 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel MaxWidth="150">
-                    <Button x:Name="btnEditOpTime" Margin="0,5,0,0" Click="btnEditOpTime_Click">Edit Operation Time</Button>
                     <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
                     <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
                     <Button x:Name="btnClockIn" Margin="0,5,0,0" Click="btnClockIn_Click">Clock In</Button>
                     <Button x:Name="btnClockOut" Margin="0,5,0,0" Click="btnClockOut_Click">Clock Out</Button>
                     <Button x:Name="btnAdmin" Margin="0,5,0,0" Click="btnAdminLogin_Click">Admin Login</Button>
+                    <Button x:Name="btnSettings" Margin="0,5,0,0" Click="btnSettings_Click">Settings</Button>
                 </StackPanel>
             </StackPanel>
 
