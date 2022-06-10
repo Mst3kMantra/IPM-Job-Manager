@@ -25,7 +25,7 @@
     <Setting Name="SavedUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="isUsingDatabase" Type="System.Boolean" Scope="User">
+    <Setting Name="isInDemoMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="UsersFile" Type="System.String" Scope="User">
@@ -43,8 +43,8 @@
     <Setting Name="DataFileDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="FirstTimeSetupDone" Type="System.String" Scope="User">
-      <Value Profile="(Default)">false</Value>
+    <Setting Name="isFirstTimeSetupDone" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -97,12 +97,12 @@ namespace IPM_Job_Manager_net.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool isUsingDatabase {
+        public bool isInDemoMode {
             get {
-                return ((bool)(this["isUsingDatabase"]));
+                return ((bool)(this["isInDemoMode"]));
             }
             set {
-                this["isUsingDatabase"] = value;
+                this["isInDemoMode"] = value;
             }
         }
         
@@ -168,13 +168,13 @@ namespace IPM_Job_Manager_net.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("false")]
-        public string FirstTimeSetupDone {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isFirstTimeSetupDone {
             get {
-                return ((string)(this["FirstTimeSetupDone"]));
+                return ((bool)(this["isFirstTimeSetupDone"]));
             }
             set {
-                this["FirstTimeSetupDone"] = value;
+                this["isFirstTimeSetupDone"] = value;
             }
         }
     }

@@ -128,11 +128,11 @@ namespace IPM_Job_Manager_net
 
         public Timer RefreshTimer;
 
-        public string AssignedJobListPath = @"I:\Program Files\IPM Job Manager\Data Files\assigned_job_list.json";
-        public string JobListPath = @"I:\Program Files\IPM Job Manager\Data Files\job_list.json";
-        public string UserListPath = @"I:\Program Files\IPM Job Manager\Data Files\Users.json";
-        public string JobNotesPath = @"I:\Program Files\IPM Job Manager\Data Files\job_notes.json";
-        public string CompletedJobsPath = @"I:\Program Files\IPM Job Manager\Data Files\completed_jobs.json";
+        public string AssignedJobListPath;
+        public string JobListPath;
+        public string UserListPath;
+        public string JobNotesPath;
+        public string CompletedJobsPath;
         public string QueryString = "SELECT * FROM [Job List]";
 
         #region DataSet, DataAdapter, DataTable
@@ -152,11 +152,28 @@ namespace IPM_Job_Manager_net
         public MainWindow()
         {
             InitializeComponent();
+            this.Show();
             this.LocationChanged += new EventHandler(SaveWindowPos);
             this.SizeChanged += new SizeChangedEventHandler(SaveWindowSize);
             Left = Properties.Settings.Default.SavedLeft;
             Top = Properties.Settings.Default.SavedTop;
             this.DataContext = this;
+            if (Properties.Settings.Default.isFirstTimeSetupDone != true)
+            {
+                FirstTimeSetupWindow SetupWin = new FirstTimeSetupWindow();
+                SetupWin.Owner = this;
+                bool? DialogResult = SetupWin.ShowDialog();
+                if (DialogResult == true)
+                {
+                    Properties.Settings.Default.isFirstTimeSetupDone = true;
+                    Properties.Settings.Default.Save();
+                }
+            }
+            AssignedJobListPath = Properties.Settings.Default.DataFileDirectory + @"\assigned_job_list.json";
+            JobListPath = Properties.Settings.Default.DataFileDirectory + @"\job_list.json";
+            UserListPath = Properties.Settings.Default.DataFileDirectory + @"\Users.json";
+            JobNotesPath = Properties.Settings.Default.DataFileDirectory + @"\job_notes.json";
+            CompletedJobsPath = Properties.Settings.Default.DataFileDirectory + @"\completed_jobs.json";
             try
             {
                 JsonUserList = ReadUserJson(UserListPath);
@@ -169,7 +186,10 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
-            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            if (Properties.Settings.Default.isInDemoMode != true)
+            {
+                GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            }
             try
             {
                 JobList = ReadJobsJson(JobListPath);
@@ -208,7 +228,10 @@ namespace IPM_Job_Manager_net
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             JobList.Clear();
-            GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            if (Properties.Settings.Default.isInDemoMode != true)
+            {
+                GetData(QueryString, global::IPM_Job_Manager_net.Properties.Settings.Default.open_workConnectionString);
+            }
             try
             {
                 JobList = ReadJobsJson(JobListPath);

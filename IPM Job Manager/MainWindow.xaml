@@ -172,7 +172,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <StackPanel MaxWidth="150">
+                <StackPanel Margin="0,10,0,0" MaxWidth="150">
                     <Button x:Name="btnEditNotes" Margin="0,5,0,0" Click="btnEditNotes_Click">Edit Notes</Button>
                     <Button x:Name="btnOpenFile" Margin="0,5,0,0" Click="btnOpenFile_Click">Open File</Button>
                     <Button x:Name="btnClockIn" Margin="0,5,0,0" Click="btnClockIn_Click">Clock In</Button>
