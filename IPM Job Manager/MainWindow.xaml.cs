@@ -174,6 +174,14 @@ namespace IPM_Job_Manager_net
             UserListPath = Properties.Settings.Default.DataFileDirectory + @"\Users.json";
             JobNotesPath = Properties.Settings.Default.DataFileDirectory + @"\job_notes.json";
             CompletedJobsPath = Properties.Settings.Default.DataFileDirectory + @"\completed_jobs.json";
+            if (!File.Exists(UserListPath))
+            {
+                User admin = new User();
+                admin.IsAdmin = true;
+                admin.Username = "admin";
+                JsonUserList.Users.Add(admin);
+                WriteUserJson(JsonUserList, UserListPath);
+            }
             try
             {
                 JsonUserList = ReadUserJson(UserListPath);
@@ -185,6 +193,18 @@ namespace IPM_Job_Manager_net
             catch (FileNotFoundException)
             {
                 return;
+            }
+            if (!File.Exists(AssignedJobListPath))
+            {
+                WriteJobsJson(AssignedJobList, AssignedJobListPath);
+            }
+            if (!File.Exists(JobListPath))
+            {
+                WriteJobsJson(JobList, JobListPath);
+            }
+            if (!File.Exists(JobNotesPath))
+            {
+                WriteJobsJson(JobNotes, JobNotesPath);
             }
             if (Properties.Settings.Default.isInDemoMode != true)
             {
