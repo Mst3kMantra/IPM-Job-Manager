@@ -184,6 +184,11 @@ namespace IPM_Job_Manager_net
                     MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
                     WriteToNotes(AssignedJobList[JobIndex]);
                     isDataChanged = true;
+                    if (lstOperations.Items.Count > 0)
+                    {
+                        lstOperations.SelectedItem = lstOperations.Items[lstOperations.Items.Count - 1];
+                        SelectedOperation = lstOperations.SelectedItem;
+                    }
                 }
                 else return;
             }
@@ -194,21 +199,43 @@ namespace IPM_Job_Manager_net
         {
             if (SelectedOperation != null)
             {
-                AssignedJobList[JobIndex].JobInfo["Operations"].Remove(SelectedOperation.ToString());
-                if (AssignedJobList[JobIndex].JobInfo["CompletedOperations"].ContainsKey(SelectedOperation.ToString()))
+                try
                 {
-                    AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Remove(SelectedOperation.ToString());
+                    AssignedJobList[JobIndex].JobInfo["Operations"].Remove(SelectedOperation.ToString());
+                    if (AssignedJobList[JobIndex].JobInfo["CompletedOperations"].ContainsKey(SelectedOperation.ToString()))
+                    {
+                        AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Remove(SelectedOperation.ToString());
+                    }
+                    foreach (Job job in JobNotes)
+                    {
+                        if (job.JobInfo["PartNo"] == AssignedJobList[JobIndex].JobInfo["PartNo"])
+                        {
+                            if (job.JobInfo["OperationTime"].ContainsKey(SelectedOperation.ToString()))
+                            {
+                                job.JobInfo["OperationTime"].Remove(SelectedOperation.ToString());
+                            }
+                        }
+                    }
+                    if (AssignedJobList[JobIndex].JobInfo["OperationTime"].ContainsKey(SelectedOperation.ToString()))
+                    {
+                        AssignedJobList[JobIndex].JobInfo["OperationTime"].Remove(SelectedOperation.ToString());
+                    }
+                    int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
+                    OperationList.Remove(SelectedOperation.ToString());
+                    AssignedEmployeeList.RemoveAt(OpIndex);
+                    MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
+                    WriteToNotes(AssignedJobList[JobIndex]);
+                    isDataChanged = true;
+                    if (lstOperations.Items.Count > 0)
+                    {
+                        lstOperations.SelectedItem = lstOperations.Items[lstOperations.Items.Count - 1];
+                        SelectedOperation = lstOperations.SelectedItem;
+                    }
                 }
-                if (AssignedJobList[JobIndex].JobInfo["OperationTime"].ContainsKey(SelectedOperation.ToString()))
+                catch (System.ArgumentOutOfRangeException)
                 {
-                    AssignedJobList[JobIndex].JobInfo["OperationTime"].Remove(SelectedOperation.ToString());
+                    return;
                 }
-                int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
-                OperationList.Remove(SelectedOperation.ToString());
-                AssignedEmployeeList.RemoveAt(OpIndex);
-                MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
-                WriteToNotes(AssignedJobList[JobIndex]);
-                isDataChanged=true;
             }
             else MessageBox.Show("No operation selected from list.", "Remove Operation Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }

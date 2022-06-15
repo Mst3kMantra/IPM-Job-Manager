@@ -235,6 +235,7 @@ namespace IPM_Job_Manager_net
             AssignedJobList = MainWin.ReadJobsJson(MainWin.AssignedJobListPath);
             LastSelectedUser = lstUsers.SelectedItem;
             int LastJobIndex = list.SelectedIndex;
+            isAddingBoxes = true;
 
             if (CurEmployeeJobs.Count > 0)
             {
@@ -306,8 +307,50 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (lstStatus != null)
+            {
+                if (lstStatus.Items.Count > 0)
+                {
+                    lstStatus.Items.Clear();
+                }
+            }
+
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
             SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
+            CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
+
+            try
+            {
+                foreach (string key in CompletedOperations.Keys)
+                {
+                    foreach (KeyValuePair<string, string> kvp in SelectedOperations)
+                    {
+                        if (kvp.Key == key)
+                        {
+                            CheckBox OpCheck = new CheckBox
+                            {
+                                Tag = key,
+                                Content = "Complete",
+                                Name = SelectedOperations[key].Replace(" ", ""),
+                            };
+                            OpCheck.Checked += new RoutedEventHandler(HandleOpChecked);
+                            OpCheck.Unchecked += new RoutedEventHandler(HandleOpUnchecked);
+                            if (CompletedOperations[key] == true)
+                            {
+                                OpCheck.IsChecked = true;
+                            }
+                            lstStatus.Items.Add(OpCheck);
+                        }
+                    }
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                return;
+            }
+
+            isAddingBoxes = false;
+
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
@@ -636,6 +679,7 @@ namespace IPM_Job_Manager_net
 
         private void btnAssignJob_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             User SelectedUser = LastSelectedUser as User;
             Job SelectedJob = LastSelectedJob as Job;
             int JobIndex;
@@ -698,10 +742,12 @@ namespace IPM_Job_Manager_net
             }
             CountJobs();
             CalculateTime();
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnViewJob_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             Job SelectedJob = LastSelectedJob as Job;
 
             if (SelectedJob == null)
@@ -723,10 +769,12 @@ namespace IPM_Job_Manager_net
             Window JobDetails = new JobDetailsWindow(SelectedJob);
             JobDetails.Owner = this;
             JobDetails.Show();
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnRemoveJob_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             User SelectedUser = LastSelectedUser as User;
             Job SelectedJob = LastSelectedJob as Job;
             bool isUserNotInList = true;
@@ -804,10 +852,12 @@ namespace IPM_Job_Manager_net
                 }
             }
             txtNotes.Text = "";
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnAddPrio_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             Job SelectedJob = LastSelectedJob as Job;
             if (SelectedJob != null)
             {
@@ -861,10 +911,12 @@ namespace IPM_Job_Manager_net
                     }
                 }
             }
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnLowerPrio_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             Job SelectedJob = LastSelectedJob as Job;
             int CurJobIndex;
             int AssignedJobIndex;
@@ -918,6 +970,7 @@ namespace IPM_Job_Manager_net
                     }
                 }
             }
+            MainWin.RefreshTimer.Start();
         }
         
         private void AdminWindow_Closing(object sender, CancelEventArgs e)
@@ -939,13 +992,22 @@ namespace IPM_Job_Manager_net
         {
             if (LastSelectedJob != null)
             {
+                MainWin.RefreshTimer.Stop();
                 Window OpWin = new OperationsWindow(LastSelectedJob as Job);
                 OpWin.Owner = this;
                 bool? DialogResult = OpWin.ShowDialog();
                 if (DialogResult == true)
                 {
-                    RefreshWindow(lstAssignedJobs);
+                    try
+                    {
+                        RefreshWindow(lstAssignedJobs);
+                    }
+                    catch
+                    {
+                        return;
+                    }
                 }
+                MainWin.RefreshTimer.Start();
             }
         }
 
@@ -953,6 +1015,7 @@ namespace IPM_Job_Manager_net
         {
             if (LastSelectedJob != null)
             {
+                MainWin.RefreshTimer.Stop();
                 Window NotesWin = new NotesWindow(LastSelectedJob as Job);
                 NotesWin.Owner = this;
                 bool? DialogResult = NotesWin.ShowDialog();
@@ -960,18 +1023,22 @@ namespace IPM_Job_Manager_net
                 {
                     RefreshWindow(lstAssignedJobs);
                 }
+                MainWin.RefreshTimer.Start();
             }
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             Window NewUserWindow = new NewUserWindow();
             NewUserWindow.Owner = this;
             NewUserWindow.ShowDialog();
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnViewCompletedJobs_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             try
             {
                 Window CompleteJobsWindow = new CompletedJobsWindow();
@@ -983,10 +1050,12 @@ namespace IPM_Job_Manager_net
                 MessageBox.Show("No completed jobs to display.", "View Completed Jobs Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnAttachFile_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             if (LastSelectedJob != null)
             {
                 Job SelectedJob = LastSelectedJob as Job;
@@ -1027,11 +1096,13 @@ namespace IPM_Job_Manager_net
                     WriteFileToNotes(AssignedJobList[JobIndex]);
                 }
             }
+            MainWin.RefreshTimer.Start();
         }
 
 
         private void btnDetachFile_Click(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             if (SelectedFileName != null && LastSelectedJob != null)
             {
                 if (lstAttachedFiles.SelectedItems.Count == 1)
@@ -1122,10 +1193,12 @@ namespace IPM_Job_Manager_net
                     }
                 }
             }
+            MainWin.RefreshTimer.Start();
         }
 
         private void HandleOpChecked(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             if (isAddingBoxes == true) return;
             Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
             User LastSelectedUser = lstUsers.SelectedItem as User;
@@ -1221,10 +1294,12 @@ namespace IPM_Job_Manager_net
                     }
                 }
             }
+            MainWin.RefreshTimer.Start();
         }
 
         private void HandleOpUnchecked(object sender, RoutedEventArgs e)
         {
+            MainWin.RefreshTimer.Stop();
             LastSelectedJob = lstAssignedJobs.SelectedItem;
             CheckBox checkBox = sender as CheckBox;
             Job SelectedJob = LastSelectedJob as Job;
@@ -1242,6 +1317,7 @@ namespace IPM_Job_Manager_net
                     }
                 }
             }
+            MainWin.RefreshTimer.Start();
         }
 
         private void btnOpenFile_Click(object sender, RoutedEventArgs e)

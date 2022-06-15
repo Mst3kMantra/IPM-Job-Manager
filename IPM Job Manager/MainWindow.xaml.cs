@@ -267,11 +267,11 @@ namespace IPM_Job_Manager_net
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
             CompletedJobs.Clear();
             CompletedJobs = ReadJobsJson(CompletedJobsPath);
-            CountJobs();
             if (LastSelectedUser != null && LastSelectedJob != null)
             {
                 this.Dispatcher.Invoke(() => RefreshJobs());
             }
+            CountJobs();
             this.Dispatcher.Invoke(() => RefreshAdminJobs());
         }
 
@@ -304,6 +304,7 @@ namespace IPM_Job_Manager_net
                     {
                         adminWindow.AssignedJobList.Add(job3);
                     }
+                    adminWindow.CountJobs();
                 }
             }
         }
@@ -756,6 +757,7 @@ namespace IPM_Job_Manager_net
             Job LastSelectedJob = lstAssignedJobs.SelectedItem as Job;
             if (LastSelectedJob != null)
             {
+                RefreshTimer.Stop();
                 Window NotesWin = new NotesWindow(LastSelectedJob);
                 NotesWin.Owner = this;
                 bool? DialogResult = NotesWin.ShowDialog();
@@ -768,11 +770,13 @@ namespace IPM_Job_Manager_net
 
         private void btnAdminLogin_Click(object sender, RoutedEventArgs e)
         {
+            RefreshTimer.Stop();
             var AdminWin = new AdminWindow();
             var LoginWin = new Login(this, JsonUserList, AdminWin);
             AdminWin.Owner = this;
             LoginWin.Owner = this;
             LoginWin.ShowDialog();
+            RefreshTimer.Start();
         }
 
         private void HandleOpChecked(object sender, RoutedEventArgs e)
