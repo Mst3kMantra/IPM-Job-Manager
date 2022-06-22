@@ -372,6 +372,14 @@ namespace IPM_Job_Manager_net
             CalculateOpTime(SelectedTimes);
         }
 
+        public int CalculateDays(Job job)
+        {
+            TimeSpan DaysLeft = new TimeSpan();
+            DateTime CurrentDate = DateTime.Now;
+            DaysLeft = DateTime.Parse(job.JobInfo["DueDate"]) - CurrentDate;
+            return DaysLeft.Days;
+        }
+
         public void AssignJob(User employee, int jobIndex)
         {
 

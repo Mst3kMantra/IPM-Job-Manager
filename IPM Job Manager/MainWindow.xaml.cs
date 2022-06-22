@@ -152,12 +152,12 @@ namespace IPM_Job_Manager_net
         public MainWindow()
         {
             InitializeComponent();
-            this.Show();
             this.LocationChanged += new EventHandler(SaveWindowPos);
             this.SizeChanged += new SizeChangedEventHandler(SaveWindowSize);
             Left = Properties.Settings.Default.SavedLeft;
             Top = Properties.Settings.Default.SavedTop;
             this.DataContext = this;
+            this.Show();
             if (Properties.Settings.Default.isFirstTimeSetupDone != true)
             {
                 FirstTimeSetupWindow SetupWin = new FirstTimeSetupWindow();
@@ -493,6 +493,7 @@ namespace IPM_Job_Manager_net
                     JobList[i].JobInfo.Add("Operations", Operations);
                     JobList[i].JobInfo.Add("CompletedOperations", CompletedOperations);
                     JobList[i].JobInfo.Add("Notes", "");
+                    JobList[i].JobInfo.Add("EstDays", 0);
                     JobList[i].JobInfo.Add("Priority", 0);
                     JobList[i].JobInfo.Add("EstTime", "");
                     JobList[i].JobInfo.Add("AttachedFiles", AttachedFileList);
@@ -501,6 +502,7 @@ namespace IPM_Job_Manager_net
                     {
                         JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
                     }
+                    JobList[i].JobInfo["DueDate"] = DateTime.Parse(JobList[i].JobInfo["DueDate"]);
                 }
 
                 WriteJobsJson(JobList, JobListPath);
@@ -1185,6 +1187,14 @@ namespace IPM_Job_Manager_net
             double CycleTime = TotalSeconds / parts;
             Math.Round(CycleTime, 0, MidpointRounding.AwayFromZero);
             return (int)CycleTime;
+        }
+
+        public int CalculateDays(Job job)
+        {
+            TimeSpan DaysLeft = new TimeSpan();
+            DateTime CurrentDate = DateTime.Now;
+            DaysLeft = DateTime.Parse(job.JobInfo["DueDate"]) - CurrentDate;
+            return DaysLeft.Days;
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
