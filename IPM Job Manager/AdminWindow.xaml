@@ -37,7 +37,7 @@
             <Label Style="{StaticResource LabelTitle}" Grid.Column="2" Padding="10px" Margin="0,0,5,0">Jobs</Label>
             <Label Style="{StaticResource LabelTitle}" Grid.Column="3" Padding="10px" Margin="0,0,5,0">Assigned Jobs</Label>
             <StackPanel Grid.Column="4" Grid.Row="1">
-                <ListView x:Name="lstUsers" Grid.Column="4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" PreviewMouseLeftButtonUp="lstUsers_PreviewMouseLeftButtonUp" ItemsSource="{Binding UserList, Mode=OneWay}" VerticalAlignment="Top">
+                <ListView x:Name="lstUsers" Grid.Column="4" Grid.Row="1" PreviewMouseLeftButtonUp="lstUsers_PreviewMouseLeftButtonUp" ItemsSource="{Binding UserList, Mode=OneWay}" VerticalAlignment="Top">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -191,10 +191,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Est Time" Width="100">
+                            <GridViewColumn Header="Days Left" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[EstTime]}"/>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[EstDays]}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

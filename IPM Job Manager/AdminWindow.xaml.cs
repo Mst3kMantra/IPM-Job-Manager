@@ -160,6 +160,10 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+            foreach (Job job in AssignedJobList)
+            {
+                job.JobInfo["EstDays"] = CalculateDays(job);
+            }
             CountJobs();
             CompletedJobs = MainWin.CompletedJobs;
         }
@@ -376,7 +380,8 @@ namespace IPM_Job_Manager_net
         {
             TimeSpan DaysLeft = new TimeSpan();
             DateTime CurrentDate = DateTime.Now;
-            DaysLeft = DateTime.Parse(job.JobInfo["DueDate"]) - CurrentDate;
+            DateTime DueDate = DateTime.Parse(job.JobInfo["DueDate"]);
+            DaysLeft = DueDate - CurrentDate;
             return DaysLeft.Days;
         }
 
@@ -736,6 +741,7 @@ namespace IPM_Job_Manager_net
                 if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
                 {
                     JobIndex = JobList.IndexOf(job);
+                    job.JobInfo["EstDays"] = CalculateDays(job);
                     AssignJob(SelectedUser, JobIndex);
                 }
             }

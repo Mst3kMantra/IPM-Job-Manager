@@ -33,20 +33,16 @@ namespace IPM_Job_Manager_net
 
         public bool isPunchedIn { get; set; }
 
-        public DateTime ClockInTime { get; set; }
-        public DateTime ClockOutTime { get; set; }
+        private TimeCard _timeCard = new TimeCard();
 
-        public string TrackedOperation { get; set; }
-
-        private Job _clockedInJob = new Job();
-        public Job ClockedInJob
+        public TimeCard TimeCard
         {
-            get { return _clockedInJob; }
+            get { return _timeCard; }
             set
             {
-                if (value != _clockedInJob)
+                if (value != _timeCard)
                 {
-                    this._clockedInJob = value;
+                    this._timeCard = value;
                     NotifyPropertyChanged();
                 }
             }

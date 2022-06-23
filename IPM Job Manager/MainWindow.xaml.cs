@@ -232,6 +232,11 @@ namespace IPM_Job_Manager_net
             {
                 return;
             }
+            foreach (Job job in AssignedJobList)
+            {
+                job.JobInfo["EstDays"] = CalculateDays(job);
+            }
+            WriteJobsJson(AssignedJobList, AssignedJobListPath);
             CountJobs();
         }
 
@@ -264,6 +269,10 @@ namespace IPM_Job_Manager_net
             }
             JobList = ReadJobNotes(JobList);
             AssignedJobList = ReadJobNotes(AssignedJobList);
+            foreach (Job job in AssignedJobList)
+            {
+                job.JobInfo["EstDays"] = CalculateDays(job);
+            }
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
             CompletedJobs.Clear();
             CompletedJobs = ReadJobsJson(CompletedJobsPath);
@@ -502,7 +511,6 @@ namespace IPM_Job_Manager_net
                     {
                         JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
                     }
-                    JobList[i].JobInfo["DueDate"] = DateTime.Parse(JobList[i].JobInfo["DueDate"]);
                 }
 
                 WriteJobsJson(JobList, JobListPath);
@@ -523,8 +531,10 @@ namespace IPM_Job_Manager_net
 
         public ObservableCollection<Job> SortJobs(ObservableCollection<Job> Jobs)
         {
-            IEnumerable<Job> SortedByPrio = Jobs.OrderBy(job => job.JobInfo["Priority"]);
-            var SortedJobs = new ObservableCollection<Job>(SortedByPrio);
+            IEnumerable<Job> SortedByDays = Jobs.OrderBy(job => job.JobInfo["EstDays"]);
+            var SortedJobs = new ObservableCollection<Job>(SortedByDays);
+            IEnumerable<Job> SortedByPrio = SortedJobs.OrderBy(job => job.JobInfo["Priority"]);
+            SortedJobs = new ObservableCollection<Job>(SortedByPrio);
             return SortedJobs;
         }
 
@@ -1105,84 +1115,95 @@ namespace IPM_Job_Manager_net
 
         private void btnClockIn_Click(object sender, RoutedEventArgs e)
         {
-            User SelectedUser = lstUsers.SelectedItem as User;
-            Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
-            SelectedOperation = lstOperations.SelectedItem;
-            if (SelectedUser != null && SelectedJob != null && SelectedOperation != null)
+            if (lstOperations.SelectedItem != null && lstUsers.SelectedItem != null && lstAssignedJobs.SelectedItem != null)
             {
-                foreach (User user in JsonUserList.Users)
+                User SelectedUser = lstUsers.SelectedItem as User;
+                Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
+                string SelectedOperation = lstOperations.SelectedItem.ToString();
+                if (SelectedUser != null && SelectedJob != null && SelectedOperation != null)
                 {
-                    if (user.Username == SelectedUser.Username)
+                    foreach (User user in JsonUserList.Users)
                     {
-                        user.ClockedInJob = SelectedJob;
-                        user.isPunchedIn = true;
-                        user.ClockInTime = DateTime.Now;
-                        user.TrackedOperation = SelectedOperation.ToString();
-                        WriteUserJson(JsonUserList, UserListPath);
-                        return;
-                    } 
+                        if (user.Username == SelectedUser.Username)
+                        {
+                            user.TimeCard.ClockedInJobs.Add(SelectedJob.JobInfo["JobNo"], DateTime.Now);
+                            user.TimeCard.TrackedOperations.Add(SelectedJob.JobInfo["JobNo"], SelectedOperation);
+                            if (user.TimeCard.ClockedInJobs.Keys.Count > 0)
+                            {
+                                user.isPunchedIn = true;
+                            }
+                            WriteUserJson(JsonUserList, UserListPath);
+                            return;
+                        }
+                    }
                 }
-            }
-            else if (SelectedJob == null)
-            {
-                MessageBox.Show("Clock in error, please select a job to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (SelectedUser == null)
-            {
-                MessageBox.Show("Clock in error, please select a employee to clock in as.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (SelectedOperation == null)
-            {
-                MessageBox.Show("Clock in error, please select a operation to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (SelectedJob == null)
+                {
+                    MessageBox.Show("Clock in error, please select a job to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (SelectedUser == null)
+                {
+                    MessageBox.Show("Clock in error, please select a employee to clock in as.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (SelectedOperation == null)
+                {
+                    MessageBox.Show("Clock in error, please select a operation to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
         private void btnClockOut_Click(object sender, RoutedEventArgs e)
         {
             User SelectedUser = lstUsers.SelectedItem as User;
-            Job SelectedJob = lstAssignedJobs.SelectedItem as Job;
             int PartsDone;
             int CycleTime;
-            if (SelectedUser != null && SelectedJob != null)
+            if (SelectedUser != null)
             {
                 foreach (User user in JsonUserList.Users)
                 {
                     if (user.Username == SelectedUser.Username)
                     {
-                        user.ClockedInJob = null;
-                        user.isPunchedIn = false;
-                        user.ClockOutTime = DateTime.Now;
-                        QuantityWindow QuantityWin = new QuantityWindow();
-                        QuantityWin.Owner = this;
-                        bool? DialogResult = QuantityWin.ShowDialog();
-                        if (DialogResult == true)
+                        foreach (KeyValuePair<string, DateTime> kvp in user.TimeCard.ClockedInJobs)
                         {
-                            PartsDone = QuantityWin.PartsFinished;
-                            CycleTime = CalculateClock(user, PartsDone);
-                            foreach (Job job in AssignedJobList)
+                            QuantityWindow QuantityWin = new QuantityWindow();
+                            QuantityWin.Owner = this;
+                            bool? DialogResult = QuantityWin.ShowDialog();
+                            if (DialogResult == true)
                             {
-                                if (job.JobInfo["JobNo"] == SelectedJob.JobInfo["JobNo"])
+                                PartsDone = QuantityWin.PartsFinished;
+                                CycleTime = CalculateClock(kvp.Value, PartsDone);
+                                foreach (Job job in AssignedJobList)
                                 {
-                                    job.JobInfo["OperationTime"][user.TrackedOperation] = CycleTime;
-                                    break;
+                                    if (job.JobInfo["JobNo"] == kvp.Key)
+                                    {
+                                        foreach (KeyValuePair<string, string> kvp2 in user.TimeCard.TrackedOperations)
+                                        {
+                                            if (kvp.Key == kvp2.Key)
+                                            {
+                                                job.JobInfo["OperationTime"][kvp2.Value] = CycleTime;
+                                            }
+                                        }
+                                        break;
+                                    }
                                 }
                             }
-                            user.TrackedOperation = null;
-                            user.isPunchedIn = false;
-                            WriteUserJson(JsonUserList, UserListPath);
-                            WriteJobsJson(AssignedJobList, AssignedJobListPath);
-                            RefreshWindow();
                         }
+                        user.TimeCard.ClockedInJobs.Clear();
+                        user.TimeCard.TrackedOperations.Clear();
+                        user.isPunchedIn = false;
+                        WriteUserJson(JsonUserList, UserListPath);
+                        WriteJobsJson(AssignedJobList, AssignedJobListPath);
+                        RefreshWindow();
                         break;
                     }
                 }
             }
         }
 
-        public int CalculateClock(User user, int parts)
+        public int CalculateClock(DateTime time, int parts)
         {
             TimeSpan TotalTime = new TimeSpan();
-            TotalTime = user.ClockOutTime - user.ClockInTime;
+            TotalTime = DateTime.Now - time;
             double TotalSeconds = TotalTime.TotalSeconds;
             double CycleTime = TotalSeconds / parts;
             Math.Round(CycleTime, 0, MidpointRounding.AwayFromZero);

@@ -117,6 +117,7 @@
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimeCard.cs" />
     <Compile Include="CompletedJobsWindow.xaml.cs">
       <DependentUpon>CompletedJobsWindow.xaml</DependentUpon>
     </Compile>
