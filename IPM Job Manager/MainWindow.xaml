@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
 
@@ -147,7 +147,7 @@
 
             <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Top">
                 <Label Style="{StaticResource LabelTitle}" Grid.Row="0" Grid.Column="1" Padding="10px" Height="60" Foreground="White">Employees</Label>
-                <ListView x:Name="lstUsers" Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewMouseLeftButtonUp="lstUsers_PreviewMouseLeftButtonUp" ItemsSource="{Binding UserList}">
+                <ListView x:Name="lstUsers" Grid.Column="1" PreviewMouseLeftButtonUp="lstUsers_PreviewMouseLeftButtonUp" ItemsSource="{Binding UserList}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -172,7 +172,7 @@
                             <GridViewColumn Header="Clocked In Jobs" Width="auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock TextAlignment="Center" Text="{Binding Path=TimeCard.AllClockedInJobs}"/>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=TimeCard.AllClockedInJobs}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

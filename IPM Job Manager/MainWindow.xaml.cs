@@ -111,7 +111,7 @@ namespace IPM_Job_Manager_net
             set { _jsonUserList = value; }
         }
 
-        public const int MaxPriority = 20;
+        public const int MaxPriority = 10;
 
         public bool isAddingBoxes;
 
@@ -1126,29 +1126,35 @@ namespace IPM_Job_Manager_net
                     {
                         if (user.Username == SelectedUser.Username)
                         {
+                            if (user.TimeCard.ClockedInJobs.ContainsKey(SelectedJob.JobInfo["JobNo"]))
+                            {
+                                MessageBox.Show("Clock in error, already clocked into that job.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
                             user.TimeCard.ClockedInJobs.Add(SelectedJob.JobInfo["JobNo"], DateTime.Now);
                             user.TimeCard.TrackedOperations.Add(SelectedJob.JobInfo["JobNo"], SelectedOperation);
                             if (user.TimeCard.ClockedInJobs.Keys.Count > 0)
                             {
                                 user.isPunchedIn = true;
                             }
+                            user.TimeCard.AllClockedInJobs = string.Join(", ", user.TimeCard.ClockedInJobs.Keys);
                             WriteUserJson(JsonUserList, UserListPath);
                             return;
                         }
                     }
                 }
-                else if (SelectedJob == null)
-                {
-                    MessageBox.Show("Clock in error, please select a job to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else if (SelectedUser == null)
-                {
-                    MessageBox.Show("Clock in error, please select a employee to clock in as.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else if (SelectedOperation == null)
-                {
-                    MessageBox.Show("Clock in error, please select a operation to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            }
+            else if (lstAssignedJobs.SelectedItem == null)
+            {
+                MessageBox.Show("Clock in error, please select a job to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (lstUsers.SelectedItem == null)
+            {
+                MessageBox.Show("Clock in error, please select a employee to clock in as.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (lstUsers.SelectedItem == null)
+            {
+                MessageBox.Show("Clock in error, please select a operation to clock into.", "Clock In Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1171,6 +1177,10 @@ namespace IPM_Job_Manager_net
                             if (DialogResult == true)
                             {
                                 PartsDone = QuantityWin.PartsFinished;
+                                if (PartsDone == 0)
+                                {
+
+                                }
                                 CycleTime = CalculateClock(kvp.Value, PartsDone);
                                 foreach (Job job in AssignedJobList)
                                 {
@@ -1190,6 +1200,7 @@ namespace IPM_Job_Manager_net
                         }
                         user.TimeCard.ClockedInJobs.Clear();
                         user.TimeCard.TrackedOperations.Clear();
+                        user.TimeCard.AllClockedInJobs = string.Empty;
                         user.isPunchedIn = false;
                         WriteUserJson(JsonUserList, UserListPath);
                         WriteJobsJson(AssignedJobList, AssignedJobListPath);

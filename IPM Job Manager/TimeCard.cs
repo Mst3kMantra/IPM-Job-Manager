@@ -31,18 +31,20 @@ namespace IPM_Job_Manager_net
             set { _trackedOperations = value; }
         }
 
-        private string _allClockedInJobs
-        {
-            get
-            {
-                return string.Join(",", ClockedInJobs.Keys);
-            }
-        }
+        private string _allClockedInJobs = string.Empty;
         public string AllClockedInJobs
         {
             get
             {
                 return _allClockedInJobs;
+            }
+            set
+            {
+                if (_allClockedInJobs != value)
+                {
+                    _allClockedInJobs = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 

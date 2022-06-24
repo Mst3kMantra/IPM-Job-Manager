@@ -59,10 +59,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Clocked In Job" Width="auto">
+                            <GridViewColumn Header="Clocked In Jobs" Width="auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock TextAlignment="Center" Text="{Binding Path=ClockedInJob.JobInfo[JobNo]}"/>
+                                        <TextBlock TextAlignment="Center" Text="{Binding Path=TimeCard.AllClockedInJobs}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -195,6 +195,13 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[EstDays]}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Est Time" Width="75">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Path=JobInfo[EstTime]}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

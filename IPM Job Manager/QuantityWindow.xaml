@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPM_Job_Manager_net"
         mc:Ignorable="d"
-        Title="QuantityWindow" Height="200" Width="250"
+        Title="Parts Finished" Height="200" Width="250"
         WindowStartupLocation="CenterOwner">
 
     <Border BorderThickness="1" CornerRadius="8" BorderBrush="White" Margin="1">
