@@ -48,6 +48,10 @@ namespace IPM_Job_Manager_net
             }
         }
 
+        public Dictionary<string, bool> PartFinishedStatus { get; set; }
+
+        public Dictionary<string, int> RolledOverJobs { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

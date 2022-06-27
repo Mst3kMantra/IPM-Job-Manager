@@ -1179,7 +1179,11 @@ namespace IPM_Job_Manager_net
                                 PartsDone = QuantityWin.PartsFinished;
                                 if (PartsDone == 0)
                                 {
+                                    if (!user.RolledOverJobs.ContainsKey(kvp.Key))
+                                    {
 
+                                        user.RolledOverJobs.Add(kvp.Key, Parts )
+                                    }
                                 }
                                 CycleTime = CalculateClock(kvp.Value, PartsDone);
                                 foreach (Job job in AssignedJobList)
@@ -1216,7 +1220,15 @@ namespace IPM_Job_Manager_net
             TimeSpan TotalTime = new TimeSpan();
             TotalTime = DateTime.Now - time;
             double TotalSeconds = TotalTime.TotalSeconds;
-            double CycleTime = TotalSeconds / parts;
+            double CycleTime;
+            if (parts > 0)
+            {
+                CycleTime = TotalSeconds / parts;
+            }
+            else
+            {
+                CycleTime = TotalSeconds;
+            }
             Math.Round(CycleTime, 0, MidpointRounding.AwayFromZero);
             return (int)CycleTime;
         }
