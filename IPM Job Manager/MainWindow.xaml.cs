@@ -532,10 +532,15 @@ namespace IPM_Job_Manager_net
         public ObservableCollection<Job> SortJobs(ObservableCollection<Job> Jobs)
         {
             IEnumerable<Job> SortedByDays = Jobs.OrderBy(job => job.JobInfo["EstDays"]);
-            var SortedJobs = new ObservableCollection<Job>(SortedByDays);
+            var SortedJobs = SortedByDays;
             IEnumerable<Job> SortedByPrio = SortedJobs.OrderBy(job => job.JobInfo["Priority"]);
-            SortedJobs = new ObservableCollection<Job>(SortedByPrio);
-            return SortedJobs;
+            SortedJobs = SortedByPrio;
+            ObservableCollection<Job> JobsOrdered = new ObservableCollection<Job>();
+            foreach (Job job in SortedJobs)
+            {
+                JobsOrdered.Add(job);
+            } 
+            return JobsOrdered;
         }
 
         public void UnassignOperations(Job job)
@@ -693,14 +698,13 @@ namespace IPM_Job_Manager_net
 
                 foreach (Job job in jobs)
                 {
-                    foreach (string employee in job.JobInfo["AssignedEmployees"])
+                    foreach (string employee in job.JobInfo["AssignedEmployees"]) 
                     {
                         if (employee == CurItem.Username)
                         {
                             CurEmployeeJobs.Add(job);
                         }
                     }
-
                 }
             }
             catch (FileNotFoundException)
@@ -1181,23 +1185,40 @@ namespace IPM_Job_Manager_net
                                 {
                                     if (!user.RolledOverJobs.ContainsKey(kvp.Key))
                                     {
-
-                                        user.RolledOverJobs.Add(kvp.Key, Parts )
+                                        user.RolledOverJobs.Add(kvp.Key, CalculateClock(kvp.Value, 1));
+                                        user.PartRollingOver.Add(kvp.Key, true);
+                                    }
+                                    else
+                                    {
+                                        user.RolledOverJobs[kvp.Key] += CalculateClock(kvp.Value, 1);
+                                        user.PartRollingOver[kvp.Key] = true;
                                     }
                                 }
-                                CycleTime = CalculateClock(kvp.Value, PartsDone);
-                                foreach (Job job in AssignedJobList)
+                                else if (PartsDone > 0)
                                 {
-                                    if (job.JobInfo["JobNo"] == kvp.Key)
+                                    CycleTime = CalculateClock(kvp.Value, PartsDone);
+                                    foreach (Job job in AssignedJobList)
                                     {
-                                        foreach (KeyValuePair<string, string> kvp2 in user.TimeCard.TrackedOperations)
+                                        if (job.JobInfo["JobNo"] == kvp.Key)
                                         {
-                                            if (kvp.Key == kvp2.Key)
+                                            foreach (KeyValuePair<string, string> kvp2 in user.TimeCard.TrackedOperations)
                                             {
-                                                job.JobInfo["OperationTime"][kvp2.Value] = CycleTime;
+                                                if (kvp.Key == kvp2.Key)
+                                                {
+                                                    if (user.PartRollingOver[kvp.Key] == true)
+                                                    {
+                                                        CycleTime += user.RolledOverJobs[kvp.Key];
+                                                        user.RolledOverJobs.Remove(kvp.Key);
+                                                        user.PartRollingOver.Remove(kvp.Key);
+                                                        job.JobInfo["OperationTime"][kvp2.Value] = CycleTime;
+                                                    }
+                                                    else
+                                                    {
+                                                        job.JobInfo["OperationTime"][kvp2.Value] = CycleTime;
+                                                    }
+                                                }
                                             }
                                         }
-                                        break;
                                     }
                                 }
                             }

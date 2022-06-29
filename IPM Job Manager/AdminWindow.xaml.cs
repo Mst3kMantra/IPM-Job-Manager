@@ -419,7 +419,7 @@ namespace IPM_Job_Manager_net
                 }
 
                 AssignedJobList.Add(JobList[jobIndex]);
-                var newJob = AssignedJobList[AssignedJobList.Count - 1];
+                Job newJob = AssignedJobList[AssignedJobList.Count - 1];
                 SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(newJob.JobInfo["Operations"].ToString());
                 newJob.JobInfo["AssignedEmployees"].Add(employee.Username);
                 foreach (string key in SelectedOperations.Keys)
@@ -745,18 +745,10 @@ namespace IPM_Job_Manager_net
                     AssignJob(SelectedUser, JobIndex);
                 }
             }
-            if (CurEmployeeJobs.Count > 0)
-            {
-                var SortedJobs = MainWin.SortJobs(CurEmployeeJobs);
-                CurEmployeeJobs.Clear();
-                foreach (Job sortedjob in SortedJobs)
-                {
-                    CurEmployeeJobs.Add(sortedjob);
-                }
-            }
             CountJobs();
             CalculateTime();
             MainWin.RefreshTimer.Start();
+            RefreshWindow(lstAssignedJobs);
         }
 
         private void btnViewJob_Click(object sender, RoutedEventArgs e)

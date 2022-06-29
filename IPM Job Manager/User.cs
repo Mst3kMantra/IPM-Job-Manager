@@ -48,9 +48,19 @@ namespace IPM_Job_Manager_net
             }
         }
 
-        public Dictionary<string, bool> PartFinishedStatus { get; set; }
+        private Dictionary<string,bool> _partRollingOver = new Dictionary<string,bool>();
+        public Dictionary<string, bool> PartRollingOver
+        {
+            get { return _partRollingOver; }
+            set { _partRollingOver = value; }
+        }
 
-        public Dictionary<string, int> RolledOverJobs { get; set; }
+        private Dictionary<string, int> _rolledOverJobs = new Dictionary<string,int>();
+        public Dictionary<string, int> RolledOverJobs
+        {
+            get { return _rolledOverJobs; }
+            set { _rolledOverJobs = value; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
