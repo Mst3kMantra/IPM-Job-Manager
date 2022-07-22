@@ -75,6 +75,13 @@ namespace IPM_Job_Manager_net
             set { _operationList = value; }
         }
 
+        private ObservableCollection<string> _partsDoneList = new ObservableCollection<string>();
+        public ObservableCollection <string> PartsDoneList
+        {
+            get { return _partsDoneList; }
+            set { _partsDoneList = value; }
+        }
+
         private ObservableCollection<string> _attachedFileList = new ObservableCollection<string>();
         public ObservableCollection <string> AttachedFileList
         {
@@ -257,6 +264,11 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (PartsDoneList != null)
+            {
+                PartsDoneList.Clear();
+            }
+
             User CurItem = lstUsers.SelectedItem as User;
 
             ObservableCollection<Job> jobs = new ObservableCollection<Job>();
@@ -322,6 +334,11 @@ namespace IPM_Job_Manager_net
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
             SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
+
+            foreach (int i in (LastSelectedJob as Job).JobInfo["PartsDone"])
+            {
+                PartsDoneList.Add(i.ToString());
+            }
 
             try
             {
@@ -411,6 +428,11 @@ namespace IPM_Job_Manager_net
                             {
                                 assignedJob.JobInfo["OperationTime"].Add(key, 0);
                             }
+                            if (assignedJob.JobInfo["PartsDone"].ContainsKey(key))
+                            {
+                                break;
+                            }
+                            assignedJob.JobInfo["PartsDone"].Add(key, 0);
                         }
                         CurEmployeeJobs.Add(assignedJob);
                         MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
@@ -847,6 +869,7 @@ namespace IPM_Job_Manager_net
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
                     lstOperationTimes.Items.Clear();
+                    PartsDoneList.Clear();
                 }
             }
 
@@ -1366,6 +1389,11 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (PartsDoneList != null)
+            {
+                if (PartsDoneList.Count > 0) { PartsDoneList.Clear(); }
+            }
+
             if (AttachedFileList != null)
             {
                 if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
@@ -1383,6 +1411,11 @@ namespace IPM_Job_Manager_net
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
             SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
+
+            foreach (int i in (LastSelectedJob as Job).JobInfo["PartsDone"])
+            {
+                PartsDoneList.Add(i.ToString());
+            }
 
             try
             {
@@ -1457,6 +1490,11 @@ namespace IPM_Job_Manager_net
                 }
             }
 
+            if (PartsDoneList != null)
+            {
+                if (PartsDoneList.Count > 0) { PartsDoneList.Clear(); }
+            }
+
             if (AttachedFileList != null)
             {
                 if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
@@ -1482,6 +1520,11 @@ namespace IPM_Job_Manager_net
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
             SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
+
+            foreach (int i in (LastSelectedJob as Job).JobInfo["PartsDone"])
+            {
+                PartsDoneList.Add(i.ToString());
+            }
 
             try
             {
@@ -1558,6 +1601,11 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                     lstOperationTimes.Items.Clear();
                 }
+            }
+
+            if (PartsDoneList != null)
+            {
+                if (PartsDoneList.Count > 0) { PartsDoneList.Clear(); }
             }
 
             if (AttachedFileList != null)

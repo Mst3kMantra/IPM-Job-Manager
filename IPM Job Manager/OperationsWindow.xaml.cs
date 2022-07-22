@@ -179,6 +179,7 @@ namespace IPM_Job_Manager_net
                     AssignedJobList[JobIndex].JobInfo["Operations"].Add(txtOperations.Text, "");
                     AssignedJobList[JobIndex].JobInfo["CompletedOperations"].Add(txtOperations.Text, false);
                     AssignedJobList[JobIndex].JobInfo["OperationTime"].Add(txtOperations.Text, 0);
+                    AssignedJobList[JobIndex].JobInfo["PartsDone"].Add(txtOperations.Text, 0);
                     OperationList.Add(txtOperations.Text);
                     AssignedEmployeeList.Add("");
                     MainWin.WriteJobsJson(AssignedJobList, MainWin.AssignedJobListPath);
@@ -219,6 +220,10 @@ namespace IPM_Job_Manager_net
                     if (AssignedJobList[JobIndex].JobInfo["OperationTime"].ContainsKey(SelectedOperation.ToString()))
                     {
                         AssignedJobList[JobIndex].JobInfo["OperationTime"].Remove(SelectedOperation.ToString());
+                    }
+                    if (AssignedJobList[JobIndex].JobInfo["PartsDone"].ContainsKey(SelectedOperation.ToString()))
+                    {
+                        AssignedJobList[JobIndex].JobInfo["PartsDone"].Remove(SelectedOperation.ToString());
                     }
                     int OpIndex = OperationList.IndexOf(SelectedOperation.ToString());
                     OperationList.Remove(SelectedOperation.ToString());

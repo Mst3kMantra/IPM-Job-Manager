@@ -1,0 +1,25 @@
+
+Log Entry : 9:48:24 AM Tuesday, July 5, 2022
+  :
+  :Chau clock in at 7/5/2022 9:48:24 AM on Job 3494-01 and operation Mill flats
+-------------------------------
+
+Log Entry : 9:49:46 AM Tuesday, July 5, 2022
+  :
+  :Chau clock out at 7/5/2022 9:49:46 AM on Job 3494-01 and operation Mill flats with 1 parts done
+-------------------------------
+
+Log Entry : 9:51:04 AM Tuesday, July 5, 2022
+  :
+  :Chau clock in at 7/5/2022 9:51:04 AM on Job 3494-01 and operation Mill flats
+-------------------------------
+
+Log Entry : 10:47:49 AM Tuesday, July 5, 2022
+  :
+  :Chau clock in at 7/5/2022 10:47:49 AM on Job 3494-01 and operation Mill flats
+-------------------------------
+
+Log Entry : 10:48:02 AM Tuesday, July 5, 2022
+  :
+  :Chau clock out at 7/5/2022 10:48:02 AM on Job 3494-01 and operation Mill flats with 0 parts done
+-------------------------------

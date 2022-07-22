@@ -104,6 +104,13 @@ namespace IPM_Job_Manager_net
             set { _attachedFileList = value; }
         }
 
+        private ObservableCollection<string> _partsDoneList = new ObservableCollection<string>();
+        public ObservableCollection<string> PartsDoneList
+        {
+            get { return _partsDoneList; }
+            set { _partsDoneList = value; }
+        }
+
         private Root _jsonUserList = new Root();
         public Root JsonUserList
         {
@@ -236,6 +243,19 @@ namespace IPM_Job_Manager_net
             {
                 job.JobInfo["EstDays"] = CalculateDays(job);
             }
+            foreach (Job job in AssignedJobList)
+            {
+                Dictionary <string, int> PartsDoneDict = new Dictionary<string, int>();
+                SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(job.JobInfo["Operations"].ToString());
+                PartsDoneDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(job.JobInfo["PartsDone"].ToString());
+                if (PartsDoneDict.Count == 0)
+                {
+                    foreach (string key in SelectedOperations.Keys)
+                    {
+                        job.JobInfo["PartsDone"].Add(key, 0);
+                    }
+                }
+            }
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
             CountJobs();
         }
@@ -354,6 +374,10 @@ namespace IPM_Job_Manager_net
                         if (jobnotes.JobInfo.ContainsKey("Operations"))
                         {
                             job.JobInfo["Operations"] = jobnotes.JobInfo["Operations"];
+                        }
+                        if (jobnotes.JobInfo.ContainsKey("OperationTime"))
+                        {
+                            job.JobInfo["OperationTime"] = jobnotes.JobInfo["OperationTime"];
                         }
                         if (jobnotes.JobInfo.ContainsKey("AttachedFiles"))
                         {
@@ -494,6 +518,7 @@ namespace IPM_Job_Manager_net
                 Dictionary<string, bool> CompletedOperations = new Dictionary<string, bool>();
                 List<string> AttachedFileList = new List<string>();
                 Dictionary<string, int> OperationTime = new Dictionary<string, int>();
+                Dictionary<string, int> PartsDone = new Dictionary<string, int>();
 
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
@@ -507,6 +532,7 @@ namespace IPM_Job_Manager_net
                     JobList[i].JobInfo.Add("EstTime", "");
                     JobList[i].JobInfo.Add("AttachedFiles", AttachedFileList);
                     JobList[i].JobInfo.Add("OperationTime", OperationTime);
+                    JobList[i].JobInfo.Add("PartsDone", PartsDone);
                     foreach (DataColumn column in dataTable.Columns)
                     {
                         JobList[i].JobInfo.Add(column.ColumnName.ToString(), dataTable.Rows[i][column].ToString());
@@ -664,6 +690,19 @@ namespace IPM_Job_Manager_net
                     lstOperationTimes.Items.Clear();
                 }
             }
+            foreach (Job job in AssignedJobList)
+            {
+                Dictionary<string, int> PartsDoneDict = new Dictionary<string, int>();
+                SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(job.JobInfo["Operations"].ToString());
+                PartsDoneDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(job.JobInfo["PartsDone"].ToString());
+                if (PartsDoneDict.Count == 0)
+                {
+                    foreach (string key in SelectedOperations.Keys)
+                    {
+                        job.JobInfo["PartsDone"].Add(key, 0);
+                    }
+                }
+            }
             txtNotes.Text = "";
         }
 
@@ -686,6 +725,11 @@ namespace IPM_Job_Manager_net
                     AssignedEmployeeList.Clear();
                     lstOperationTimes.Items.Clear();
                 }
+            }
+
+            if (PartsDoneList != null)
+            {
+                PartsDoneList.Clear();
             }
 
 
@@ -749,6 +793,11 @@ namespace IPM_Job_Manager_net
             foreach (string key in SelectedOperations.Keys)
             {
                 OperationList.Add(key);
+            }
+
+            foreach (int i in (LastSelectedJob as Job).JobInfo["PartsDone"])
+            {
+                PartsDoneList.Add(i.ToString());
             }
 
             foreach (string value in SelectedOperations.Values)
@@ -870,6 +919,16 @@ namespace IPM_Job_Manager_net
                         }
                         if (AllOpsDone)
                         {
+                            foreach (Job job in AssignedJobList)
+                            {
+                                if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
+                                {
+                                    foreach (KeyValuePair<string, int> kvp in job.JobInfo["PartsDone"])
+                                    {
+                                        job.JobInfo["PartsDone"][kvp.Key] = 0;
+                                    }
+                                }
+                            }
                             foreach (Job job in CompletedJobs)
                             {
                                 if (job.JobInfo["JobNo"] == LastSelectedJob.JobInfo["JobNo"])
@@ -970,6 +1029,11 @@ namespace IPM_Job_Manager_net
                 if (AttachedFileList.Count > 0) { AttachedFileList.Clear(); }
             }
 
+            if (PartsDoneList != null)
+            {
+                if (PartsDoneList.Count > 0) { PartsDoneList.Clear(); }
+            }
+
             if ((LastSelectedJob as Job).JobInfo.ContainsKey("AttachedFiles"))
             {
 
@@ -982,6 +1046,11 @@ namespace IPM_Job_Manager_net
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>(LastSelectedJob.JobInfo["CompletedOperations"].ToString());
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(LastSelectedJob.JobInfo["Operations"].ToString());
             SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>(LastSelectedJob.JobInfo["OperationTime"].ToString());
+
+            foreach(int i in LastSelectedJob.JobInfo["PartsDone"])
+            {
+                PartsDoneList.Add(i.ToString());
+            }
 
             try
             {
@@ -1055,6 +1124,14 @@ namespace IPM_Job_Manager_net
                     OperationList.Clear();
                     AssignedEmployeeList.Clear();
                     lstOperationTimes.Items.Clear();
+                }
+            }
+
+            if (PartsDoneList != null)
+            {
+                if (PartsDoneList.Count > 0)
+                {
+                    PartsDoneList.Clear();
                 }
             }
 
@@ -1137,6 +1214,7 @@ namespace IPM_Job_Manager_net
                             }
                             user.TimeCard.ClockedInJobs.Add(SelectedJob.JobInfo["JobNo"], DateTime.Now);
                             user.TimeCard.TrackedOperations.Add(SelectedJob.JobInfo["JobNo"], SelectedOperation);
+                            LogWriter NewLog = new LogWriter($"{user.Username} clock in at {DateTime.Now} on Job {SelectedJob.JobInfo["JobNo"]} and operation {SelectedOperation}");
                             if (user.TimeCard.ClockedInJobs.Keys.Count > 0)
                             {
                                 user.isPunchedIn = true;
@@ -1187,11 +1265,13 @@ namespace IPM_Job_Manager_net
                                     {
                                         user.RolledOverJobs.Add(kvp.Key, CalculateClock(kvp.Value, 1));
                                         user.PartRollingOver.Add(kvp.Key, true);
+                                        LogWriter NewLog = new LogWriter($"{user.Username} clock out at {DateTime.Now} on Job {kvp.Key} and operation {user.TimeCard.TrackedOperations[kvp.Key]} with {PartsDone} parts done");
                                     }
                                     else
                                     {
                                         user.RolledOverJobs[kvp.Key] += CalculateClock(kvp.Value, 1);
                                         user.PartRollingOver[kvp.Key] = true;
+                                        LogWriter NewLog = new LogWriter($"{user.Username} clock out at {DateTime.Now} on Job {kvp.Key} and operation {user.TimeCard.TrackedOperations[kvp.Key]} with {PartsDone} parts done");
                                     }
                                 }
                                 else if (PartsDone > 0)
@@ -1205,21 +1285,36 @@ namespace IPM_Job_Manager_net
                                             {
                                                 if (kvp.Key == kvp2.Key)
                                                 {
-                                                    if (user.PartRollingOver[kvp.Key] == true)
+                                                    if (user.PartRollingOver.ContainsKey(kvp.Key) && user.PartRollingOver[kvp.Key] == true)
                                                     {
                                                         CycleTime += user.RolledOverJobs[kvp.Key];
                                                         user.RolledOverJobs.Remove(kvp.Key);
                                                         user.PartRollingOver.Remove(kvp.Key);
                                                         job.JobInfo["OperationTime"][kvp2.Value] = CycleTime;
+                                                        LogWriter NewLog = new LogWriter($"{user.Username} clock out at {DateTime.Now} on Job {kvp2.Key} and operation {kvp2.Value} with {PartsDone} parts done");
+
                                                     }
                                                     else
                                                     {
                                                         job.JobInfo["OperationTime"][kvp2.Value] = CycleTime;
+                                                        LogWriter NewLog = new LogWriter($"{user.Username} clock out at {DateTime.Now} on Job {kvp2.Key} and operation {kvp2.Value} with {PartsDone} parts done");
+                                                    }
+                                                    try
+                                                    {
+                                                        job.JobInfo["PartsDone"][kvp2.Value] += PartsDone;
+                                                    }
+                                                    catch (System.Collections.Generic.KeyNotFoundException)
+                                                    {
+                                                        job.JobInfo["PartsDone"].Add(kvp2.Value, PartsDone);
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                }
+                                else if (PartsDone < 0)
+                                {
+                                    return;
                                 }
                             }
                         }

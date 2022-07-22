@@ -105,7 +105,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Due Date: "/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[Due Date]}" Foreground="White"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=DisplayedJob.JobInfo[DueDate]}" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Style="{StaticResource JobTitle}" Grid.ColumnSpan="1" Content="Quantity Due: "/>

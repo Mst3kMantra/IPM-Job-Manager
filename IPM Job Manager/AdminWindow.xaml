@@ -220,16 +220,19 @@
                             <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
                         </Grid.ColumnDefinitions>
 
                         <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="White"/>
                         <Border Grid.Column="1" BorderThickness="1,0,1,0" BorderBrush="White"/>
                         <Border Grid.Column="2" BorderThickness="1,0,1,0" BorderBrush="White"/>
-                        <Border Grid.Column="3" BorderThickness="1,0,0,0" BorderBrush="White"/>
+                        <Border Grid.Column="3" BorderThickness="1,0,1,0" BorderBrush="White"/>
+                        <Border Grid.Column="4" BorderThickness="1,0,0,0" BorderBrush="White"/>
                         <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Operations</Label>
                         <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Assigned</Label>
                         <Label Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Status</Label>
-                        <Label Grid.Column="3" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Cycle Time</Label>
+                        <Label Grid.Column="3" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Parts Done</Label>
+                        <Label Grid.Column="4" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Cycle Time</Label>
                         <ListBox x:Name="lstOperations" PreviewMouseLeftButtonUp="lstOperations_PreviewMouseLeftButtonUp" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -237,7 +240,14 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox x:Name="lstOperationTimes" Grid.Column="3" Grid.Row="1"/>
+                        <ListBox x:Name="lstPartsDone" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding PartsDoneList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lstOperationTimes" Grid.Column="4" Grid.Row="1"/>
                         <ListBox Grid.Column="1" Grid.Row="1" x:Name="lstAssigned" PreviewMouseLeftButtonUp="lstAssigned_PreviewMouseLeftButtonUp" ItemsSource="{Binding AssignedEmployeeList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>

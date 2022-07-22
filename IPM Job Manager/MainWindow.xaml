@@ -101,6 +101,7 @@
                             <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="75*"/>
                         </Grid.ColumnDefinitions>
@@ -110,11 +111,12 @@
                         <Border Grid.Column="2" BorderThickness="1,0,1,0" BorderBrush="White"/>
                         <Border Grid.Column="3" BorderThickness="1,0,1,0" BorderBrush="White"/>
                         <Border Grid.Column="4" BorderThickness="1,0,1,0" BorderBrush="White"/>
-                        <Border Grid.Column="5" BorderThickness="1,0,0,0" BorderBrush="White"/>
+                        <Border Grid.Column="5" BorderThickness="1,0,1,0" BorderBrush="White"/>
+                        <Border Grid.Column="6" BorderThickness="1,0,0,0" BorderBrush="White"/>
                         <Label HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Operations</Label>
                         <Label Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Assigned</Label>
-                        <Label Grid.Column="3" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Cycle Time</Label>
-                        <ListBox x:Name="lstOperationTimes" Grid.Column="3" Grid.Row="1"/>
+                        <Label Grid.Column="4" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}">Cycle Time</Label>
+                        <ListBox x:Name="lstOperationTimes" Grid.Column="4" Grid.Row="1"/>
                         <ListBox x:Name="lstOperations" PreviewMouseLeftButtonUp="lstOperations_PreviewMouseLeftButtonUp" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperationList}" Grid.ColumnSpan="1" Grid.RowSpan="2">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -130,11 +132,19 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox x:Name="lstStatus" Grid.Column="2" Grid.Row="1"/>
+                        <ListBox x:Name="lstPartsDone" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding PartsDoneList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                         <Label Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Status</Label>
-                        <Label Grid.Column="5" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Notes:</Label>
-                        <Label Grid.Row="0" Grid.Column="4" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Attached Files</Label>
-                        <TextBlock Background="White" MaxWidth="400" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="5"/>
-                        <ListBox x:Name="lstAttachedFiles" PreviewMouseLeftButtonUp="lstAttachedFiles_PreviewMouseLeftButtonUp" Grid.Row="1" Grid.Column="4" ItemsSource="{Binding AttachedFileList}">
+                        <Label Grid.Column="6" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Notes:</Label>
+                        <Label Grid.Row="0" Grid.Column="5" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Attached Files</Label>
+                        <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource ResourceKey=JobTitle}" Foreground="White">Parts Done</Label>
+                        <TextBlock Background="White" MaxWidth="400" x:Name="txtNotes" TextWrapping="Wrap" Grid.Row="1" Grid.Column="6"/>
+                        <ListBox x:Name="lstAttachedFiles" PreviewMouseLeftButtonUp="lstAttachedFiles_PreviewMouseLeftButtonUp" Grid.Row="1" Grid.Column="5" ItemsSource="{Binding AttachedFileList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}"/>
