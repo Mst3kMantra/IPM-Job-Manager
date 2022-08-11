@@ -243,19 +243,6 @@ namespace IPM_Job_Manager_net
             {
                 job.JobInfo["EstDays"] = CalculateDays(job);
             }
-            foreach (Job job in AssignedJobList)
-            {
-                Dictionary <string, int> PartsDoneDict = new Dictionary<string, int>();
-                SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>(job.JobInfo["Operations"].ToString());
-                PartsDoneDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(job.JobInfo["PartsDone"].ToString());
-                if (PartsDoneDict.Count == 0)
-                {
-                    foreach (string key in SelectedOperations.Keys)
-                    {
-                        job.JobInfo["PartsDone"].Add(key, 0);
-                    }
-                }
-            }
             WriteJobsJson(AssignedJobList, AssignedJobListPath);
             CountJobs();
         }
@@ -1253,7 +1240,7 @@ namespace IPM_Job_Manager_net
                     {
                         foreach (KeyValuePair<string, DateTime> kvp in user.TimeCard.ClockedInJobs)
                         {
-                            QuantityWindow QuantityWin = new QuantityWindow();
+                            QuantityWindow QuantityWin = new QuantityWindow(kvp.Key);
                             QuantityWin.Owner = this;
                             bool? DialogResult = QuantityWin.ShowDialog();
                             if (DialogResult == true)

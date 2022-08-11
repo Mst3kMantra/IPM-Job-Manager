@@ -20,10 +20,14 @@ namespace IPM_Job_Manager_net
     public partial class QuantityWindow : Window
     {
         public int PartsFinished;
-        public QuantityWindow()
+        public string JobNo;
+        public QuantityWindow(string job)
         {
             InitializeComponent();
             txtParts.Focus();
+            DataContext = this;
+            JobNo = job;
+            txtJobNo.Content = $"Job: {JobNo}";
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

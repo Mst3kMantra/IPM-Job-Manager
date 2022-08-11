@@ -334,7 +334,6 @@ namespace IPM_Job_Manager_net
             SelectedOperations = JsonConvert.DeserializeObject<Dictionary<string, string>>((LastSelectedJob as Job).JobInfo["Operations"].ToString());
             SelectedTimes = JsonConvert.DeserializeObject<Dictionary<string, int>>((LastSelectedJob as Job).JobInfo["OperationTime"].ToString());
             CompletedOperations = JsonConvert.DeserializeObject<Dictionary<string, bool>>((LastSelectedJob as Job).JobInfo["CompletedOperations"].ToString());
-
             foreach (int i in (LastSelectedJob as Job).JobInfo["PartsDone"])
             {
                 PartsDoneList.Add(i.ToString());
@@ -430,7 +429,7 @@ namespace IPM_Job_Manager_net
                             }
                             if (assignedJob.JobInfo["PartsDone"].ContainsKey(key))
                             {
-                                break;
+                                continue;
                             }
                             assignedJob.JobInfo["PartsDone"].Add(key, 0);
                         }
