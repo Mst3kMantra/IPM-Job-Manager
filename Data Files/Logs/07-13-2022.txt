@@ -1,0 +1,15 @@
+
+Log Entry : 9:12:09 AM Wednesday, July 13, 2022
+
+  :Victor clock out at 7/13/2022 9:12:09 AM on Job 3552-01 and operation Bore Indicated Rack Bore Sleeves (8) as indicated with 0 parts done
+-------------------------------
+
+Log Entry : 9:12:23 AM Wednesday, July 13, 2022
+
+  :Victor clock in at 7/13/2022 9:12:23 AM on Job 3552-01 and operation Bore Indicated Rack Bore Sleeves (8) as indicated
+-------------------------------
+
+Log Entry : 11:05:10 AM Wednesday, July 13, 2022
+
+  :David clock in at 7/13/2022 11:05:10 AM on Job 3552-03 and operation Shorten Racks as indicated
+-------------------------------

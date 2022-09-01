@@ -1,0 +1,15 @@
+
+Log Entry : 7:58:27 AM Friday, July 29, 2022
+
+  :David clock in at 7/29/2022 7:58:27 AM on Job 3561-01 and operation Open Id on 316 units
+-------------------------------
+
+Log Entry : 12:30:28 PM Friday, July 29, 2022
+
+  :David clock out at 7/29/2022 12:30:28 PM on Job 3561-01 and operation Open Id on 316 units with 60 parts done
+-------------------------------
+
+Log Entry : 12:58:29 PM Friday, July 29, 2022
+
+  :David clock in at 7/29/2022 12:58:29 PM on Job 3561-01 and operation Open Id on 316 units
+-------------------------------

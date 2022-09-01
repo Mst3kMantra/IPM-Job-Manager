@@ -1,0 +1,45 @@
+
+Log Entry : 8:43:28 AM Thursday, July 21, 2022
+
+  :Evelyn clock in at 7/21/2022 8:43:28 AM on Job 3558-01 and operation Saw Cut parts for order
+-------------------------------
+
+Log Entry : 1:43:39 PM Thursday, July 21, 2022
+
+  :Eduardo clock in at 7/21/2022 1:43:39 PM on Job 3557-01 and operation Lathe op1 larger part
+-------------------------------
+
+Log Entry : 1:59:23 PM Thursday, July 21, 2022
+
+  :David clock in at 7/21/2022 1:59:23 PM on Job 3561-01 and operation Open Id on 316 units
+-------------------------------
+
+Log Entry : 2:01:22 PM Thursday, July 21, 2022
+
+  :Evelyn clock out at 7/21/2022 2:01:22 PM on Job 3558-01 and operation Saw Cut parts for order with 25 parts done
+-------------------------------
+
+Log Entry : 2:47:58 PM Thursday, July 21, 2022
+
+  :Victor clock in at 7/21/2022 2:47:58 PM on Job 3540-01 and operation Mill Op 2
+-------------------------------
+
+Log Entry : 3:07:05 PM Thursday, July 21, 2022
+
+  :Evelyn clock in at 7/21/2022 3:07:05 PM on Job 3558-01 and operation Saw Cut parts for order
+-------------------------------
+
+Log Entry : 5:28:05 PM Thursday, July 21, 2022
+
+  :Evelyn clock out at 7/21/2022 5:28:05 PM on Job 3558-01 and operation Saw Cut parts for order with 11 parts done
+-------------------------------
+
+Log Entry : 5:28:27 PM Thursday, July 21, 2022
+
+  :Victor clock out at 7/21/2022 5:28:27 PM on Job 3540-01 and operation Mill Op 2 with 49 parts done
+-------------------------------
+
+Log Entry : 5:29:21 PM Thursday, July 21, 2022
+
+  :Eduardo clock out at 7/21/2022 5:29:21 PM on Job 3557-01 and operation Lathe op1 larger part with 4 parts done
+-------------------------------

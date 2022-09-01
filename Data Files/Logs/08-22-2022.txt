@@ -1,0 +1,10 @@
+
+Log Entry : 8:29:30 AM Monday, August 22, 2022
+
+  :David clock out at 8/22/2022 8:29:30 AM on Job 3562-02 and operation Lathe Op1 with 26 parts done
+-------------------------------
+
+Log Entry : 8:30:12 AM Monday, August 22, 2022
+
+  :Chau clock out at 8/22/2022 8:30:12 AM on Job 3535-01 and operation Mill Op 2 1-2" Material with 100 parts done
+-------------------------------

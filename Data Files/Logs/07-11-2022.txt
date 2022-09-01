@@ -1,0 +1,60 @@
+
+Log Entry : 8:07:32 AM Monday, July 11, 2022
+
+  :Michael clock in at 7/11/2022 8:07:32 AM on Job 3547-01 and operation SL20 Op2 O04222
+-------------------------------
+
+Log Entry : 9:43:08 AM Monday, July 11, 2022
+
+  :Evelyn clock in at 7/11/2022 9:43:08 AM on Job 3543-01 and operation Saw cut .3 to .33
+-------------------------------
+
+Log Entry : 9:56:34 AM Monday, July 11, 2022
+
+  :Michael clock out at 7/11/2022 9:56:34 AM on Job 3547-01 and operation SL20 Op2 O04222 with 25 parts done
+-------------------------------
+
+Log Entry : 9:58:14 AM Monday, July 11, 2022
+
+  :David clock in at 7/11/2022 9:58:14 AM on Job 3547-01 and operation SL20 OP1 O04221
+-------------------------------
+
+Log Entry : 10:56:14 AM Monday, July 11, 2022
+
+  :Evelyn clock out at 7/11/2022 10:56:14 AM on Job 3543-01 and operation Saw cut .3 to .33 with 9 parts done
+-------------------------------
+
+Log Entry : 11:01:28 AM Monday, July 11, 2022
+
+  :Evelyn clock in at 7/11/2022 11:01:28 AM on Job 3445-01 and operation Package & bag
+-------------------------------
+
+Log Entry : 11:08:31 AM Monday, July 11, 2022
+
+  :Evelyn clock out at 7/11/2022 11:08:31 AM on Job 3445-01 and operation Package & bag with 23 parts done
+-------------------------------
+
+Log Entry : 11:09:15 AM Monday, July 11, 2022
+
+  :Evelyn clock in at 7/11/2022 11:09:15 AM on Job 3520-01 and operation Package & bag
+-------------------------------
+
+Log Entry : 11:50:24 AM Monday, July 11, 2022
+
+  :Evelyn clock out at 7/11/2022 11:50:24 AM on Job 3520-01 and operation Package & bag with 120 parts done
+-------------------------------
+
+Log Entry : 12:29:05 PM Monday, July 11, 2022
+
+  :David clock out at 7/11/2022 12:29:05 PM on Job 3547-01 and operation SL20 OP1 O04221 with 33 parts done
+-------------------------------
+
+Log Entry : 12:56:57 PM Monday, July 11, 2022
+
+  :David clock in at 7/11/2022 12:56:57 PM on Job 3547-01 and operation SL20 OP1 O04221
+-------------------------------
+
+Log Entry : 6:35:35 PM Monday, July 11, 2022
+
+  :David clock out at 7/11/2022 6:35:35 PM on Job 3547-01 and operation SL20 OP1 O04221 with 92 parts done
+-------------------------------

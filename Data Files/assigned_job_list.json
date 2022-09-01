@@ -1,0 +1,366 @@
+{
+  "$type": "System.Collections.ObjectModel.ObservableCollection`1[[IPM_Job_Manager_net.Job, IPM Job Manager]], System",
+  "$values": [
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Chau"
+        ],
+        "Operations": {
+          "Mill Profile and engrave": "Chau",
+          "Mill op1": "David",
+          "Mill op2": "David",
+          "Op 1 Open ID 316 units": "David",
+          "Lathe Op 1": "David",
+          "Lathe Op 2": "David",
+          "Mill Op 1": "Victor"
+        },
+        "CompletedOperations": {
+          "Mill Profile and engrave": false,
+          "Mill op1": false,
+          "Mill op2": false,
+          "Pull from Storage": false,
+          "Order 7/8-9 unc x 3 Screws": false,
+          "Drill hole in Screws": false,
+          "Assemble clamps": false,
+          "Op 1 Open ID 316 units": false,
+          "Lathe Op 1": false,
+          "Lathe Op 2": false,
+          "Mill Op 1": false
+        },
+        "Notes": "",
+        "Priority": 3,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\CadKey Drawings\\FAS\\M16 Fixture.pdf",
+          "I:\\CadKey Drawings\\FAS\\M16 Fixture.pdf"
+        ],
+        "OperationTime": {
+          "Mill Profile and engrave": 0,
+          "Mill op1": 0,
+          "Mill op2": 0,
+          "Op 1 Open ID 316 units": 0,
+          "Lathe Op 1": 0,
+          "Lathe Op 2": 0,
+          "Mill Op 1": 0
+        },
+        "PONum": "12298                         ",
+        "CustDesc": "Texas Injection Molding",
+        "PartNo": "TIM0006",
+        "PartDesc": "Tooling Cost Outsource Blank Insert for Patent Pending",
+        "QTY Due": "5",
+        "DueDate": "2/26/2021 12:00:00 AM",
+        "JobNo": "3171-03",
+        "QtyOrdered": "5",
+        "UnitPrice": "445",
+        "Shipped": "0",
+        "Value Due": "2225",
+        "EstDays": -551,
+        "PartsDone": {
+          "Mill Profile and engrave": 0,
+          "Mill op1": 0,
+          "Mill op2": 0,
+          "Op 1 Open ID 316 units": 0,
+          "Lathe Op 1": 0,
+          "Lathe Op 2": 0,
+          "Mill Op 1": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Chau"
+        ],
+        "Operations": {
+          "Mill Profile and Engrave": "Chau"
+        },
+        "CompletedOperations": {
+          "Mill Profile and Engrave": false
+        },
+        "Notes": "",
+        "Priority": 3,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Mill Profile and Engrave": 0
+        },
+        "PONum": "12298                         ",
+        "CustDesc": "Texas Injection Molding",
+        "PartNo": "TIM0007",
+        "PartDesc": "Tooling Cost Outsource Blank Inserts for Intrepid Industries",
+        "QTY Due": "17",
+        "DueDate": "2/26/2021 12:00:00 AM",
+        "JobNo": "3171-04",
+        "QtyOrdered": "25",
+        "UnitPrice": "305",
+        "Shipped": "8",
+        "Value Due": "5185",
+        "EstDays": -551,
+        "PartsDone": {
+          "Mill Profile and Engrave": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Chau"
+        ],
+        "Operations": {
+          "Mill Profile and Engrave": "Chau"
+        },
+        "CompletedOperations": {
+          "Mill Profile and Engrave": false
+        },
+        "Notes": "",
+        "Priority": 3,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Mill Profile and Engrave": 0
+        },
+        "PONum": "12298                         ",
+        "CustDesc": "Texas Injection Molding",
+        "PartNo": "TIM0008",
+        "PartDesc": "Tooling Cost Outsource Blank for Middle Member of Triple Hook",
+        "QTY Due": "8",
+        "DueDate": "2/26/2021 12:00:00 AM",
+        "JobNo": "3171-05",
+        "QtyOrdered": "8",
+        "UnitPrice": "305",
+        "Shipped": "0",
+        "Value Due": "2440",
+        "EstDays": -551,
+        "PartsDone": {
+          "Mill Profile and Engrave": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Bill",
+          "Shop",
+          "Eduardo",
+          "Victor"
+        ],
+        "Operations": {
+          "Buy Material": "Bill",
+          "Cut Off Existing Top Plate ": "Shop",
+          "Straighten Top Ring": "Shop",
+          "Machine Top Ring": "Eduardo",
+          "Machine New Top Plate": "Eduardo",
+          "Weld": "Bill",
+          "Finish Machine top Plate height drill and tap": "Victor"
+        },
+        "CompletedOperations": {
+          "Buy Material": false,
+          "Cut Off Existing Top Plate ": false,
+          "Straighten Top Ring": false,
+          "Machine Top Ring": false,
+          "Machine New Top Plate": false,
+          "Weld": false,
+          "Finish Machine top Plate height drill and tap": false
+        },
+        "Notes": "1",
+        "Priority": 3,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\14372 Rev7\\14372 Rev7.pdf"
+        ],
+        "OperationTime": {
+          "Buy Material": 0,
+          "Cut Off Existing Top Plate ": 0,
+          "Straighten Top Ring": 0,
+          "Machine Top Ring": 0,
+          "Machine New Top Plate": 0,
+          "Weld": 0,
+          "Finish Machine top Plate height drill and tap": 0
+        },
+        "PONum": "Pending                       ",
+        "CustDesc": "Top Rig Services",
+        "PartNo": "TOP14372",
+        "PartDesc": "Bonnet, Repair Both units. 1 sides and 1 top plate replacement, , Sent for Paint the one the side repair was completed on.",
+        "QTY Due": "1",
+        "DueDate": "4/28/2022 12:00:00 AM",
+        "JobNo": "3489-27",
+        "QtyOrdered": "2",
+        "UnitPrice": "0",
+        "Shipped": "1",
+        "Value Due": "0",
+        "EstDays": -125,
+        "PartsDone": {
+          "Buy Material": 0,
+          "Cut Off Existing Top Plate ": 0,
+          "Straighten Top Ring": 0,
+          "Machine Top Ring": 0,
+          "Machine New Top Plate": 0,
+          "Weld": 0,
+          "Finish Machine top Plate height drill and tap": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Bill",
+          "Victor"
+        ],
+        "Operations": {
+          "Cut 1x2 2.75'' 260 units": "Evelyn",
+          "Cut 1x3 8.880'' 260 units": "Evelyn",
+          "Mill Op 1  1x2'' material": "Victor",
+          "Mill Op 1  1x3'' material": "Victor",
+          "Mill Op 2 1-2\" Material": "Chau",
+          "Mill Op 2 1-3\" Material": "Victor"
+        },
+        "CompletedOperations": {
+          "Cut 1x2 2.75'' 260 units": true,
+          "Cut 1x3 8.880'' 260 units": true,
+          "Mill Op 1  1x2'' material": true,
+          "Mill Op 1  1x3'' material": false,
+          "Mill Op 2 1-2\" Material": true,
+          "Mill Op 2 1-3\" Material": false
+        },
+        "Notes": "",
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Cut 1x2 2.75'' 260 units": 0,
+          "Cut 1x3 8.880'' 260 units": 0,
+          "Mill Op 1  1x2'' material": 0,
+          "Mill Op 1  1x3'' material": 0,
+          "Mill Op 2 1-2\" Material": 0,
+          "Mill Op 2 1-3\" Material": 0
+        },
+        "PONum": "4507913025 WF#00220609        ",
+        "CustDesc": "Centerpoint Energy",
+        "PartNo": "CP013",
+        "PartDesc": "Aluninum Wire Clamp",
+        "QTY Due": "250",
+        "DueDate": "9/5/2022 12:00:00 AM",
+        "JobNo": "3535-01",
+        "QtyOrdered": "250",
+        "UnitPrice": "175",
+        "Shipped": "0",
+        "Value Due": "43750",
+        "EstDays": 4,
+        "PartsDone": {
+          "Cut 1x2 2.75'' 260 units": 0,
+          "Cut 1x3 8.880'' 260 units": 0,
+          "Mill Op 1  1x2'' material": 0,
+          "Mill Op 1  1x3'' material": 0,
+          "Mill Op 2 1-2\" Material": 100,
+          "Mill Op 2 1-3\" Material": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo"
+        ],
+        "Operations": {
+          "Lathe op 1": "Eduardo",
+          "Lathe op 2": "Eduardo",
+          "Lathe op 3 Face off 50 for blanks": "Eduardo",
+          "Lathe op 4 Face off & tap 1/2-28": "Eduardo"
+        },
+        "CompletedOperations": {
+          "Lathe op 1": false,
+          "Lathe op 2": false,
+          "Lathe op 3 Face off 50 for blanks": false,
+          "Lathe op 4 Face off & tap 1/2-28": false
+        },
+        "Notes": "",
+        "EstDays": -56,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe op 1": 0,
+          "Lathe op 2": 0,
+          "Lathe op 3 Face off 50 for blanks": 0,
+          "Lathe op 4 Face off & tap 1/2-28": 0
+        },
+        "PartsDone": {
+          "Lathe op 1": 0,
+          "Lathe op 2": 0,
+          "Lathe op 3 Face off 50 for blanks": 0,
+          "Lathe op 4 Face off & tap 1/2-28": 0
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT419",
+        "PartDesc": "1'' Adapter to blank",
+        "QTY Due": "150",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-22",
+        "QtyOrdered": "150",
+        "UnitPrice": "6.75",
+        "Shipped": "0",
+        "Value Due": "1012.5"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo",
+          "Evelyn"
+        ],
+        "Operations": {
+          "Lathe Op1 make 456 units side 1": "Eduardo",
+          "Lathe Op2 make 456 units side 2": "Eduardo",
+          "Clean and package in sets of 8": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Lathe Op1 make 456 units side 1": false,
+          "Lathe Op2 make 456 units side 2": false,
+          "Clean and package in sets of 8": false
+        },
+        "Notes": "",
+        "EstDays": -56,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe Op1 make 456 units side 1": 0,
+          "Lathe Op2 make 456 units side 2": 0,
+          "Clean and package in sets of 8": 0
+        },
+        "PartsDone": {
+          "Lathe Op1 make 456 units side 1": 0,
+          "Lathe Op2 make 456 units side 2": 0,
+          "Clean and package in sets of 8": 0
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT638",
+        "PartDesc": "1'' PLUG SET",
+        "QTY Due": "57",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-23",
+        "QtyOrdered": "57",
+        "UnitPrice": "31",
+        "Shipped": "0",
+        "Value Due": "1767"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+
+Log Entry : 8:02:03 AM Friday, July 22, 2022
+
+  :David clock in at 7/22/2022 8:02:03 AM on Job 3561-01 and operation Open Id on 316 units
+-------------------------------
+
+Log Entry : 9:44:44 AM Friday, July 22, 2022
+
+  :Evelyn clock in at 7/22/2022 9:44:44 AM on Job 3558-01 and operation Saw Cut parts for order
+-------------------------------
+
+Log Entry : 2:29:23 PM Friday, July 22, 2022
+
+  :Evelyn clock out at 7/22/2022 2:29:23 PM on Job 3558-01 and operation Saw Cut parts for order with 17 parts done
+-------------------------------
+
+Log Entry : 5:01:26 PM Friday, July 22, 2022
+
+  :David clock out at 7/22/2022 5:01:26 PM on Job 3561-01 and operation Open Id on 316 units with 72 parts done
+-------------------------------

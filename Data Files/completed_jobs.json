@@ -1,0 +1,1295 @@
+{
+  "$type": "System.Collections.ObjectModel.ObservableCollection`1[[IPM_Job_Manager_net.Job, IPM Job Manager]], System",
+  "$values": [
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Chau"
+        ],
+        "Operations": {
+          "Lathe Opt 1": "Eduardo",
+          "Lathe Opt 2": "Eduardo",
+          "Mill flats": "Chau",
+          "Engrave Starting \"TIP-023": "Chau",
+          "DeBurr and Oil": "Evelyn",
+          "Package for Shipment": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Lathe Opt 1": true,
+          "Lathe Opt 2": true,
+          "Mill flats": false,
+          "Engrave Starting \"TIP-023": false,
+          "DeBurr and Oil": false,
+          "Package for Shipment": false
+        },
+        "Notes": "1",
+        "EstDays": -40,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\860116 Rev2.pdf"
+        ],
+        "OperationTime": {
+          "Lathe Opt 1": 0,
+          "Lathe Opt 2": 0,
+          "Mill flats": 0,
+          "Engrave Starting \"TIP-023": 0,
+          "DeBurr and Oil": 0,
+          "Package for Shipment": 0
+        },
+        "PONum": "408348                        ",
+        "CustDesc": "Global Drilling Support",
+        "PartNo": "GDS860116",
+        "PartDesc": "Shaft, Drive, Shouldered, Encoder",
+        "QTY Due": "18",
+        "DueDate": "5/27/2022 12:00:00 AM",
+        "JobNo": "3494-01",
+        "QtyOrdered": "20",
+        "UnitPrice": "165",
+        "Shipped": "2",
+        "Value Due": "2970",
+        "PartsDone": {
+          "Lathe Opt 1": 0,
+          "Lathe Opt 2": 0,
+          "Mill flats": 0,
+          "Engrave Starting \"TIP-023": 0
+        },
+        "CompletedDate": "07/06/2022 12:43 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Bill"
+        ],
+        "Operations": {
+          "Mill flat surfaces on Wrench head": "Chau",
+          "drill center holes for EDM work to be completed": "Chau",
+          "EDM Square cut outs": "Bill"
+        },
+        "CompletedOperations": {
+          "Mill flat surfaces on Wrench head": true,
+          "drill center holes for EDM work to be completed": true,
+          "EDM Square cut outs": false
+        },
+        "Notes": "",
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\N60729-BA.pdf"
+        ],
+        "OperationTime": {
+          "Mill flat surfaces on Wrench head": 0,
+          "drill center holes for EDM work to be completed": 0,
+          "EDM Square cut outs": 0
+        },
+        "PONum": "Pending                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "N60729-BA",
+        "PartDesc": "Wrench, Mod UPU Cntrl Support",
+        "QTY Due": "4",
+        "DueDate": "6/15/2022 12:00:00 AM",
+        "JobNo": "3530-01",
+        "QtyOrdered": "4",
+        "UnitPrice": "100",
+        "Shipped": "0",
+        "Value Due": "400",
+        "EstDays": -21,
+        "PartsDone": {
+          "Mill flat surfaces on Wrench head": 0,
+          "drill center holes for EDM work to be completed": 0,
+          "EDM Square cut outs": 0
+        },
+        "CompletedDate": "07/06/2022 1:15 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Shorten Rack as indicated": "David",
+          "Bore indicated Lock pin holes": "Victor",
+          "Bore indicated Rack bore sleeves": "Victor"
+        },
+        "CompletedOperations": {
+          "Shorten Rack as indicated": true,
+          "Bore indicated Lock pin holes": false,
+          "Bore indicated Rack bore sleeves": false
+        },
+        "Notes": "",
+        "Priority": 2,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\Lockpin Bore.pdf",
+          "I:\\Customer Files\\HiKaliber\\Rackpin Bore.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-4186-8.pdf"
+        ],
+        "OperationTime": {
+          "Shorten Rack as indicated": 0,
+          "Bore indicated Rack Sleeves": 0,
+          "Bore indicated Rack bore sleeves": 262012
+        },
+        "PONum": "402803                        ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "4186-TDA-SER-F-REP",
+        "PartDesc": "BORE INDICATED LOCK PIN HOLES AS PER DRAWING lOCKPIN BORE SHEET 1/1 SERIAL NUMBER 177426-66 AND177425-66",
+        "QTY Due": "8",
+        "DueDate": "6/17/2022 12:00:00 AM",
+        "JobNo": "3534-01",
+        "QtyOrdered": "8",
+        "UnitPrice": "60",
+        "Shipped": "0",
+        "Value Due": "480",
+        "EstDays": -20,
+        "PartsDone": {
+          "Shorten Rack as indicated": 0,
+          "Bore indicated Lock pin holes": 0,
+          "Bore indicated Rack bore sleeves": 0
+        },
+        "CompletedDate": "07/07/2022 11:04 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Material review": "Evelyn",
+          "saw cut 1-1/2 SCH80 Pipe 32''": "Evelyn",
+          "Place Outside order for Wrench Heads": "Bill",
+          "Mill Wrench Handles": "Victor",
+          "Press Wrench Handles": "Victor",
+          "Mill Wrench Heads": "Victor",
+          "Match Heads to Handles": "Victor"
+        },
+        "CompletedOperations": {
+          "Material review": true,
+          "saw cut 1-1/2 SCH80 Pipe 32''": true,
+          "Place Outside order for Wrench Heads": true,
+          "Mill Wrench Handles": false,
+          "Press Wrench Handles": false,
+          "Mill Wrench Heads": false,
+          "Match Heads to Handles": false
+        },
+        "Notes": "",
+        "EstDays": -15,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F501545000\\F501545000 RevH.pdf",
+          "I:\\Program Files\\E2\\Blswin32\\Dat\\Ht Scans\\823U71030.pdf"
+        ],
+        "OperationTime": {
+          "Material review": 0,
+          "saw cut 1-1/2 SCH80 Pipe 32''": 0,
+          "Place Outside order for Wrench Heads": 0,
+          "Mill Wrench Handles": 0,
+          "Press Wrench Handles": 0,
+          "Mill Wrench Heads": 0,
+          "Match Heads to Handles": 0
+        },
+        "PONum": "pending                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "F501545000-H",
+        "PartDesc": "Wrench Spanner Wldmnt 3-5/32 Hex",
+        "QTY Due": "5",
+        "DueDate": "6/22/2022 12:00:00 AM",
+        "JobNo": "3536-01",
+        "QtyOrdered": "5",
+        "UnitPrice": "375",
+        "Shipped": "0",
+        "Value Due": "1875",
+        "PartsDone": {
+          "Material review": 0,
+          "saw cut 1-1/2 SCH80 Pipe 32''": 0,
+          "Place Outside order for Wrench Heads": 0,
+          "Mill Wrench Handles": 0,
+          "Press Wrench Handles": 0,
+          "Mill Wrench Heads": 0,
+          "Match Heads to Handles": 0
+        },
+        "CompletedDate": "07/07/2022 11:06 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "Material order": "Bill",
+          "Saw cut .3 to .33": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Material order": true,
+          "Saw cut .3 to .33": false
+        },
+        "Notes": "",
+        "EstDays": -6,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Material order": 0,
+          "Saw cut .3 to .33": 0
+        },
+        "PartsDone": {
+          "Saw cut .3 to .33": null
+        },
+        "PONum": "RJ10631                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "A1006536000-A",
+        "PartDesc": "Shelf, Shock Isolation PCB MNT For 2.50",
+        "QTY Due": "45",
+        "DueDate": "7/5/2022 12:00:00 AM",
+        "JobNo": "3543-01",
+        "QtyOrdered": "45",
+        "UnitPrice": "75",
+        "Shipped": "0",
+        "Value Due": "3375",
+        "CompletedDate": "07/11/2022 10:58 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "Lathe Op 1": "David",
+          "Mill OP 1": "Victor",
+          "Package & bag": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Lathe Op 1": true,
+          "Mill OP 1": true,
+          "Out Source Wrench Head Order": false,
+          "Mill Wrench Handles": false,
+          "Press Wrench Handles": false,
+          "Mill Wrench Heads": false,
+          "Match Head to Handle": false,
+          "Package & bag": false
+        },
+        "Notes": "",
+        "Priority": 2,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\CadKey Drawings\\USA\\8-32 STOP PIN.pdf",
+          "I:\\Program Files\\E2\\Blswin32\\Dat\\Ht Scans\\823U71030.pdf",
+          "I:\\Customer Files\\R&J\\A1006536000-A.pdf"
+        ],
+        "OperationTime": {
+          "Lathe Op 1": 0,
+          "Mill OP 1": 0,
+          "Package & bag": 20
+        },
+        "PONum": "22-M4467                      ",
+        "CustDesc": "Mitsubishi Chemical America",
+        "PartNo": "DAI1002",
+        "PartDesc": "Small Drive Pins SS",
+        "QTY Due": "120",
+        "DueDate": "6/2/2022 12:00:00 AM",
+        "JobNo": "3520-01",
+        "QtyOrdered": "120",
+        "UnitPrice": "25",
+        "Shipped": "0",
+        "Value Due": "3000",
+        "EstDays": -39,
+        "PartsDone": {
+          "Lathe Op 1": 0,
+          "Mill OP 1": 0,
+          "Out Source Wrench Head Order": 0,
+          "Mill Wrench Handles": 0,
+          "Press Wrench Handles": 0,
+          "Mill Wrench Heads": 0,
+          "Match Head to Handle": 0,
+          "Package & bag": null
+        },
+        "CompletedDate": "07/11/2022 11:50 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Bore indicated Lock Pin Hole": "Victor"
+        },
+        "CompletedOperations": {
+          "Bore indicated Lock Pin Hole": false
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\Lockpin Bore.pdf"
+        ],
+        "OperationTime": {
+          "Bore indicated Lock Pin Hole": 0
+        },
+        "PartsDone": {
+          "Bore indicated Lock Pin Hole": 1
+        },
+        "PONum": "                              ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0005",
+        "PartDesc": "5187-TDA-SER-C-REP Bore Indicated Lock Pin Holes as Per Drawing: Lockpin Bore Sheet 1/1,S/N:141684-10",
+        "QTY Due": "1",
+        "DueDate": "7/13/2022 12:00:00 AM",
+        "JobNo": "3552-02",
+        "QtyOrdered": "1",
+        "UnitPrice": "60",
+        "Shipped": "0",
+        "Value Due": "60",
+        "CompletedDate": "07/12/2022 9:39 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "David"
+        ],
+        "Operations": {
+          "Shorten Racks as indicated": "David"
+        },
+        "CompletedOperations": {
+          "Shorten Racks as indicated": false
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\HK-4186-8.pdf"
+        ],
+        "OperationTime": {
+          "Shorten Racks as indicated": 0
+        },
+        "PartsDone": {
+          "Shorten Racks as indicated": 0
+        },
+        "PONum": "                              ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0007",
+        "PartDesc": "5187-TDA-SER-C-REP Shorten Racks as per the Attached Drawing HK-4186-8,,S/N:126101-92, 139209-10, 139203-103, 139203-105",
+        "QTY Due": "4",
+        "DueDate": "7/13/2022 12:00:00 AM",
+        "JobNo": "3552-03",
+        "QtyOrdered": "4",
+        "UnitPrice": "60",
+        "Shipped": "0",
+        "Value Due": "240",
+        "CompletedDate": "07/13/2022 12:02 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Bore Indicated Rack Bore Sleeves (8) as indicated": "Victor"
+        },
+        "CompletedOperations": {
+          "Bore Indicated Rack Bore Sleeves (8) as indicated": false
+        },
+        "Notes": "",
+        "EstDays": -1,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\Rackpin Bore.pdf"
+        ],
+        "OperationTime": {
+          "Bore Indicated Rack Bore Sleeves (8) as indicated": 73426
+        },
+        "PartsDone": {
+          "Bore Indicated Rack Bore Sleeves (8) as indicated": 8
+        },
+        "PONum": "                              ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0006",
+        "PartDesc": "5187-TDA-SER-C-REP Bore Indicated Rack Bore Sleeves as per Drwaring: Rack Bore Sheet 1/1 Cylinder ,S/N:141684-10, 141683-10",
+        "QTY Due": "8",
+        "DueDate": "7/13/2022 12:00:00 AM",
+        "JobNo": "3552-01",
+        "QtyOrdered": "8",
+        "UnitPrice": "125",
+        "Shipped": "0",
+        "Value Due": "1000",
+        "CompletedDate": "07/14/2022 8:33 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "David"
+        ],
+        "Operations": {
+          "LATHE OP1 CREATE DRILL BUSHING": "David"
+        },
+        "CompletedOperations": {
+          "LATHE OP1 CREATE DRILL BUSHING": false
+        },
+        "Notes": "",
+        "EstDays": -8,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "LATHE OP1 CREATE DRILL BUSHING": 0
+        },
+        "PartsDone": {
+          "LATHE OP1 CREATE DRILL BUSHING": 0
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT962",
+        "PartDesc": "Drill Bushing Blank",
+        "QTY Due": "120",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-06",
+        "QtyOrdered": "120",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0",
+        "CompletedDate": "07/14/2022 10:28 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "Mill 16 units .223": "Evelyn",
+          "Blast & Coat": "Evelyn",
+          "Package & Label": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Mill 16 units .223": true,
+          "Blast & Coat": true,
+          "Package & Label": false
+        },
+        "Notes": "",
+        "EstDays": -8,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Mill 16 units .223": 0,
+          "Blast & Coat": 0,
+          "Package & Label": 23
+        },
+        "PartsDone": {
+          "Mill 16 units .223": 0,
+          "Blast & Coat": 18,
+          "Package & Label": 18
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT959",
+        "PartDesc": "Drill Bushing SM .223\r\n",
+        "QTY Due": "20",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-03",
+        "QtyOrdered": "20",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0",
+        "CompletedDate": "07/14/2022 2:44 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "Mill 12 units to .308": "Evelyn",
+          "Blast & Coat": "Evelyn",
+          "Package & Label": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Mill 12 units to .308": true,
+          "Blast & Coat": true,
+          "Package & Label": false
+        },
+        "Notes": "",
+        "EstDays": -8,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Mill 12 units to .308": 0,
+          "Blast & Coat": 0,
+          "Package & Label": 22
+        },
+        "PartsDone": {
+          "Mill 12 units to .308": 0,
+          "Blast & Coat": 14,
+          "Package & Label": 14
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT960",
+        "PartDesc": "Drill Bushing Md .308",
+        "QTY Due": "20",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-04",
+        "QtyOrdered": "20",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0",
+        "CompletedDate": "07/14/2022 2:50 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "mill 13 units to 9MM": "Evelyn",
+          "Blast & Coat": "Evelyn",
+          "Package & Label": "Evelyn"
+        },
+        "CompletedOperations": {
+          "mill 13 units to 9MM": true,
+          "Blast & Coat": true,
+          "Package & Label": false
+        },
+        "Notes": "",
+        "EstDays": -8,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "mill 13 units to 9MM": 0,
+          "Blast & Coat": 0,
+          "Package & Label": 19
+        },
+        "PartsDone": {
+          "mill 13 units to 9MM": 7,
+          "Blast & Coat": 20,
+          "Package & Label": 20
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT961",
+        "PartDesc": "Drill Bushing LG 9MM",
+        "QTY Due": "20",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-05",
+        "QtyOrdered": "20",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0",
+        "CompletedDate": "07/14/2022 2:57 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "package for delivery": "Evelyn"
+        },
+        "CompletedOperations": {
+          "package for delivery": false
+        },
+        "Notes": "",
+        "EstDays": -26,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\A1006452000-B.pdf"
+        ],
+        "OperationTime": {
+          "package for delivery": 0
+        },
+        "PONum": "RJ10621                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "A1006452000-B",
+        "PartDesc": "Yoke Knife Support, CS&CMD F/1828MA",
+        "QTY Due": "10",
+        "DueDate": "6/22/2022 12:00:00 AM",
+        "JobNo": "3538-01",
+        "QtyOrdered": "10",
+        "UnitPrice": "120",
+        "Shipped": "0",
+        "Value Due": "1200",
+        "PartsDone": {
+          "package for delivery": 0
+        },
+        "CompletedDate": "07/18/2022 1:04 PM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Material Stock or Order": "Bill",
+          "EDM Cut Material to size": "Bill",
+          "Mill Op 1": "Victor",
+          "Mill Op 2": "Victor"
+        },
+        "CompletedOperations": {
+          "Material Stock or Order": true,
+          "EDM Cut Material to size": true,
+          "Mill Op 1": false,
+          "Mill Op 2": false
+        },
+        "Notes": "",
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F198446000_A.pdf"
+        ],
+        "OperationTime": {
+          "Material Stock or Order": 0,
+          "EDM Cut Material to size": 0,
+          "Mill Op 1": 0,
+          "Mill Op 2": 0
+        },
+        "PONum": "RJ10624                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "F198446000-A",
+        "PartDesc": "Key, Guide PWR Nut-2223XA Matrix Density",
+        "QTY Due": "40",
+        "DueDate": "7/22/2022 12:00:00 AM",
+        "JobNo": "3540-01",
+        "QtyOrdered": "40",
+        "UnitPrice": "35",
+        "Shipped": "0",
+        "Value Due": "1400",
+        "EstDays": 0,
+        "PartsDone": {
+          "Material Stock or Order": 0,
+          "EDM Cut Material to size": 0,
+          "Mill Op 1": 0,
+          "Mill Op 2": 49
+        },
+        "CompletedDate": "07/22/2022 8:02 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "David"
+        ],
+        "Operations": {
+          "Open Id on 316 units": "David"
+        },
+        "CompletedOperations": {
+          "Open Id on 316 units": false
+        },
+        "Notes": "",
+        "EstDays": -14,
+        "Priority": 0,
+        "EstTime": "Hrs: 2 | Mins: 21 | Secs: 30",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Open Id on 316 units": 8490
+        },
+        "PartsDone": {
+          "Open Id on 316 units": 576
+        },
+        "PONum": "pending                       ",
+        "CustDesc": "Flowtrend",
+        "PartNo": "LKB BODY 316",
+        "PartDesc": "",
+        "QTY Due": "1",
+        "DueDate": "7/25/2022 12:00:00 AM",
+        "JobNo": "3561-01",
+        "QtyOrdered": "1",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0",
+        "CompletedDate": "08/08/2022 8:56 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "David"
+        ],
+        "Operations": {
+          "Open Id on 304 units": "David"
+        },
+        "CompletedOperations": {
+          "Open Id on 304 units": false
+        },
+        "Notes": "",
+        "EstDays": -14,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Open Id on 304 units": 0
+        },
+        "PartsDone": {
+          "Open Id on 304 units": 0
+        },
+        "PONum": "pending                       ",
+        "CustDesc": "Flowtrend",
+        "PartNo": "LKB BODY 304",
+        "PartDesc": "",
+        "QTY Due": "1",
+        "DueDate": "7/25/2022 12:00:00 AM",
+        "JobNo": "3561-02",
+        "QtyOrdered": "1",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0",
+        "CompletedDate": "08/08/2022 8:56 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Evelyn"
+        ],
+        "Operations": {
+          "Saw Cut parts for order": "Evelyn"
+        },
+        "CompletedOperations": {
+          "Saw Cut parts for order": false
+        },
+        "Notes": "",
+        "EstDays": -5,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Saw Cut parts for order": 0
+        },
+        "PartsDone": {
+          "Saw Cut parts for order": 70
+        },
+        "PONum": "Pending                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "N33096-003-A",
+        "PartDesc": "Flage - Drilled 3-1/2 A.P.I. I.F.",
+        "QTY Due": "50",
+        "DueDate": "8/3/2022 12:00:00 AM",
+        "JobNo": "3558-01",
+        "QtyOrdered": "50",
+        "UnitPrice": "72",
+        "Shipped": "0",
+        "Value Due": "3600",
+        "CompletedDate": "08/08/2022 9:03 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo"
+        ],
+        "Operations": {
+          "Lathe OP1": "Eduardo",
+          "Lathe OP2": "Eduardo"
+        },
+        "CompletedOperations": {
+          "Lathe OP1": true,
+          "Lathe OP2": false
+        },
+        "Notes": "",
+        "EstDays": -33,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe OP1": 0,
+          "Lathe OP2": 0
+        },
+        "PartsDone": {
+          "Lathe OP1": 0,
+          "Lathe OP2": 0
+        },
+        "PONum": "6688                          ",
+        "CustDesc": "Stainless Hose Fittings",
+        "PartNo": "SHF0009",
+        "PartDesc": "Stainless fitting SHF-6PC1FSS (Made to drawing)",
+        "QTY Due": "10",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3546-01",
+        "QtyOrdered": "10",
+        "UnitPrice": "58",
+        "Shipped": "0",
+        "Value Due": "580",
+        "CompletedDate": "08/08/2022 9:31 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "David"
+        ],
+        "Operations": {
+          "Lathe Op1": "David",
+          "Lathe Op2": "David",
+          "Mill Op1": "Victor"
+        },
+        "CompletedOperations": {
+          "Lathe Op1": false,
+          "Lathe Op2": false,
+          "Mill Op1": false
+        },
+        "Notes": "",
+        "EstDays": -1,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0,
+          "Mill Op1": 0
+        },
+        "PartsDone": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0,
+          "Mill Op1": 0
+        },
+        "PONum": "OPEN ORDERS 2022              ",
+        "CustDesc": "Infinate Product Solutions",
+        "PartNo": "ADPTM274B",
+        "PartDesc": "9/16-20 LH X 3/4-24 LH Hex head bs M274B Extended Thread Length 14MM",
+        "QTY Due": "15",
+        "DueDate": "8/8/2022 12:00:00 AM",
+        "JobNo": "3575-01",
+        "QtyOrdered": "15",
+        "UnitPrice": "22.5",
+        "Shipped": "0",
+        "Value Due": "337.5",
+        "CompletedDate": "08/09/2022 11:35 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "David"
+        ],
+        "Operations": {
+          "Lathe Op1": "David",
+          "Lathe Op2": "David",
+          "Mill op1": "Victor"
+        },
+        "CompletedOperations": {
+          "Lathe Op1": true,
+          "Lathe Op2": false,
+          "Mill op1": false
+        },
+        "Notes": "",
+        "EstDays": -1,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0,
+          "Mill op1": 0
+        },
+        "PartsDone": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0,
+          "Mill op1": 0
+        },
+        "PONum": "OPEN ORDERS 2022              ",
+        "CustDesc": "Infinate Product Solutions",
+        "PartNo": "ADPTM275B",
+        "PartDesc": "9/16-20  X 3/4-24 Hex head bs M275B Extended Thread Length 14MM",
+        "QTY Due": "15",
+        "DueDate": "8/8/2022 12:00:00 AM",
+        "JobNo": "3575-02",
+        "QtyOrdered": "15",
+        "UnitPrice": "22.5",
+        "Shipped": "0",
+        "Value Due": "337.5",
+        "CompletedDate": "08/09/2022 11:35 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Order Material": "Bill",
+          "Lathe Tap and cut to length": "David",
+          "Mill tap hole ": "Victor"
+        },
+        "CompletedOperations": {
+          "Order Material": true,
+          "Lathe Tap and cut to length": true,
+          "Mill tap hole ": false
+        },
+        "Notes": "",
+        "EstDays": -38,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F144497003_B.pdf"
+        ],
+        "OperationTime": {
+          "Order Material": 0,
+          "Lathe Tap and cut to length": 0,
+          "Mill tap hole ": 0
+        },
+        "PONum": "RJ10623                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "F144497003-B1",
+        "PartDesc": "Bar Contact Be Cu 1.25-IN LG",
+        "QTY Due": "15",
+        "DueDate": "7/15/2022 12:00:00 AM",
+        "JobNo": "3539-01",
+        "QtyOrdered": "15",
+        "UnitPrice": "42.5",
+        "Shipped": "0",
+        "Value Due": "637.5",
+        "PartsDone": {
+          "Order Material": 0,
+          "Lathe Tap and cut to length": 84,
+          "Mill tap hole ": 0
+        },
+        "CompletedDate": "08/22/2022 8:31 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo"
+        ],
+        "Operations": {
+          "Lathe Op1": "Eduardo",
+          "Lathe Op2": "Eduardo"
+        },
+        "CompletedOperations": {
+          "Lathe Op1": true,
+          "Lathe Op2": false
+        },
+        "Notes": "",
+        "EstDays": -47,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PartsDone": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PONum": "6688                          ",
+        "CustDesc": "Stainless Hose Fittings",
+        "PartNo": "SHF0012",
+        "PartDesc": "Stainless fitting SHF-16PC1FSS (Made to drawing)",
+        "QTY Due": "10",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3546-04",
+        "QtyOrdered": "10",
+        "UnitPrice": "80.75",
+        "Shipped": "0",
+        "Value Due": "807.5",
+        "CompletedDate": "08/22/2022 8:34 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo"
+        ],
+        "Operations": {
+          "Lathe Op1": "Eduardo",
+          "Lathe Op2": "Eduardo"
+        },
+        "CompletedOperations": {
+          "Lathe Op1": true,
+          "Lathe Op2": false
+        },
+        "Notes": "",
+        "EstDays": -47,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PartsDone": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PONum": "6688                          ",
+        "CustDesc": "Stainless Hose Fittings",
+        "PartNo": "SHF0011",
+        "PartDesc": "Stainless fitting SHF-12PC1FSS (Made to drawing)",
+        "QTY Due": "10",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3546-03",
+        "QtyOrdered": "10",
+        "UnitPrice": "67.25",
+        "Shipped": "0",
+        "Value Due": "672.5",
+        "CompletedDate": "08/22/2022 8:34 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo"
+        ],
+        "Operations": {
+          "Lathe Op1": "Eduardo",
+          "Lathe Op2": "Eduardo"
+        },
+        "CompletedOperations": {
+          "Lathe Op1": true,
+          "Lathe Op2": false
+        },
+        "Notes": "",
+        "EstDays": -47,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PartsDone": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PONum": "6688                          ",
+        "CustDesc": "Stainless Hose Fittings",
+        "PartNo": "SHF0010",
+        "PartDesc": "Stainless fitting SHF-10PC1FSS (Made to drawing)",
+        "QTY Due": "10",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3546-02",
+        "QtyOrdered": "10",
+        "UnitPrice": "59.5",
+        "Shipped": "0",
+        "Value Due": "595",
+        "CompletedDate": "08/22/2022 8:34 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Eduardo"
+        ],
+        "Operations": {
+          "Lathe Op1 & 2 if needed": "Eduardo"
+        },
+        "CompletedOperations": {
+          "Lathe Op1 & 2 if needed": false
+        },
+        "Notes": "",
+        "EstDays": -8,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402898\\HK-4186-8.pdf"
+        ],
+        "OperationTime": {
+          "Lathe Op1 & 2 if needed": 0
+        },
+        "PartsDone": {},
+        "PONum": "402898                        ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0007\r\n",
+        "PartDesc": "5187-TDA-SER-C-REP Shorten Racks as per the Attached Drawing HK-4186-8,,123876-126, 123876-127",
+        "QTY Due": "2",
+        "DueDate": "8/17/2022 12:00:00 AM",
+        "JobNo": "3577-01",
+        "QtyOrdered": "2",
+        "UnitPrice": "60",
+        "Shipped": "0",
+        "Value Due": "120",
+        "CompletedDate": "08/25/2022 8:51 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Mill Op1": "Victor"
+        },
+        "CompletedOperations": {
+          "Mill Op1": false
+        },
+        "Notes": "",
+        "EstDays": -20,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402900\\Lock Pin Bore Sheet 1_1.pdf"
+        ],
+        "OperationTime": {
+          "Mill Op1": 0
+        },
+        "PartsDone": {
+          "Mill Op1": 0
+        },
+        "PONum": "402898                        ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0005\r\n",
+        "PartDesc": "5187-TDA-SER-C-REP Bore Indicated Lock Pin Holes as Per Drawing: Lockpin Bore Sheet 1/1,124491-3, 124490-3",
+        "QTY Due": "8",
+        "DueDate": "8/9/2022 12:00:00 AM",
+        "JobNo": "3577-02",
+        "QtyOrdered": "8",
+        "UnitPrice": "60",
+        "Shipped": "0",
+        "Value Due": "480",
+        "CompletedDate": "08/29/2022 11:09 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Mill Op1": "Victor"
+        },
+        "CompletedOperations": {
+          "Mill Op1": false
+        },
+        "Notes": "",
+        "EstDays": -20,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402900\\Rack Bore Sheet 1_1.pdf"
+        ],
+        "OperationTime": {
+          "Mill Op1": 0
+        },
+        "PartsDone": {
+          "Mill Op1": 0
+        },
+        "PONum": "402900                        ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0006\r\n",
+        "PartDesc": "5187-TDA-SER-C-REP Bore Indicated Rack Bore Sleeves as per Drwaring: Rack Bore Sheet 1/1 Cylinder ,155788-23, 155787-23\r\n",
+        "QTY Due": "6",
+        "DueDate": "8/9/2022 12:00:00 AM",
+        "JobNo": "3576-01",
+        "QtyOrdered": "6",
+        "UnitPrice": "125",
+        "Shipped": "0",
+        "Value Due": "750",
+        "CompletedDate": "08/29/2022 11:09 AM"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": [
+          "Victor"
+        ],
+        "Operations": {
+          "Mill Op1": "Victor"
+        },
+        "CompletedOperations": {
+          "Mill Op1": false
+        },
+        "Notes": "",
+        "EstDays": -20,
+        "Priority": 0,
+        "EstTime": "Hrs: 0 | Mins: 0 | Secs: 0",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402900\\Lock Pin Bore Sheet 1_1.pdf"
+        ],
+        "OperationTime": {
+          "Mill Op1": 0
+        },
+        "PartsDone": {
+          "Mill Op1": 0
+        },
+        "PONum": "402900                        ",
+        "CustDesc": "HI-Kalibre Equipment USA Inc",
+        "PartNo": "HKE0005\r\n",
+        "PartDesc": "5187-TDA-SER-C-REP Bore Indicated Lock Pin Holes as Per Drawing: Lockpin Bore Sheet 1/1,155788-23, 155787-23\r\n",
+        "QTY Due": "8",
+        "DueDate": "8/9/2022 12:00:00 AM",
+        "JobNo": "3576-02",
+        "QtyOrdered": "8",
+        "UnitPrice": "60",
+        "Shipped": "0",
+        "Value Due": "480",
+        "CompletedDate": "08/29/2022 11:10 AM"
+      }
+    }
+  ]
+}

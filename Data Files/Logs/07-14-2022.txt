@@ -1,0 +1,105 @@
+
+Log Entry : 8:01:01 AM Thursday, July 14, 2022
+
+  :David clock in at 7/14/2022 8:01:01 AM on Job 3547-06 and operation LATHE OP1 CREATE DRILL BUSHING
+-------------------------------
+
+Log Entry : 8:33:16 AM Thursday, July 14, 2022
+
+  :Victor clock out at 7/14/2022 8:33:16 AM on Job 3552-01 and operation Bore Indicated Rack Bore Sleeves (8) as indicated with 8 parts done
+-------------------------------
+
+Log Entry : 8:58:05 AM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 8:58:05 AM on Job 3547-05 and operation mill 13 units to 9MM
+-------------------------------
+
+Log Entry : 9:37:56 AM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 9:37:56 AM on Job 3547-05 and operation mill 13 units to 9MM with 7 parts done
+-------------------------------
+
+Log Entry : 12:23:03 PM Thursday, July 14, 2022
+
+  :David clock in at 7/14/2022 12:23:03 PM on Job 3543-01 and operation Mill OP1
+-------------------------------
+
+Log Entry : 12:23:13 PM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 12:23:13 PM on Job 3547-03 and operation Blast & Coat
+-------------------------------
+
+Log Entry : 12:23:35 PM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 12:23:35 PM on Job 3547-04 and operation Blast & Coat
+-------------------------------
+
+Log Entry : 12:23:47 PM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 12:23:47 PM on Job 3547-05 and operation Blast & Coat
+-------------------------------
+
+Log Entry : 12:31:54 PM Thursday, July 14, 2022
+
+  :David clock out at 7/14/2022 12:31:54 PM on Job 3543-01 and operation Mill OP1 with 10 parts done
+-------------------------------
+
+Log Entry : 1:00:22 PM Thursday, July 14, 2022
+
+  :David clock in at 7/14/2022 1:00:22 PM on Job 3543-01 and operation Mill OP1
+-------------------------------
+
+Log Entry : 2:36:38 PM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 2:36:38 PM on Job 3547-03 and operation Blast & Coat with 18 parts done
+-------------------------------
+
+Log Entry : 2:36:54 PM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 2:36:54 PM on Job 3547-04 and operation Blast & Coat with 14 parts done
+-------------------------------
+
+Log Entry : 2:36:58 PM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 2:36:58 PM on Job 3547-05 and operation Blast & Coat with 20 parts done
+-------------------------------
+
+Log Entry : 2:37:43 PM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 2:37:43 PM on Job 3547-03 and operation Package & Label
+-------------------------------
+
+Log Entry : 2:44:50 PM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 2:44:50 PM on Job 3547-03 and operation Package & Label with 18 parts done
+-------------------------------
+
+Log Entry : 2:45:03 PM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 2:45:03 PM on Job 3547-04 and operation Package & Label
+-------------------------------
+
+Log Entry : 2:50:15 PM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 2:50:15 PM on Job 3547-04 and operation Package & Label with 14 parts done
+-------------------------------
+
+Log Entry : 2:50:29 PM Thursday, July 14, 2022
+
+  :Evelyn clock in at 7/14/2022 2:50:29 PM on Job 3547-05 and operation Package & Label
+-------------------------------
+
+Log Entry : 2:57:00 PM Thursday, July 14, 2022
+
+  :Evelyn clock out at 7/14/2022 2:57:00 PM on Job 3547-05 and operation Package & Label with 20 parts done
+-------------------------------
+
+Log Entry : 3:49:49 PM Thursday, July 14, 2022
+
+  :David clock out at 7/14/2022 3:49:49 PM on Job 3543-01 and operation Mill OP1 with 54 parts done
+-------------------------------
+
+Log Entry : 3:49:59 PM Thursday, July 14, 2022
+
+  :David clock in at 7/14/2022 3:49:59 PM on Job 3543-01 and operation Mill OP2
+-------------------------------

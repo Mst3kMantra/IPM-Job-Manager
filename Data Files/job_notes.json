@@ -1,0 +1,1166 @@
+{
+  "$type": "System.Collections.ObjectModel.ObservableCollection`1[[IPM_Job_Manager_net.Job, IPM Job Manager]], System",
+  "$values": [
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe SL30 OP1": "Toan",
+          "Lathe SL30 OP2": "Toan",
+          "Lathe SL30 OP3": "Toan",
+          "Mill OP1": "Victor",
+          "Lathe SL30 Op4": "Eduardo",
+          "Blast & Coat": "Evelyn"
+        },
+        "OperationTime": {
+          "Lathe SL30 OP1": 0,
+          "Lathe SL30 OP2": 0,
+          "Lathe SL30 OP3": 0,
+          "Mill OP1": 0,
+          "Lathe SL30 Op4": 0,
+          "Blast & Coat": 0
+        },
+        "AttachedFiles": [],
+        "PartNo": "TOP3383"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe SL30 OP1": "",
+          "Lathe SL30 OP2": "",
+          "Lathe SL30 OP3": "",
+          "Mill OP1": "",
+          "Lathe SL30 OP4": "",
+          "Blast & Coat": "",
+          "Mill OP2 engrave": ""
+        },
+        "OperationTime": {
+          "Lathe SL30 OP1": 2000,
+          "Lathe SL30 OP2": 0,
+          "Lathe SL30 OP3": 0,
+          "Mill OP1": 0,
+          "Lathe SL30 OP4": 0,
+          "Blast & Coat": 0,
+          "Mill OP2 engrave": 0
+        },
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\3383 Rev5.pdf"
+        ],
+        "PartNo": "3383",
+        "Notes": "Test"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1 SL20": "David",
+          "Lathe Op2 SL20": "David",
+          "Mill Op 1": "Victor"
+        },
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F081392000 - Print.pdf"
+        ],
+        "PartNo": "F081392000",
+        "Notes": "testing",
+        "OperationTime": {
+          "Lathe Op1 SL20": 0,
+          "Lathe Op2 SL20": 0,
+          "Mill Op 1": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill Profile and Engrave": "Chau"
+        },
+        "AttachedFiles": [],
+        "PartNo": "TIM0008",
+        "OperationTime": {
+          "Mill Profile and Engrave": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "TEST": "Michael"
+        },
+        "AttachedFiles": [],
+        "PartNo": "TIM00027"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\14372 Rev7\\14372 Rev7.pdf"
+        ],
+        "PartNo": "TOP14372",
+        "Notes": "1",
+        "Operations": {
+          "Buy Material": "Bill",
+          "Cut Off Existing Top Plate ": "Shop",
+          "Straighten Top Ring": "Shop",
+          "Machine Top Ring": "Eduardo",
+          "Machine New Top Plate": "Eduardo",
+          "Weld": "Bill",
+          "Finish Machine top Plate height drill and tap": "Victor"
+        },
+        "OperationTime": {
+          "Buy Material": 0,
+          "Cut Off Existing Top Plate ": 0,
+          "Straighten Top Ring": 0,
+          "Machine Top Ring": 0,
+          "Machine New Top Plate": 0,
+          "Weld": 0,
+          "Finish Machine top Plate height drill and tap": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe SL20 OP 1": "",
+          "Lathe SL20 OP 2": "",
+          "Mill VF2 OP 1": "",
+          "Mill VF2 OP 2": "",
+          "Mill VF2 OP3": "",
+          "Mill VF2 OP4": "",
+          "Mill VF2 OP5": "",
+          "Mill VF2 OP6": "",
+          "Coat": "",
+          "Purchase Material": "Bill",
+          "Cut Off existing top, straighten top area ": "Eduardo",
+          "Face Bonnet end": "Eduardo",
+          "Machine new top plate": "Eduardo",
+          "Weld": "Bill",
+          "Machine top to finish height, drill and tap holes": "Victor",
+          "Cut off top Plate": "Shop",
+          "Straighten Top Ring": "Shop",
+          "Purchase material": "Bill",
+          "Face Top Ring": "Eduardo",
+          "Machine Top Plate": "Eduardo",
+          "Weld Top Plate to Bonnet": "Bill",
+          "Finish Machine Top Plate": "Victor",
+          "Lathe Op1 SL20": "David",
+          "Lathe Op2 SL20": "David",
+          "Mill Op1": "Victor",
+          "Material 316 2\"": "Evelyn",
+          "Face, Drill, Bore, Part off side 1": "Eduardo",
+          "Face to length and Thread": "Eduardo",
+          "Mill Flats and slots": "Victor",
+          "Engraving": "Chau"
+        },
+        "PartNo": "TOP16212",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\N60729-BA.pdf",
+          "I:\\Customer Files\\R&J\\N60729-BA.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf",
+          "I:\\Customer Files\\R&J\\F144497003_B.pdf",
+          "I:\\Customer Files\\R&J\\F198446000_A.pdf",
+          "I:\\Customer Files\\R&J\\F501545000\\F501545000 RevH.pdf",
+          "I:\\Customer Files\\R&J\\F144497003_B.pdf",
+          "I:\\Customer Files\\R&J\\F198446000_A.pdf",
+          "I:\\Customer Files\\R&J\\F144497003_B.pdf",
+          "I:\\Customer Files\\R&J\\F198446000_A.pdf",
+          "I:\\Customer Files\\R&J\\F198446000_A.pdf",
+          "I:\\Customer Files\\R&J\\F501545000\\F501545000 RevH.pdf"
+        ],
+        "OperationTime": {
+          "Lathe SL20 OP 1": 0,
+          "Lathe SL20 OP 2": 0,
+          "Mill VF2 OP 1": 0,
+          "Mill VF2 OP 2": 0,
+          "Mill VF2 OP3": 0,
+          "Mill VF2 OP4": 0,
+          "Mill VF2 OP5": 0,
+          "Mill VF2 OP6": 0,
+          "Coat": 0,
+          "Purchase Material": 0,
+          "Cut Off existing top, straighten top area ": 0,
+          "Face Bonnet end": 0,
+          "Machine new top plate": 0,
+          "Weld": 0,
+          "Machine top to finish height, drill and tap holes": 0,
+          "Cut off top Plate": 0,
+          "Straighten Top Ring": 0,
+          "Purchase material": 0,
+          "Face Top Ring": 0,
+          "Machine Top Plate": 0,
+          "Weld Top Plate to Bonnet": 0,
+          "Finish Machine Top Plate": 0,
+          "Material 316 2\"": 0,
+          "Face, Drill, Bore, Part off side 1": 0,
+          "Face to length and Thread": 0,
+          "Mill Flats and slots": 0,
+          "Engraving": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill VF4 OP1": "",
+          "Mill VF4 OP2": ""
+        },
+        "OperationTime": {
+          "Mill VF4 OP1": 0,
+          "Mill VF4 OP2": 0
+        },
+        "PartNo": "GDS1100075",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\1100075 Rev0.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "test": "Michael"
+        },
+        "PartNo": "P01-DB-001",
+        "Notes": "test",
+        "AttachedFiles": [],
+        "OperationTime": {
+          "test": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Create fixture": "",
+          "Mill Op 1": "",
+          "Count and package to return": ""
+        },
+        "OperationTime": {
+          "Create fixture": 0,
+          "Mill Op 1": 0,
+          "Count and repackage": 0,
+          "Count and package to return": 0
+        },
+        "PartNo": "FT0014",
+        "Notes": "1591 units completed",
+        "AttachedFiles": []
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op 1": "",
+          "Mill OP 1": "",
+          "Package & bag": ""
+        },
+        "OperationTime": {
+          "Lathe Op 1": 0,
+          "Mill OP 1": 0,
+          "Package & bag": 0
+        },
+        "PartNo": "DAI1002",
+        "AttachedFiles": [
+          "I:\\CadKey Drawings\\USA\\8-32 STOP PIN.pdf",
+          "I:\\Program Files\\E2\\Blswin32\\Dat\\Ht Scans\\823U71030.pdf",
+          "I:\\Customer Files\\R&J\\A1006536000-A.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\Lockpin Bore.pdf",
+          "I:\\Customer Files\\HiKaliber\\Rackpin Bore.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-4186-8.pdf"
+        ],
+        "PartNo": "4186-TDA-SER-F-REP",
+        "Operations": {
+          "Shorten Rack as indicated": "",
+          "Bore indicated Lock pin holes": "",
+          "Bore indicated Rack bore sleeves": ""
+        },
+        "OperationTime": {
+          "Shorten Rack as indicated": 0,
+          "Bore indicated Rack Sleeves": 0,
+          "Bore indicated Rack bore sleeves": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\HK-4186-8.pdf",
+          "I:\\Customer Files\\HiKaliber\\Rackpin Bore.pdf"
+        ],
+        "PartNo": "5187-TDA-SER-C-REP",
+        "Operations": {
+          "Shorten Rack as indicated": "",
+          "Bore indicated Lock pin holes": "",
+          "Bore indicated Rack Sleeves": ""
+        },
+        "OperationTime": {
+          "Shorten Rack Sleeves as requested.": 0,
+          "Shorten Rack as indicated": 0,
+          "Bore indicated Rack Sleeves": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\HK-6186-8.pdf",
+          "I:\\Customer Files\\HiKaliber\\HK-6187-3.pdf"
+        ],
+        "PartNo": "6187-TDA-SER-REP",
+        "Operations": {
+          "Shorten Racks as indicated": "David"
+        },
+        "OperationTime": {
+          "Shorten Racks as indicated": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\HK-4186-8.pdf"
+        ],
+        "PartNo": "5187-TDA-SER-C REP",
+        "Operations": {
+          "Shorten racks as indicated": "David"
+        },
+        "OperationTime": {
+          "Shorten racks as indicated": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F611079000-C.pdf"
+        ],
+        "PartNo": "F611079000-C"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\N60729-BA.pdf"
+        ],
+        "PartNo": "N60729-BA",
+        "Operations": {
+          "Mill flat surfaces on Wrench head": "",
+          "drill center holes for EDM work to be completed": "",
+          "EDM Square cut outs": ""
+        },
+        "OperationTime": {
+          "Mill flat surfaces on Wrench head": 0,
+          "drill center holes for EDM work to be completed": 0,
+          "EDM Square cut outs": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill Profile and engrave": "Chau",
+          "Mill op1": "David",
+          "Mill op2": "David",
+          "Op 1 Open ID 316 units": "David",
+          "Lathe Op 1": "David",
+          "Lathe Op 2": "David",
+          "Mill Op 1": "Victor"
+        },
+        "OperationTime": {
+          "Mill Profile and engrave": 0,
+          "Mill op1": 0,
+          "Mill op2": 0,
+          "Op 1 Open ID 316 units": 0,
+          "Lathe Op 1": 0,
+          "Lathe Op 2": 0,
+          "Mill Op 1": 0
+        },
+        "PartNo": "TIM0006",
+        "AttachedFiles": [
+          "I:\\CadKey Drawings\\FAS\\M16 Fixture.pdf",
+          "I:\\CadKey Drawings\\FAS\\M16 Fixture.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill Profile and Engrave": "Chau"
+        },
+        "OperationTime": {
+          "Mill Profile and Engrave": 0
+        },
+        "PartNo": "TIM0007"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Opt 1": "",
+          "Lathe Opt 2": "",
+          "Mill flats": "",
+          "Engrave Starting \"TIP-023": "",
+          "DeBurr and Oil": "",
+          "Package for Shipment": ""
+        },
+        "OperationTime": {
+          "Lathe Opt 1": 0,
+          "Lathe Opt 2": 0,
+          "Mill flats": 0,
+          "Engrave Starting \"TIP-023": 0,
+          "DeBurr and Oil": 0,
+          "Package for Shipment": 0
+        },
+        "PartNo": "GDS860116",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\860116 Rev2.pdf"
+        ],
+        "Notes": "1"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Turn OD and ID": "",
+          "Face to Length": "",
+          "Saw in Half": "",
+          "Mill ID Profile": "",
+          "Mill Counter bores, Drill and Tap": "",
+          "Mill Dovetails": "",
+          "Phosphate": ""
+        },
+        "OperationTime": {
+          "Turn OD and ID": 0,
+          "Face to Length": 0,
+          "Saw in Half": 0,
+          "Mill ID Profile": 0,
+          "Mill Counter bores, Drill and Tap": 0,
+          "Mill Dovetails": 0,
+          "Phosphate": 0,
+          "Engrave": 0
+        },
+        "PartNo": "I-5258",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Tesco\\5305 Rev1.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Pull Stock for Delivery": ""
+        },
+        "OperationTime": {
+          "Pull Stock for Delivery": 0
+        },
+        "PartNo": "F502461003-F",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F502461003-F.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Face, Drill Bore and part off Op 1": "",
+          "Face length & Thread Op 2": "",
+          "Mill Flats and Slots": ""
+        },
+        "OperationTime": {
+          "Face, Drill Bore and part off Op 1": 0,
+          "Face length & Thread Op 2": 0,
+          "Mill Flats and Slots": 0
+        },
+        "PartNo": "D9FA-R25-A0106 REV A",
+        "AttachedFiles": [
+          "I:\\Customer Files\\Flowtrend\\D9FA-R52-A0106 REV A.PDF"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F193691000-A.pdf"
+        ],
+        "PartNo": "F193691000-A"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\A1006452000-B.pdf"
+        ],
+        "PartNo": "A1006452000-B",
+        "Operations": {
+          "package for delivery": ""
+        },
+        "OperationTime": {
+          "package for delivery": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Order Material": "",
+          "Lathe Tap and cut to length": "",
+          "Mill tap hole ": ""
+        },
+        "OperationTime": {
+          "Order Material": 0,
+          "Lathe Tap and cut to length": 0,
+          "Mill tap hole ": 0
+        },
+        "PartNo": "F144497003-B1",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F144497003_B.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F198446000_A.pdf"
+        ],
+        "PartNo": "F198446000-A",
+        "Operations": {
+          "Material Stock or Order": "",
+          "EDM Cut Material to size": "",
+          "Mill Op 1": "",
+          "Mill Op 2": ""
+        },
+        "OperationTime": {
+          "Material Stock or Order": 0,
+          "EDM Cut Material to size": 0,
+          "Mill Op 1": 0,
+          "Mill Op 2": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F501545000\\F501545000 RevH.pdf",
+          "I:\\Program Files\\E2\\Blswin32\\Dat\\Ht Scans\\823U71030.pdf"
+        ],
+        "PartNo": "F501545000-H",
+        "Operations": {
+          "Material review": "",
+          "saw cut 1-1/2 SCH80 Pipe 32''": "",
+          "Place Outside order for Wrench Heads": "",
+          "Mill Wrench Handles": "",
+          "Press Wrench Handles": "",
+          "Mill Wrench Heads": "",
+          "Match Heads to Handles": ""
+        },
+        "OperationTime": {
+          "Material review": 0,
+          "saw cut 1-1/2 SCH80 Pipe 32''": 0,
+          "Place Outside order for Wrench Heads": 0,
+          "Mill Wrench Handles": 0,
+          "Press Wrench Handles": 0,
+          "Mill Wrench Heads": 0,
+          "Match Heads to Handles": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F182617000-A\\F185414000.pdf"
+        ],
+        "PartNo": "F185414000-A"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "SL20 Op2 O04222": "David",
+          "Bag and Label": "Evelyn",
+          "SL20 OP1 O04221": "David"
+        },
+        "OperationTime": {
+          "SL20 Op2 O04222": 0,
+          "Bag and Label": 0,
+          "SL20 OP1 O04221": 0
+        },
+        "PartNo": "ADPT639"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Material order": "",
+          "Saw cut .3 to .33": "",
+          "Lathe Op1 Face side 1": "",
+          "Lathe Op2 Face side 2 to size .25": "",
+          "Mill OP1": "",
+          "Mill OP2": "",
+          "Mill OP3": "",
+          "Mill OP4": ""
+        },
+        "OperationTime": {
+          "Material order": 0,
+          "Saw cut .3 to .33": 0,
+          "Lathe Op1 Face side 1": 0,
+          "Lathe Op2 Face side 2 to size .25": 0,
+          "Mill OP1": 0,
+          "Mill OP2": 0,
+          "Mill OP3": 0,
+          "Mill OP4": 0
+        },
+        "PartNo": "A1006536000-A",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\A1006536000-A.pdf",
+          "I:\\Program Files\\E2\\Blswin32\\Dat\\Ht Scans\\P93K.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Bore indicated Lock Pin Hole": ""
+        },
+        "OperationTime": {
+          "Bore indicated Lock Pin Hole": 0
+        },
+        "PartNo": "HKE0005",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\Lockpin Bore.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Bore Indicated Rack Bore Sleeves (8) as indicated": ""
+        },
+        "OperationTime": {
+          "Bore Indicated Rack Bore Sleeves (8) as indicated": 0
+        },
+        "PartNo": "HKE0006",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\Rackpin Bore.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Shorten Racks as indicated": ""
+        },
+        "OperationTime": {
+          "Shorten Racks as indicated": 0
+        },
+        "PartNo": "HKE0007",
+        "AttachedFiles": [
+          "I:\\Customer Files\\HiKaliber\\HK-4186-8.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill 16 units .223": "",
+          "Blast & Coat": "",
+          "Package & Label": ""
+        },
+        "OperationTime": {
+          "Mill 16 units .223": 0,
+          "Blast & Coat": 0,
+          "Package & Label": 0
+        },
+        "PartNo": "ADPT959"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill 12 units to .308": "",
+          "Blast & Coat": "",
+          "Package & Label": ""
+        },
+        "OperationTime": {
+          "Mill 12 units to .308": 0,
+          "Blast & Coat": 0,
+          "Package & Label": 0
+        },
+        "PartNo": "ADPT960"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "mill 13 units to 9MM": "",
+          "Blast & Coat": "",
+          "Package & Label": ""
+        },
+        "OperationTime": {
+          "mill 13 units to 9MM": 0,
+          "Blast & Coat": 0,
+          "Package & Label": 0
+        },
+        "PartNo": "ADPT961"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {},
+        "OperationTime": {},
+        "PartNo": "7963"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Cut Tongs to 3-7/8''": "Victor",
+          "Assemble Clamp": "Victor"
+        },
+        "OperationTime": {
+          "Cut Tongs to 3-7/8''": 0,
+          "Assemble Clamp": 0
+        },
+        "PartNo": "I-7973"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "LATHE OP1 CREATE DRILL BUSHING": ""
+        },
+        "OperationTime": {
+          "LATHE OP1 CREATE DRILL BUSHING": 0
+        },
+        "PartNo": "ADPT962"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\N703-500-622-BA.pdf",
+          "I:\\Program Files\\E2\\Blswin32\\Dat\\Ht Scans\\SN2422-G60.pdf"
+        ],
+        "PartNo": "N703-500-622-BA",
+        "Operations": {
+          "Cur 1 unit 14\" and 4 units between .475  and .525": "Evelyn",
+          "Lathe op1 larger part": "Eduardo",
+          "Lathe op2 larger part": "Eduardo",
+          "Lathe op1 smaller part": "Eduardo",
+          "Lathe op2 smaller part": "Eduardo"
+        },
+        "OperationTime": {
+          "Cur 1 unit 14\" and 4 units between .475  and .525": 0,
+          "Lathe op1 larger part": 0,
+          "Lathe op2 larger part": 0,
+          "Lathe op1 smaller part": 0,
+          "Lathe op2 smaller part": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Send to Owens to make": "Bill",
+          "Send for Paint": "Bill",
+          "Paint Touch up and Package for Shipment": "Evelyn"
+        },
+        "OperationTime": {
+          "Send to Owens to make": 0,
+          "Send for Paint": 0,
+          "Paint Touch up and Package for Shipment": 0
+        },
+        "PartNo": "9E-VS80K65050A50"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Send to Owens to make": "Bill",
+          "Send for Paint": "Bill",
+          "Paint Touch up and package for shipment": "Evelyn"
+        },
+        "OperationTime": {
+          "Send to Owens to make": 0,
+          "Send for Paint": 0,
+          "Paint Touch up and package for shipment": 0
+        },
+        "PartNo": "9E-VS80K65060A50"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Saw Cut parts for order": ""
+        },
+        "OperationTime": {
+          "Saw Cut parts for order": 0
+        },
+        "PartNo": "N33096-003-A"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Open Id on 316 units": ""
+        },
+        "OperationTime": {
+          "Open Id on 316 units": 0
+        },
+        "PartNo": "LKB BODY 316"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Open Id on 304 units": ""
+        },
+        "OperationTime": {
+          "Open Id on 304 units": 0
+        },
+        "PartNo": "LKB BODY 304"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\DAI\\10-24UNC PIN .83 LONG.pdf",
+          "I:\\Customer Files\\DAI\\10-24UNC PIN .83 LONG.pdf"
+        ],
+        "PartNo": "MIT0007"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\DAI\\10-24UNC PIN .91 LONG.pdf",
+          "I:\\Customer Files\\DAI\\10-24UNC PIN .91 LONG.pdf"
+        ],
+        "PartNo": "MIT0008",
+        "Operations": {
+          "Lathe Op1": "David",
+          "Mill OP1": "Victor"
+        },
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Mill OP1": 0
+        }
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe OP1": "",
+          "Lathe OP2": ""
+        },
+        "OperationTime": {
+          "Lathe OP1": 0,
+          "Lathe OP2": 0
+        },
+        "PartNo": "SHF0009"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1": "",
+          "Lathe Op2": ""
+        },
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PartNo": "SHF0010"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1": "",
+          "Lathe Op2": ""
+        },
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PartNo": "SHF0011"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1": "",
+          "Lathe Op2": ""
+        },
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0
+        },
+        "PartNo": "SHF0012"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Cut 1x2 2.75'' 260 units": "Evelyn",
+          "Cut 1x3 8.880'' 260 units": "Evelyn",
+          "Mill Op 1  1x2'' material": "Victor",
+          "Mill Op 1  1x3'' material": "Victor",
+          "Mill Op 2 1-2\" Material": "Chau",
+          "Mill Op 2 1-3\" Material": "Victor"
+        },
+        "OperationTime": {
+          "Cut 1x2 2.75'' 260 units": 0,
+          "Cut 1x3 8.880'' 260 units": 0,
+          "Mill Op 1  1x2'' material": 0,
+          "Mill Op 1  1x3'' material": 0,
+          "Mill Op 2 1-2\" Material": 0,
+          "Mill Op 2 1-3\" Material": 0
+        },
+        "PartNo": "CP013"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1": "",
+          "Lathe Op2": "",
+          "Mill Op1": ""
+        },
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0,
+          "Mill Op1": 0
+        },
+        "PartNo": "ADPTM274B"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1": "",
+          "Lathe Op2": "",
+          "Mill op1": ""
+        },
+        "OperationTime": {
+          "Lathe Op1": 0,
+          "Lathe Op2": 0,
+          "Mill op1": 0
+        },
+        "PartNo": "ADPTM275B"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill Op1": ""
+        },
+        "OperationTime": {
+          "Mill Op1": 0
+        },
+        "PartNo": "HKE0005\r\n",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402900\\Lock Pin Bore Sheet 1_1.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1 & 2 if needed": ""
+        },
+        "OperationTime": {
+          "Lathe Op1 & 2 if needed": 0
+        },
+        "PartNo": "HKE0007\r\n",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402898\\HK-4186-8.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Mill Op1": ""
+        },
+        "OperationTime": {
+          "Mill Op1": 0
+        },
+        "PartNo": "HKE0006\r\n",
+        "AttachedFiles": [
+          "I:\\Customer Files\\2022\\HIKal\\402900\\Rack Bore Sheet 1_1.pdf"
+        ]
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe Op1 make 456 units side 1": "Eduardo",
+          "Lathe Op2 make 456 units side 2": "Eduardo",
+          "Clean and package in sets of 8": "Evelyn"
+        },
+        "OperationTime": {
+          "Lathe Op1 make 456 units side 1": 0,
+          "Lathe Op2 make 456 units side 2": 0,
+          "Clean and package in sets of 8": 0
+        },
+        "PartNo": "ADPT638"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AttachedFiles": [
+          "I:\\Customer Files\\R&J\\F199896066-1.pdf",
+          "I:\\Customer Files\\R&J\\F199896066-1.pdf"
+        ],
+        "PartNo": "F199896066-B"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "Operations": {
+          "Lathe op 1": "Eduardo",
+          "Lathe op 2": "Eduardo",
+          "Lathe op 3 Face off 50 for blanks": "Eduardo",
+          "Lathe op 4 Face off & tap 1/2-28": "Eduardo"
+        },
+        "OperationTime": {
+          "Lathe op 1": 0,
+          "Lathe op 2": 0,
+          "Lathe op 3 Face off 50 for blanks": 0,
+          "Lathe op 4 Face off & tap 1/2-28": 0
+        },
+        "PartNo": "ADPT419"
+      }
+    }
+  ]
+}

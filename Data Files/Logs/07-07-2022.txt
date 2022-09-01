@@ -1,0 +1,40 @@
+
+Log Entry : 11:03:24 AM Thursday, July 07, 2022
+
+  :Victor clock out at 7/7/2022 11:03:24 AM on Job 3534-03 and operation Bore indicated Rack bore sleeves with 2 parts done
+-------------------------------
+
+Log Entry : 12:30:49 PM Thursday, July 07, 2022
+
+  :Evelyn clock in at 7/7/2022 12:30:49 PM on Job 3543-01 and operation Saw cut .3 to .33
+-------------------------------
+
+Log Entry : 1:50:39 PM Thursday, July 07, 2022
+
+  :Evelyn clock out at 7/7/2022 1:50:39 PM on Job 3543-01 and operation Saw cut .3 to .33 with 3 parts done
+-------------------------------
+
+Log Entry : 3:15:50 PM Thursday, July 07, 2022
+
+  :Evelyn clock in at 7/7/2022 3:15:50 PM on Job 3543-01 and operation Saw cut .3 to .33
+-------------------------------
+
+Log Entry : 3:27:07 PM Thursday, July 07, 2022
+
+  :Michael clock in at 7/7/2022 3:27:07 PM on Job 3547-01 and operation SL20 Op2 O04222
+-------------------------------
+
+Log Entry : 4:59:26 PM Thursday, July 07, 2022
+
+  :Evelyn clock out at 7/7/2022 4:59:26 PM on Job 3543-01 and operation Saw cut .3 to .33 with 15 parts done
+-------------------------------
+
+Log Entry : 5:53:44 PM Thursday, July 07, 2022
+
+  :David clock out at 7/7/2022 5:53:44 PM on Job 3547-01 and operation SL20 Op1 O04221 with 317 parts done
+-------------------------------
+
+Log Entry : 5:56:21 PM Thursday, July 07, 2022
+
+  :Michael clock out at 7/7/2022 5:56:21 PM on Job 3547-01 and operation SL20 Op2 O04222 with 112 parts done
+-------------------------------

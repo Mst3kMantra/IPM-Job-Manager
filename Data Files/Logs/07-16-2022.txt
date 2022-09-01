@@ -1,0 +1,10 @@
+
+Log Entry : 9:43:13 AM Saturday, July 16, 2022
+
+  :David clock in at 7/16/2022 9:43:13 AM on Job 3539-01 and operation Lathe Tap and cut to length
+-------------------------------
+
+Log Entry : 12:25:22 PM Saturday, July 16, 2022
+
+  :David clock out at 7/16/2022 12:25:22 PM on Job 3539-01 and operation Lathe Tap and cut to length with 12 parts done
+-------------------------------

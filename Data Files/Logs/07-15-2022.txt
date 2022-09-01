@@ -1,0 +1,15 @@
+
+Log Entry : 8:02:10 AM Friday, July 15, 2022
+
+  :David clock out at 7/15/2022 8:02:10 AM on Job 3543-01 and operation Mill OP2 with 64 parts done
+-------------------------------
+
+Log Entry : 11:11:17 AM Friday, July 15, 2022
+
+  :David clock in at 7/15/2022 11:11:17 AM on Job 3539-01 and operation Lathe Tap and cut to length
+-------------------------------
+
+Log Entry : 5:07:25 PM Friday, July 15, 2022
+
+  :David clock out at 7/15/2022 5:07:25 PM on Job 3539-01 and operation Lathe Tap and cut to length with 4 parts done
+-------------------------------

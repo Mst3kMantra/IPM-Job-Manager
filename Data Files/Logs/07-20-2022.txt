@@ -1,0 +1,35 @@
+
+Log Entry : 8:03:21 AM Wednesday, July 20, 2022
+
+  :David clock in at 7/20/2022 8:03:21 AM on Job 3539-01 and operation Lathe Tap and cut to length
+-------------------------------
+
+Log Entry : 12:32:12 PM Wednesday, July 20, 2022
+
+  :David clock out at 7/20/2022 12:32:12 PM on Job 3539-01 and operation Lathe Tap and cut to length with 18 parts done
+-------------------------------
+
+Log Entry : 12:34:53 PM Wednesday, July 20, 2022
+
+  :Evelyn clock in at 7/20/2022 12:34:53 PM on Job 3558-01 and operation saw Cut .575 units until run out of material
+-------------------------------
+
+Log Entry : 1:02:21 PM Wednesday, July 20, 2022
+
+  :David clock in at 7/20/2022 1:02:21 PM on Job 3539-01 and operation Lathe Tap and cut to length
+-------------------------------
+
+Log Entry : 2:49:48 PM Wednesday, July 20, 2022
+
+  :Evelyn clock out at 7/20/2022 2:49:48 PM on Job 3558-01 and operation saw Cut .575 units until run out of material with 11 parts done
+-------------------------------
+
+Log Entry : 3:34:21 PM Wednesday, July 20, 2022
+
+  :Evelyn clock in at 7/20/2022 3:34:21 PM on Job 3558-01 and operation Saw Cut parts for order
+-------------------------------
+
+Log Entry : 5:18:38 PM Wednesday, July 20, 2022
+
+  :Evelyn clock out at 7/20/2022 5:18:38 PM on Job 3558-01 and operation Saw Cut parts for order with 17 parts done
+-------------------------------

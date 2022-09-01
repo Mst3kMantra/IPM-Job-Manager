@@ -1,0 +1,214 @@
+{
+  "$type": "IPM_Job_Manager_net.Root, IPM Job Manager",
+  "Users": {
+    "$type": "System.Collections.Generic.List`1[[IPM_Job_Manager_net.User, IPM Job Manager]], mscorlib",
+    "$values": [
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Bill",
+        "Password": "m+Nhd2QQBIr0iLtsc1mS55iqL3uL9JQRBhURk1qt6bs=",
+        "IsAdmin": true,
+        "JobsAssigned": 2,
+        "Salt": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "Wtb9cEJw9X87/yE1XpI3BQ=="
+        },
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Michael",
+        "Password": "oc6sLD6AvZBiUsd62Hj/zRcvbC9l1RLIGF12qo7CtEE=",
+        "IsAdmin": true,
+        "JobsAssigned": 0,
+        "Salt": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "PGGUCT6thtwfxUW57rzbVA=="
+        },
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Chau",
+        "Password": "",
+        "IsAdmin": false,
+        "JobsAssigned": 4,
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib",
+          "3171-03": true
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib",
+          "3171-03": 14
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Eduardo",
+        "Password": "",
+        "IsAdmin": false,
+        "JobsAssigned": 6,
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Victor",
+        "Password": "",
+        "IsAdmin": false,
+        "JobsAssigned": 7,
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Martie",
+        "Password": "",
+        "IsAdmin": false,
+        "JobsAssigned": 0,
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Evelyn",
+        "Password": "LO6aIfGtQHtKWpa+uNFIaoZxKeoJb7CDo0zz4ZY803Y=",
+        "IsAdmin": true,
+        "JobsAssigned": 1,
+        "Salt": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "pi2wq0bfphgG8WfPtb+DZQ=="
+        },
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      },
+      {
+        "$type": "IPM_Job_Manager_net.User, IPM Job Manager",
+        "Username": "Shop",
+        "Password": "",
+        "IsAdmin": false,
+        "JobsAssigned": 1,
+        "isPunchedIn": false,
+        "TimeCard": {
+          "$type": "IPM_Job_Manager_net.TimeCard, IPM Job Manager",
+          "ClockedInJobs": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.DateTime, mscorlib]], mscorlib"
+          },
+          "TrackedOperations": {
+            "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+          },
+          "AllClockedInJobs": ""
+        },
+        "PartRollingOver": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "RolledOverJobs": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        }
+      }
+    ]
+  }
+}

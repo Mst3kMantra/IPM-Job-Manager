@@ -1,0 +1,620 @@
+{
+  "$type": "System.Collections.ObjectModel.ObservableCollection`1[[IPM_Job_Manager_net.Job, IPM Job Manager]], System",
+  "$values": [
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "pending                       ",
+        "CustDesc": "R & J Precision Welding, Inc",
+        "PartNo": "F501545000-H",
+        "PartDesc": "Wrench Spanner Wldmnt 3-5/32 Hex",
+        "QTY Due": "5",
+        "DueDate": "6/22/2022 12:00:00 AM",
+        "JobNo": "3536-01",
+        "QtyOrdered": "5",
+        "UnitPrice": "375",
+        "Shipped": "0",
+        "Value Due": "1875"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "Pending                       ",
+        "CustDesc": "Top Rig Services",
+        "PartNo": "TOP14372",
+        "PartDesc": "Bonnet, Repair Both units. 1 sides and 1 top plate replacement, , Sent for Paint the one the side repair was completed on.",
+        "QTY Due": "1",
+        "DueDate": "6/28/2022 12:00:00 AM",
+        "JobNo": "3489-27",
+        "QtyOrdered": "2",
+        "UnitPrice": "0",
+        "Shipped": "1",
+        "Value Due": "0"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT139",
+        "PartDesc": "1-1/2'' Adapter TO 18MM X 1",
+        "QTY Due": "1",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-08",
+        "QtyOrdered": "1",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT419",
+        "PartDesc": "1'' Adapter to blank",
+        "QTY Due": "150",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-22",
+        "QtyOrdered": "150",
+        "UnitPrice": "6.75",
+        "Shipped": "0",
+        "Value Due": "1012.5"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT638",
+        "PartDesc": "1'' PLUG SET",
+        "QTY Due": "57",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-23",
+        "QtyOrdered": "57",
+        "UnitPrice": "31",
+        "Shipped": "0",
+        "Value Due": "1767"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT649",
+        "PartDesc": "1-1/2\" PLUG Stainless",
+        "QTY Due": "27",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-12",
+        "QtyOrdered": "48",
+        "UnitPrice": "10",
+        "Shipped": "21",
+        "Value Due": "270"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "All Jobs FAS2022              ",
+        "CustDesc": "FAS",
+        "PartNo": "ADPT706",
+        "PartDesc": "1-1/2\" Adapter TO .578-28 Titanium",
+        "QTY Due": "5",
+        "DueDate": "7/6/2022 12:00:00 AM",
+        "JobNo": "3547-09",
+        "QtyOrdered": "5",
+        "UnitPrice": "35",
+        "Shipped": "0",
+        "Value Due": "175"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "AX22-02282                    ",
+        "CustDesc": "AXIOM SPACE INC.",
+        "PartNo": "AXIOM03",
+        "PartDesc": "SERVICE MACHINE WORK",
+        "QTY Due": "1",
+        "DueDate": "8/5/2022 12:00:00 AM",
+        "JobNo": "3563-01",
+        "QtyOrdered": "1",
+        "UnitPrice": "3400",
+        "Shipped": "0",
+        "Value Due": "3400"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "11806                         ",
+        "CustDesc": "Universal Sealing Applications",
+        "PartNo": "USA009",
+        "PartDesc": "Titanium Seal Ring Large (Seal Ring)",
+        "QTY Due": "3",
+        "DueDate": "8/12/2022 12:00:00 AM",
+        "JobNo": "3564-01",
+        "QtyOrdered": "3",
+        "UnitPrice": "1275",
+        "Shipped": "0",
+        "Value Due": "3825"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "11806                         ",
+        "CustDesc": "Universal Sealing Applications",
+        "PartNo": "USA010",
+        "PartDesc": "Titanium Seal Ring Small (Mating Ring)",
+        "QTY Due": "6",
+        "DueDate": "8/12/2022 12:00:00 AM",
+        "JobNo": "3564-02",
+        "QtyOrdered": "6",
+        "UnitPrice": "700",
+        "Shipped": "0",
+        "Value Due": "4200"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "PFS10199                      ",
+        "CustDesc": "Valsource International LLC",
+        "PartNo": "VS0019",
+        "PartDesc": "Coupler Bore and Key",
+        "QTY Due": "1",
+        "DueDate": "8/31/2022 12:00:00 AM",
+        "JobNo": "3587-01",
+        "QtyOrdered": "1",
+        "UnitPrice": "0",
+        "Shipped": "0",
+        "Value Due": "0"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "4507913025 WF#00220609        ",
+        "CustDesc": "Centerpoint Energy",
+        "PartNo": "CP013",
+        "PartDesc": "Aluninum Wire Clamp",
+        "QTY Due": "250",
+        "DueDate": "9/5/2022 12:00:00 AM",
+        "JobNo": "3535-01",
+        "QtyOrdered": "250",
+        "UnitPrice": "175",
+        "Shipped": "0",
+        "Value Due": "43750"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "12298                         ",
+        "CustDesc": "Texas Injection Molding",
+        "PartNo": "TIM0006",
+        "PartDesc": "Tooling Cost Outsource Blank Insert for Patent Pending",
+        "QTY Due": "5",
+        "DueDate": "12/31/2022 12:00:00 AM",
+        "JobNo": "3171-03",
+        "QtyOrdered": "5",
+        "UnitPrice": "445",
+        "Shipped": "0",
+        "Value Due": "2225"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "12298                         ",
+        "CustDesc": "Texas Injection Molding",
+        "PartNo": "TIM0007",
+        "PartDesc": "Tooling Cost Outsource Blank Inserts for Intrepid Industries",
+        "QTY Due": "17",
+        "DueDate": "12/31/2022 12:00:00 AM",
+        "JobNo": "3171-04",
+        "QtyOrdered": "25",
+        "UnitPrice": "305",
+        "Shipped": "8",
+        "Value Due": "5185"
+      }
+    },
+    {
+      "$type": "IPM_Job_Manager_net.Job, IPM Job Manager",
+      "JobInfo": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Object, mscorlib]], mscorlib",
+        "AssignedEmployees": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "Operations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib"
+        },
+        "CompletedOperations": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean, mscorlib]], mscorlib"
+        },
+        "Notes": "",
+        "EstDays": 0,
+        "Priority": 0,
+        "EstTime": "",
+        "AttachedFiles": {
+          "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+          "$values": []
+        },
+        "OperationTime": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PartsDone": {
+          "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32, mscorlib]], mscorlib"
+        },
+        "PONum": "12298                         ",
+        "CustDesc": "Texas Injection Molding",
+        "PartNo": "TIM0008",
+        "PartDesc": "Tooling Cost Outsource Blank for Middle Member of Triple Hook",
+        "QTY Due": "8",
+        "DueDate": "12/31/2022 12:00:00 AM",
+        "JobNo": "3171-05",
+        "QtyOrdered": "8",
+        "UnitPrice": "305",
+        "Shipped": "0",
+        "Value Due": "2440"
+      }
+    }
+  ]
+}

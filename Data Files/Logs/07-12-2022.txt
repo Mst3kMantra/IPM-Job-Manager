@@ -1,0 +1,70 @@
+
+Log Entry : 8:34:32 AM Tuesday, July 12, 2022
+
+  :David clock in at 7/12/2022 8:34:32 AM on Job 3543-01 and operation Lathe Op1 Face side 1
+-------------------------------
+
+Log Entry : 8:36:16 AM Tuesday, July 12, 2022
+
+  :Michael clock in at 7/12/2022 8:36:16 AM on Job 3539-01 and operation Order Material
+-------------------------------
+
+Log Entry : 8:36:23 AM Tuesday, July 12, 2022
+
+  :Michael clock out at 7/12/2022 8:36:23 AM on Job 3539-01 and operation Order Material with 1 parts done
+-------------------------------
+
+Log Entry : 8:37:15 AM Tuesday, July 12, 2022
+
+  :Michael clock in at 7/12/2022 8:37:15 AM on Job 3489-27 and operation Buy Material
+-------------------------------
+
+Log Entry : 8:37:24 AM Tuesday, July 12, 2022
+
+  :Michael clock out at 7/12/2022 8:37:24 AM on Job 3489-27 and operation Buy Material with 1 parts done
+-------------------------------
+
+Log Entry : 8:54:40 AM Tuesday, July 12, 2022
+
+  :Victor clock in at 7/12/2022 8:54:40 AM on Job 3552-02 and operation Bore indicated Lock Pin Hole
+-------------------------------
+
+Log Entry : 9:10:11 AM Tuesday, July 12, 2022
+
+  :Michael clock in at 7/12/2022 9:10:11 AM on Job 3171-05 and operation Mill Profile and Engrave
+-------------------------------
+
+Log Entry : 9:10:19 AM Tuesday, July 12, 2022
+
+  :Michael clock out at 7/12/2022 9:10:19 AM on Job 3171-05 and operation Mill Profile and Engrave with 1 parts done
+-------------------------------
+
+Log Entry : 9:38:28 AM Tuesday, July 12, 2022
+
+  :Victor clock out at 7/12/2022 9:38:28 AM on Job 3552-02 and operation Bore indicated Lock Pin Hole with 1 parts done
+-------------------------------
+
+Log Entry : 11:06:42 AM Tuesday, July 12, 2022
+
+  :David clock out at 7/12/2022 11:06:42 AM on Job 3543-01 and operation Lathe Op1 Face side 1 with 64 parts done
+-------------------------------
+
+Log Entry : 11:06:52 AM Tuesday, July 12, 2022
+
+  :David clock in at 7/12/2022 11:06:52 AM on Job 3543-01 and operation Lathe Op2 Face side 2 to size .25
+-------------------------------
+
+Log Entry : 2:01:28 PM Tuesday, July 12, 2022
+
+  :David clock in at 7/12/2022 2:01:28 PM on Job 3547-01 and operation SL20 Op2 O04222
+-------------------------------
+
+Log Entry : 3:43:29 PM Tuesday, July 12, 2022
+
+  :Victor clock in at 7/12/2022 3:43:29 PM on Job 3552-01 and operation Bore Indicated Rack Bore Sleeves (8) as indicated
+-------------------------------
+
+Log Entry : 4:57:12 PM Tuesday, July 12, 2022
+
+  :David clock out at 7/12/2022 4:57:12 PM on Job 3547-01 and operation SL20 Op2 O04222 with 170 parts done
+-------------------------------
