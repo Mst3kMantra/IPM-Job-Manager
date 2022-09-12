@@ -5,7 +5,7 @@ Uses data from a Microsoft Access database to populate json data files and prese
 <br/>
 ### Features:<br/>
 <br/>
-- Sorting of jobs based on priority<br/>
+- Sorting of jobs based on priority and due date<br/>
 - Assigning and removing jobs from employees<br/>
 - Adding and removing operations from jobs<br/>
 - Assigning and unassigning employees from jobs<br/>
@@ -15,6 +15,8 @@ Uses data from a Microsoft Access database to populate json data files and prese
 - Login for admins to modify jobs and basic main window for employees to view jobs they are assigned<br/>
 - Automatic removal and unassignment of jobs from employees upon completion with their input<br/>
 - Completed jobs stored in data and available for view<br/>
+- Clock in/out system for employees to report amount of parts finished<br/>
+- Displays a cycle time for operations based on time of clock in/out and parts finished by employees and a estimated job completion date based on that<br/>
 <br/>
 <br/>
 ### Prerequisites:<br/>
